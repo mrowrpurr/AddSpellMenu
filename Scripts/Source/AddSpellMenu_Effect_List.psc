@@ -1,0 +1,1 @@
+Scriptname AddSpellMenu_Effect_List extends ActiveMagicEffect  
