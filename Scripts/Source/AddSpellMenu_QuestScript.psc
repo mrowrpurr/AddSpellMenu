@@ -1,11 +1,13 @@
-scriptName AddSpellMenu_QuestScript extends Quest  
+scriptName AddSpellMenu_QuestScript extends Quest
 
 bool AddSpellsToPlayer = true
+
 string ModName = "AddSpellMenu.esp"
-int AddSpellMenu_SearchSpellID = 0x800
-int AddSpellMenu_ListSpellID   = 0x801
-int AddSpellMenu_SearchTomeID = 0xd68
-int AddSpellMenu_ListTomeID   = 0xd69
+
+int SearchSpellID = 0x800
+int ListSpellID   = 0x801
+int SearchTomeID  = 0xd68
+int ListTomeID    = 0xd69
 
 event OnInit()
     AddSpellTomesToPlayer()
@@ -16,16 +18,22 @@ endEvent
 
 function AddSpellsToPlayer()
     Actor player = Game.GetPlayer()
-    player.AddSpell(GetModForm(AddSpellMenu_ListSpellID) as Spell)
-    player.AddSpell(GetModForm(AddSpellMenu_SearchSpellID) as Spell)
+    player.AddSpell(GetModForm(ListSpellID) as Spell)
+    player.AddSpell(GetModForm(SearchSpellID) as Spell)
+    Game.GetPlayer().EquipSpell(GetModForm(ListSpellID) as Spell, 0)
+    Game.GetPlayer().EquipSpell(GetModForm(ListSpellID) as Spell, 1)
 endFunction
 
 function AddSpellTomesToPlayer()
     Actor player = Game.GetPlayer()
-    player.AddItem(GetModForm(AddSpellMenu_ListTomeID))
-    player.AddItem(GetModForm(AddSpellMenu_SearchTomeID))
+    player.AddItem(GetModForm(ListTomeID))
+    player.AddItem(GetModForm(SearchTomeID))
 endFunction
 
 Form function GetModForm(int formId)
     return Game.GetFormFromFile(formId, ModName)
 endFunction
+
+event OnBarterSpell(string eventName, string strArg, float numArg, Form sender)
+    AddSpellMenu_BarterNpc.OnBarterSpell(eventName, strArg, numArg, sender)
+endEvent

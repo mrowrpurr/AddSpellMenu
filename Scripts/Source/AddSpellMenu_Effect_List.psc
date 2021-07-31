@@ -1,8 +1,13 @@
 scriptName AddSpellMenu_Effect_List extends ActiveMagicEffect  
 
+AddSpellMenu_QuestScript property ModQuest auto
+
 event OnEffectStart(Actor target, Actor caster)
     string selectedMod = AddSpellMenu_Menu_ModChooser.Show()
 
-    Debug.MessageBox("You selected the mod: " + selectedMod)
-    ; TODO show the spell chooser for this mod
+    Spell[] spells = PO3_SKSEFunctions.GetAllSpellsInMod(selectedMod, abIsPlayable = true)
+
+    AddSpellMenu_BarterNpc.ResetSpells()
+    AddSpellMenu_BarterNpc.AddSpells(spells)
+    AddSpellMenu_BarterNpc.Trade(caster, ModQuest)
 endEvent

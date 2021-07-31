@@ -1,4 +1,4 @@
-scriptName AddSpellMenu_Menu_ModChooser
+scriptName AddSpellMenu_Menu_ModChooser hidden
 
 string function Show() global
     uilistmenu listMenu = uiextensions.GetMenu("UIListMenu") as uilistmenu
