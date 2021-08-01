@@ -6,7 +6,11 @@ event OnEffectStart(Actor target, Actor caster)
     string searchQuery = AddSpellMenu_Menu_SearchBox.Show()
     if searchQuery != ""
         Actor spellsContainer = AddSpellMenu_Npcs.GetTraderContainerNpc(resetSpells = true)
-        if AddSpellMenu_SpellSearch.SearchAllSpellsAndPopulateContainerWithMatches(searchQuery, spellsContainer)
+        if AddSpellMenu_SpellSearch.SearchAllSpellsAndPopulateContainerWithMatches( \
+                ModQuest, \
+                searchQuery, \
+                spellsContainer, \
+                onlyShowSpellsWithSpellTomes = ModQuest.OnlyShowSpellsWithSpellTomes)
             AddSpellMenu_Menu_SpellChooser.Show(spellsContainer, ModQuest)
         else
             Debug.MessageBox("No spells found matching \"" + searchQuery + "\" which the player does not already have")

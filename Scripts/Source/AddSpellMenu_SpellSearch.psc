@@ -1,7 +1,13 @@
 scriptName AddSpellMenu_SpellSearch hidden
 
-bool function SearchAllSpellsAndPopulateContainerWithMatches(string searchQuery, Actor spellsContainer) global
-    Spell[] allSpells = PO3_SKSEFunctions.GetAllSpells(abIsPlayable = true) ; <--- switch abIsPlayable to a Quest variable (later) for configuration
+bool function SearchAllSpellsAndPopulateContainerWithMatches(AddSpellMenu_QuestScript modQuest, string searchQuery, Actor spellsContainer, bool onlyShowSpellsWithSpellTomes = true) global
+    if onlyShowSpellsWithSpellTomes
+        Debug.Notification("Searching spells for \"" + searchQuery + "\"...")
+    else
+        Debug.Notification("Searching all spells for \"" + searchQuery + "\"... This may take awhile...")
+        modQuest.BeginSearchingNotifications()
+    endIf
+    Spell[] allSpells = PO3_SKSEFunctions.GetAllSpells(abIsPlayable = onlyShowSpellsWithSpellTomes)
     Actor player = Game.GetPlayer()
 
     bool anyMatchingSpells = false
@@ -15,11 +21,12 @@ bool function SearchAllSpellsAndPopulateContainerWithMatches(string searchQuery,
         index += 1
     endWhile
 
+    modQuest.EndSearchingNotifications()
     return anyMatchingSpells
 endFunction
 
-bool function GetAllModSpellsAndPopulateContainerWithMatches(string modFile, Actor spellsContainer) global
-    Spell[] allSpells = PO3_SKSEFunctions.GetAllSpellsInMod(modFile, abIsPlayable = true)
+bool function GetAllModSpellsAndPopulateContainerWithMatches(string modFile, Actor spellsContainer, bool onlyShowSpellsWithSpellTomes = true) global
+    Spell[] allSpells = PO3_SKSEFunctions.GetAllSpellsInMod(modFile, abIsPlayable = onlyShowSpellsWithSpellTomes)
     Actor player = Game.GetPlayer()
 
     bool anyMatchingSpells = false
