@@ -21,7 +21,7 @@ function AddSpellsToPlayer()
     player.AddSpell(GetModForm(ListSpellID) as Spell)
     player.AddSpell(GetModForm(SearchSpellID) as Spell)
     Game.GetPlayer().EquipSpell(GetModForm(ListSpellID) as Spell, 0)
-    Game.GetPlayer().EquipSpell(GetModForm(ListSpellID) as Spell, 1)
+    Game.GetPlayer().EquipSpell(GetModForm(SearchSpellID) as Spell, 1)
 endFunction
 
 function AddSpellTomesToPlayer()
@@ -34,6 +34,6 @@ Form function GetModForm(int formId)
     return Game.GetFormFromFile(formId, ModName)
 endFunction
 
-event OnBarterSpell(string eventName, string strArg, float numArg, Form sender)
-    AddSpellMenu_BarterNpc.OnBarterSpell(eventName, strArg, numArg, sender)
+event OnSpellChooserAddRemoveSpell(string eventName, string strArg, float numArg, Form sender)
+    AddSpellMenu_Menu_SpellChooser.OnSpellChooserAddRemoveSpell(eventName, strArg, numArg, sender)
 endEvent
