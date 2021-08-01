@@ -2,7 +2,7 @@ scriptName AddSpellMenu_QuestScript extends Quest
 
 GlobalVariable property AddSpellMenu_RequiresSpellTome auto
 
-bool AddSpellsToPlayer = true
+bool AddSpellsToPlayer = false
 bool CurrentlySearchingForSpells = false
 
 string ModName = "AddSpellMenu.esp"
@@ -25,7 +25,7 @@ event OnInit()
     endIf
 endEvent
 
-function AddSpellsToPlayer()
+function AddSpellsToPlayer() ; for debugging more easily
     Actor player = Game.GetPlayer()
     player.AddSpell(GetModForm(ListSpellID) as Spell)
     player.AddSpell(GetModForm(SearchSpellID) as Spell)
