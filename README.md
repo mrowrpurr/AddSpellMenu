@@ -31,4 +31,4 @@ You can find the **[screencast playlist]** showing how to create the mod on [Sky
 [Papyrus]: https://www.creationkit.com/index.php?title=Category:Papyrus
 [powerofthree's Papyrus Extender]: https://www.nexusmods.com/skyrimspecialedition/mods/22854
 [Add Spell Menu]: https://www.nexusmods.com/skyrimspecialedition/mods/53204
-[screencast playlist]: #
+[screencast playlist]: https://www.youtube.com/playlist?list=PLektTyeQhBZcarpFT2APNZ1GqVC0Tb6VN
