@@ -1,4 +1,4 @@
-scriptName AddSpellMenu_SearchAndList hidden
+scriptName AddSpellMenu_SearchAndList
 
 function ListMods(AddSpellMenu_QuestScript modQuest) global
     string selectedMod = AddSpellMenu_Menu_ModChooser.Show()

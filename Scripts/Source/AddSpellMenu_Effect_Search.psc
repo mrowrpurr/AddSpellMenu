@@ -1,4 +1,4 @@
-scriptName AddSpellMenu_Effect_Search extends ActiveMagicEffect
+scriptName AddSpellMenu_Effect_Search extends ActiveMagicEffect  
 
 AddSpellMenu_QuestScript property ModQuest auto
 

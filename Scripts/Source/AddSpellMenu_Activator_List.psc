@@ -1,4 +1,4 @@
-scriptName AddSpellMenu_Activator_List extends ObjectReference
+scriptName AddSpellMenu_Activator_List extends ObjectReference  
 
 AddSpellMenu_QuestScript property ModQuest auto
 
