@@ -19,7 +19,7 @@ It is entirely written in Skyrim scripts ([Papyrus][]).
 No C++ was required thanks to a function provided by the lovely **[powerofthree's Papyrus Extender][]** mod.  
 The function lets you easily get all spells in the game (_or all spells from a certain mod_).
 
-You can find **[Add Spell Menu][]** posted on NexusMods: 
+You can find **[Add Spell Menu][]** posted on NexusMods: https://www.nexusmods.com/skyrimspecialedition/mods/53204
 
 You can find the **[screencast playlist]** showing how to create the mod on [Skyrim Scripting][].
 
@@ -30,5 +30,5 @@ You can find the **[screencast playlist]** showing how to create the mod on [Sky
 [Skyrim Scripting]: http://skyrimscripting.com
 [Papyrus]: https://www.creationkit.com/index.php?title=Category:Papyrus
 [powerofthree's Papyrus Extender]: https://www.nexusmods.com/skyrimspecialedition/mods/22854
-[Add Spell Menu]: #
+[Add Spell Menu]: https://www.nexusmods.com/skyrimspecialedition/mods/53204
 [screencast playlist]: #
