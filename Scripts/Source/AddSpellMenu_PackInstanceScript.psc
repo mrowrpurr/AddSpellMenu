@@ -1,4 +1,4 @@
-scriptName AddSpellMenu_PackInstanceScript extends ObjectReference  
+scriptName AddSpellMenu_PackInstanceScript extends ObjectReference
 
 event OnItemRemoved(Form item, int count, ObjectReference itemRef, ObjectReference theContainer)
     if GetNumItems() == 0
