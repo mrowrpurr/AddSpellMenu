@@ -27,7 +27,7 @@ function ShowSpellsInMod(string modName, AddSpellMenu_QuestScript modQuest) glob
             onlyShowSpellsWithSpellTomes = modQuest.OnlyShowSpellsWithSpellTomes)
         AddSpellMenu_Menu_SpellChooser.Show(spellsContainer, modQuest)
     else
-        Debug.MessageBox("No spells found in: " + modName + " which the player does not already have")
+        Debug.MessageBox("No spells found in: " + modName + "\n(which the player does not already have)")
     endIf
 endFunction
 
@@ -40,6 +40,6 @@ function ShowSearchResults(string searchQuery, AddSpellMenu_QuestScript modQuest
             onlyShowSpellsWithSpellTomes = ModQuest.OnlyShowSpellsWithSpellTomes)
         AddSpellMenu_Menu_SpellChooser.Show(spellsContainer, ModQuest)
     else
-        Debug.MessageBox("No spells found matching \"" + searchQuery + "\" which the player does not already have")
+        Debug.MessageBox("No spells found matching \"" + searchQuery + "\"\n(which the player does not already have)")
     endIf
 endFunction
