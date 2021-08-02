@@ -23,7 +23,7 @@ Form function GetModForm(int formId)
 endFunction
 
 event OnSpellChooserAddRemoveSpell(string eventName, string strArg, float numArg, Form sender)
-    AddSpellMenu_Menu_SpellChooser.OnSpellChooserAddRemoveSpell(eventName, strArg, numArg, sender)
+    AddSpellMenu_Menu_SkyUISpellChooser.OnSpellChooserAddRemoveSpell(eventName, strArg, numArg, sender)
 endEvent
 
 function BeginSearchingNotifications()
