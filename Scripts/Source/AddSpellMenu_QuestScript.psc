@@ -7,14 +7,28 @@ bool CurrentlySearchingForSpells = false
 
 string ModName = "AddSpellMenu.esp"
 
-int SearchSpellID = 0x800
-int ListSpellID   = 0x801
-int SearchTomeID  = 0xd68
-int ListTomeID    = 0xd69
+int SearchSpellID     = 0x800
+int ListSpellID       = 0x801
+int SearchTomeID      = 0xd68
+int ListTomeID        = 0xd69
+int SearchActivatorID = 0x3de4
+int ListActivatorID   = 0x3de3
 
 bool property OnlyShowSpellsWithSpellTomes
     bool function get()
         return AddSpellMenu_RequiresSpellTome.GetValueInt()
+    endFunction
+endProperty
+
+Spell property SearchSpell
+    Spell function get()
+        return GetModForm(SearchSpellID) as Spell
+    endFunction
+endProperty
+
+Spell property ListSpell
+    Spell function get()
+        return GetModForm(ListSpellID) as Spell
     endFunction
 endProperty
 
@@ -23,6 +37,7 @@ event OnInit()
     if AddSpellsToPlayer
         AddSpellsToPlayer()
     endIf
+    AddActivatorsToPlayer()
 endEvent
 
 function AddSpellsToPlayer() ; for debugging more easily
@@ -37,6 +52,12 @@ function AddSpellTomesToPlayer()
     Actor player = Game.GetPlayer()
     player.AddItem(GetModForm(ListTomeID))
     player.AddItem(GetModForm(SearchTomeID))
+endFunction
+
+function AddActivatorsToPlayer()
+    Actor player = Game.GetPlayer()
+    player.AddItem(GetModForm(ListActivatorID))
+    player.AddItem(GetModForm(SearchActivatorID))
 endFunction
 
 Form function GetModForm(int formId)
