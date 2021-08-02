@@ -21,7 +21,8 @@ The function lets you easily get all spells in the game (_or all spells from a c
 
 You can find **[Add Spell Menu][]** posted on NexusMods: https://www.nexusmods.com/skyrimspecialedition/mods/53204
 
-You can find the **[screencast playlist]** showing how to create the mod on [Skyrim Scripting][].
+You can find the **[screencast playlist]** showing how to create the mod on [Skyrim Scripting][]:  
+https://www.youtube.com/playlist?list=PLektTyeQhBZcarpFT2APNZ1GqVC0Tb6VN
 
 [AddItemMenu]: https://www.nexusmods.com/skyrimspecialedition/mods/17563
 [towawot]: https://www.nexusmods.com/skyrimspecialedition/users/3138394
