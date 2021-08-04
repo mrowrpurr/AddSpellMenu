@@ -1,17 +1,21 @@
 scriptName AddSpellMenu_Forms
 
-int function GetPackContainerID() global
-    return 0x0
+Form function GetModForm(int formId) global
+    return Game.GetFormFromFile(formId, "AddSpellMenu.esp")
 endFunction
 
-int function GetPackActivatorID() global
-    return 0x0
+Form function GetPackActivatorForm() global
+    return GetModForm(0x808)
 endFunction
 
-int function GetNPCSpellTraderID() global
-    return 0x0
+ObjectReference function GetPackContainerInstance() global
+    return GetModForm(0x80d) as ObjectReference
 endFunction
 
-int function GetNPCTempID() global
-    return 0x0
+Actor function GetNPCSpellTraderInstance() global
+    return GetModForm(0x80c) as Actor
+endFunction
+
+Actor function GetNPCTempInstance() global
+    return GetModForm(0x80b) as Actor
 endFunction

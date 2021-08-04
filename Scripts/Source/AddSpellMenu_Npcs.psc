@@ -1,11 +1,18 @@
 scriptName AddSpellMenu_Npcs hidden
 
 Actor function GetTraderContainerNpc(bool resetSpells = true) global
-    return GetModActor(0x5e39, resetSpells)
+    Actor traderActor = AddSpellMenu_Forms.GetNPCSpellTraderInstance()
+    if resetSpells
+        ResetSpells(traderActor)
+    endIf
+    return traderActor
 endFunction
 
 Actor function GetTempContainerNpc(bool resetSpells = true, bool givePlayersName = true) global
-    Actor tempActor = GetModActor(0x536f, resetSpells)
+    Actor tempActor = AddSpellMenu_Forms.GetNPCTempInstance()
+    if resetSpells
+        ResetSpells(tempActor)
+    endIf
     tempActor.GetBaseObject().SetName(Game.GetPlayer().GetBaseObject().GetName())
     return tempActor
 endFunction
@@ -16,13 +23,3 @@ function ResetSpells(Actor npc) global
     endWhile
 endFunction
 
-Actor function GetModActor(int actorReferenceId, bool resetSpells = false) global
-    Actor theActor = Game.GetFormFromFile(actorReferenceId, "AddSpellMenu.esp") as Actor
-    if theActor == None
-        Debug.MessageBox("The actor is NONE for ID: " + actorReferenceId)
-    endIf
-    if resetSpells
-        ResetSpells(theActor)
-    endIf
-    return theActor
-endFunction
