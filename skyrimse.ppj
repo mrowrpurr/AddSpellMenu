@@ -7,7 +7,7 @@
     Optimize="false" 
     Release="false" 
     Zip="true"
-    Package="true"
+    Package="false"
     Final="false">
     <Variables>
         <!-- Set the name of your mod: -->
@@ -42,15 +42,14 @@
         <Folder>./Scripts/Source</Folder>
     </Folders>
     <!-- The following section is for .bsa archives. You can enable it by setting Package="true" in the PapyrusProject -->
-    <Packages Output=".">
+    <!-- <Packages Output=".">
         <Package Name="@ModName" RootDir=".">
-            <!-- <Match In="interface\translations">*.txt</Match> -->
+            <Match In="interface\translations">*.txt</Match>
         </Package>
-        <!-- If you have any texture files, uncomment the following to create a Textures .bsa archive with texture files -->
-        <!-- <Package Name="@ModName - Textures" RootDir=".">
+        <Package Name="@ModName - Textures" RootDir=".">
             <Include>*.dds</Include>
-        </Package> -->
-    </Packages>
+        </Package>
+    </Packages> -->
     <!-- The following section is for .zip archive. You can enable it by setting Zip="true" in the PapyrusProject -->
     <ZipFiles Output="Build">
         <ZipFile Name="@ModName" RootDir="." Compression="deflate">
@@ -58,12 +57,13 @@
             <Include NoRecurse="true">*.bsa</Include>
             <Match In="Scripts">*.pex</Match>
             <Match In="Scripts\Source">*.psc</Match>
+            <Match In="Source\Scripts">*.psc</Match><!-- Once we have a reason for the files to be loose :) -->
         </ZipFile>
     </ZipFiles>
     <!-- This will remove any *.bsa files in this directory *after* the build, if there are any. Set UseInBuild="false" to disable. -->
     <!-- and copies the Scripts\Source\*.psc insto Source\Scripts\ to make AddSpellMenu functions easier to call -->
     <PostBuildEvent Description="Post-Build Remove BSA Files and Copy psc Source Files" UseInBuild="true">
-        <Command>del *.bsa</Command>
-        <Command>xcopy Scripts\Source\*.psc Source\Scripts\</Command>
+        <!-- <Command>del *.bsa</Command> -->
+        <Command>xcopy Scripts\Source\*.psc Source\Scripts\ /Y</Command>
     </PostBuildEvent>
 </PapyrusProject>

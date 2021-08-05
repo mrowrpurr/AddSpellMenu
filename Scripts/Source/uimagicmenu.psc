@@ -1,7 +1,11 @@
 ; Author: expired6978
 ; Source: https://www.nexusmods.com/skyrimspecialedition/mods/17561
 
-Scriptname UIMagicMenu extends UIMenuBase  
+Scriptname UIMagicMenu extends UIMenuBase
+{This extends the default UIMagicMenu provided by UIExtensions.
+
+It adds a new boolean property 'Notifications' which will silence the
+Debug.Notifications when the actor trades spells with the target NPC.}
 
 string property		ROOT_MENU		= "CustomMenu" autoReadonly
 string Property 	MENU_ROOT		= "_root." autoReadonly
