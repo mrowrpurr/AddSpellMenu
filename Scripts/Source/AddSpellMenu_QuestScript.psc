@@ -2,6 +2,9 @@ scriptName AddSpellMenu_QuestScript extends Quest
 {Represents the main quest script which initializes the mod if it has not already been initialized.
 This does not have a Player Script Quest Alias (Quest v2 was added and has a Player Script)}
 
+int property CurrentModVersion auto
+int property PreviousModVersion auto
+
 bool CurrentlySearchingForSpells = false
 
 bool property OnlyShowSpellsWithSpellTomes
@@ -11,11 +14,12 @@ bool property OnlyShowSpellsWithSpellTomes
 endProperty
 
 event OnInit()
-    AddSpellMenu_PlayerScript playerScript = AddSpellMenu_Forms.GetModQuestScriptv2().GetAliasByName("PlayerRef") as AddSpellMenu_PlayerScript
-    playerScript.CurrentModVersion = 2
-    playerScript.PreviousModVersion = 2
-    AddItemsToPack()
-    Game.GetPlayer().AddItem(AddSpellMenu_Forms.GetPackActivatorForm())
+    AddSpellMenu_Versioning.FirstRun()
+    AddSpellMenu_Versioning.Upgrade()
+    if Game.GetPlayer().GetItemCount(AddSpellMenu_Forms.GetPackActivatorForm()) == 0
+        AddItemsToPack()
+        Game.GetPlayer().AddItem(AddSpellMenu_Forms.GetPackActivatorForm())
+    endIf
 endEvent
 
 function AddItemsToPack()
