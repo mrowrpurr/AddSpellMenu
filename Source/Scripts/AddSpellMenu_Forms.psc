@@ -8,6 +8,14 @@ Form function GetPackActivatorForm() global
     return GetModForm(0x808)
 endFunction
 
+Form function GetListActivatorForm() global
+    return GetModForm(0x806)
+endFunction
+
+Form function GetSearchActivatorForm() global
+    return GetModForm(0x807)
+endFunction
+
 ObjectReference function GetPackContainerInstance() global
     return GetModForm(0x80d) as ObjectReference
 endFunction
@@ -34,4 +42,16 @@ endFunction
 
 AddSpellMenu_QuestScript function GetModQuestScript() global
     return GetModForm(0xd6a) as AddSpellMenu_QuestScript
+endFunction
+
+Quest function GetModQuestScriptv2() global
+    return GetModForm(0x319) as Quest
+endFunction
+
+Spell function GetListSpell() global
+    return GetModForm(0x801) as Spell
+endFunction
+
+Spell function GetSearchSpell() global
+    return GetModForm(0x800) as Spell
 endFunction

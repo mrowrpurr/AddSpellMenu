@@ -1,6 +1,14 @@
 scriptName AddSpellMenu_PlayerScript extends ReferenceAlias  
 
+int property CurrentModVersion auto
+int property PreviousModVersion auto
+
+event OnInit()
+    CurrentModVersion = 2
+    AddSpellMenu_Versioning.Upgrade()
+endEvent
+
 event OnPlayerLoadGame()
-    Debug.Trace("ON PLAYER LOAD GAME")
+    CurrentModVersion = 2
     AddSpellMenu_Versioning.Upgrade()
 endEvent
