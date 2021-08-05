@@ -8,6 +8,6 @@ event OnEffectStart(Actor target, Actor caster)
         Debug.MessageBox("AddSpellMenu now only shows spells with associated spell tomes")
     else
         AddSpellMenu_RequiresSpellTome.SetValueInt(0)
-        Debug.MessageBox("AddSpellMenu now only shows all spells\n(even those without associated spell tomes)")
+        Debug.MessageBox("AddSpellMenu now shows *all* spells\n(even those without associated spell tomes)")
     endIf
 endEvent

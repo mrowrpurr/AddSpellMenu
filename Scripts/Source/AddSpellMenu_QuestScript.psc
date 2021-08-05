@@ -1,12 +1,10 @@
 scriptName AddSpellMenu_QuestScript extends Quest
 
-GlobalVariable property AddSpellMenu_RequiresSpellTome auto
-
 bool CurrentlySearchingForSpells = false
 
 bool property OnlyShowSpellsWithSpellTomes
     bool function get()
-        return AddSpellMenu_RequiresSpellTome.GetValueInt()
+        return AddSpellMenu_Forms.GetSpellTomesRequiredGlobal().GetValueInt() == 1
     endFunction
 endProperty
 

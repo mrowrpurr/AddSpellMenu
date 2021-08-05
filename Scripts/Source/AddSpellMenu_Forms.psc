@@ -19,3 +19,7 @@ endFunction
 Actor function GetNPCTempInstance() global
     return GetModForm(0x80b) as Actor
 endFunction
+
+GlobalVariable function GetSpellTomesRequiredGlobal() global
+    return GetModForm(0x802) as GlobalVariable
+endFunction
