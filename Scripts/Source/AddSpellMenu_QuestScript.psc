@@ -1,6 +1,12 @@
 scriptName AddSpellMenu_QuestScript extends Quest
 
+int property CurrentModVersion auto
+
 bool CurrentlySearchingForSpells = false
+
+bool property AddSpellMenu_RequiresSpellTome auto ; Old property from v1 DEPRECATED
+string ModName = ""                               ; Old property from v1 DEPRECATED
+int PackActivatorID = 0                           ; Old property from v1 DEPRECATED
 
 bool property OnlyShowSpellsWithSpellTomes
     bool function get()
@@ -9,6 +15,7 @@ bool property OnlyShowSpellsWithSpellTomes
 endProperty
 
 event OnInit()
+    CurrentModVersion = 2
     Game.GetPlayer().AddItem(AddSpellMenu_Forms.GetPackActivatorForm())
 endEvent
 

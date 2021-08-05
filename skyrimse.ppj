@@ -64,6 +64,6 @@
     <!-- and copies the Scripts\Source\*.psc insto Source\Scripts\ to make AddSpellMenu functions easier to call -->
     <PostBuildEvent Description="Post-Build Remove BSA Files and Copy psc Source Files" UseInBuild="true">
         <Command>del *.bsa</Command>
-        <Command>xcopy Scripts\Source\*.psc Source\Scripts\</Command>
+        <Command>xcopy Scripts\Source\*.psc Source\Scripts\ /Y</Command>
     </PostBuildEvent>
 </PapyrusProject>

@@ -1,26 +1,23 @@
 scriptName AddSpellMenu_QuestScript extends Quest
 
-GlobalVariable property AddSpellMenu_RequiresSpellTome auto
-
-string ModName = "AddSpellMenu.esp"
-
-int PackActivatorID = 0x639c
+int property CurrentModVersion auto
 
 bool CurrentlySearchingForSpells = false
 
+bool property AddSpellMenu_RequiresSpellTome_var auto ; Old property from v1 DEPRECATED
+string ModName = ""                                   ; Old property from v1 DEPRECATED
+int PackActivatorID = 0                               ; Old property from v1 DEPRECATED
+
 bool property OnlyShowSpellsWithSpellTomes
     bool function get()
-        return AddSpellMenu_RequiresSpellTome.GetValueInt()
+        return AddSpellMenu_Forms.GetSpellTomesRequiredGlobal().GetValueInt() == 1
     endFunction
 endProperty
 
 event OnInit()
-    Game.GetPlayer().AddItem(GetModForm(PackActivatorID))
+    CurrentModVersion = 2
+    Game.GetPlayer().AddItem(AddSpellMenu_Forms.GetPackActivatorForm())
 endEvent
-
-Form function GetModForm(int formId)
-    return Game.GetFormFromFile(formId, ModName)
-endFunction
 
 event OnSpellChooserAddRemoveSpell(string eventName, string strArg, float numArg, Form sender)
     AddSpellMenu_Menu_SkyUISpellChooser.OnSpellChooserAddRemoveSpell(eventName, strArg, numArg, sender)
