@@ -1,4 +1,5 @@
 scriptName AddSpellMenu_Activator_Pack extends ObjectReference  
+{Represents the AddSpellMenu Pack which is given to the player when they install the mod}
 
 AddSpellMenu_QuestScript property ModQuest auto
 

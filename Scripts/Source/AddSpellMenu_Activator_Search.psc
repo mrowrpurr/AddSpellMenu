@@ -1,4 +1,5 @@
 scriptName AddSpellMenu_Activator_Search extends ObjectReference  
+{Represents the inventory item which activates searching for spells}
 
 AddSpellMenu_QuestScript property ModQuest auto
 

@@ -1,4 +1,5 @@
-scriptName AddSpellMenu_Forms
+scriptName AddSpellMenu_Forms hidden
+{Fetch various objects from AddSpellMenu via global functions}
 
 Form function GetModForm(int formId) global
     return Game.GetFormFromFile(formId, "AddSpellMenu.esp")

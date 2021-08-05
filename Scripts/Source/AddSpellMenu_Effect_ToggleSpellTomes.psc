@@ -1,4 +1,5 @@
 Scriptname AddSpellMenu_Effect_ToggleSpellTomes extends ActiveMagicEffect  
+{Represents the spell effect which toggles the feature of whether spell tomes are required for spells to appear in the search/list}
 
 GlobalVariable property AddSpellMenu_RequiresSpellTome auto
 
