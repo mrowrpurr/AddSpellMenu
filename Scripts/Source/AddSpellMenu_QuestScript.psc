@@ -35,7 +35,6 @@ function AddItemsToPack()
     ObjectReference packContainer = AddSpellMenu_Forms.GetPackContainerInstance()
     packContainer.AddItem(AddSpellMenu_Forms.GetSpellTomeForm())
     packContainer.AddItem(AddSpellMenu_Forms.GetActivatorForm())
-    packContainer.AddItem(AddSpellMenu_Forms.GetNpcSpellTomeForm())
 endFunction
 
 event OnSpellChooserAddRemoveSpell(string eventName, string strArg, float numArg, Form sender)

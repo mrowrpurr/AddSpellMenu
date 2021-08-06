@@ -20,9 +20,13 @@ function OnSpellRemoverAddRemoveSpell(string eventName, string strArg, float num
     Spell theSpell = formArg as Spell
     if targetActor.HasSpell(theSpell)
         targetActor.RemoveSpell(theSpell)
-		UI.InvokeForm("CustomMenu", "_root.Menu_mc.MagicMenu_RemoveSpell", theSpell)
-        if targetActor.GetSpellCount() == 0
-            Input.TapKey(1) ; Simulate the Escape key
+        if targetActor.HasSpell(theSpell)
+            Debug.MessageBox(targetActor.GetBaseObject().GetName() + " cannot unlearn starting spell " + theSpell.GetName())
+        else
+            UI.InvokeForm("CustomMenu", "_root.Menu_mc.MagicMenu_RemoveSpell", theSpell)
+            if targetActor.GetSpellCount() == 0
+                Input.TapKey(1) ; Simulate the Escape key
+            endIf
         endIf
     endIf
 endFunction

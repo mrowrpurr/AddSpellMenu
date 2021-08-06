@@ -1,7 +1,7 @@
 scriptName AddSpellMenu_UI hidden
 {Primary functions for triggering the mod list / spell search UI menus}
 
-; Show the main [AddSpellMenu]
+; Show the main [AddSpellMenu] (different depending on if NPC in crosshairs or not, etc)
 function ShowAddSpellMenu() global
     Actor npc = Game.GetCurrentCrosshairRef() as Actor
     if npc
@@ -16,19 +16,8 @@ function ShowSpellRemover() global
     AddSpellMenu_Menu_SpellRemover.Show()
 endFunction
 
-function ShowNpcAddSpellMenu() global
-    int selection = AddSpellMenu_Forms.GetNpcMessage().Show()
-    int addIndex = 0
-    int viewIndex = 1
-    int removeIndex = 2
-    int cancelIndex = 3
-    if selection == addIndex
-        AddSpellMenu_UI.ShowAddSpellMenu()
-    elseIf selection == viewIndex
-        AddSpellMenu_Menu_SpellViewer.Show()
-    elseIf selection == removeIndex
-        AddSpellMenu_Menu_SpellRemover.Show()
-    endIf
+function ShowSpellViewer() global
+    AddSpellMenu_Menu_SpellViewer.Show()
 endFunction
 
 function ListMods() global

@@ -23,8 +23,13 @@ bool function ShowSpellChooser(Actor spellsContainer) global
 
     if selectedIndex > -1
         Spell selectedSpell = spellsContainer.GetNthSpell(selectedIndex)
-        AddSpellMenu_Forms.GetModQuestScript().CurrentTargetActor.RemoveSpell(selectedSpell)
-        spellsContainer.RemoveSpell(selectedSpell)
+        Actor targetActor = AddSpellMenu_Forms.GetModQuestScript().CurrentTargetActor
+        targetActor.RemoveSpell(selectedSpell)
+        if targetActor.HasSpell(selectedSpell)
+            Debug.Notification(targetActor.GetBaseObject().GetName() + " cannot unlearn starting spell " + selectedSpell.GetName())
+        else
+            spellsContainer.RemoveSpell(selectedSpell)
+        endIf
         return true
     else
         return false

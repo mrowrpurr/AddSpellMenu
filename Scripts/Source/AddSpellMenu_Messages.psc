@@ -20,15 +20,18 @@ endFunction
 
 function ShowNpcMainMenu(Actor npc) global
     SetMessageBoxText1(npc.GetBaseObject().GetName())
-    int result = (AddSpellMenu_Forms.GetModForm(0x81e) as Message).Show()
+    int result = (AddSpellMenu_Forms.GetModForm(0x82c) as Message).Show()
     int search = 0
     int chooseMod = 1
-    int removeSpells = 2
+    int viewSpells = 2
+    int removeSpells = 3
     int options = 3
     if result == search
         AddSpellMenu_UI.SearchModsAndSpells()
     elseIf result == chooseMod
         AddSpellMenu_UI.ListMods()
+    elseIf result == viewSpells
+        AddSpellMenu_UI.ShowSpellViewer()
     elseIf result == removeSpells
         AddSpellMenu_UI.ShowSpellRemover()
     elseIf result == options
