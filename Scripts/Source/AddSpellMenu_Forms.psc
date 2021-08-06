@@ -41,18 +41,6 @@ Form function GetSearchSpellTomeForm() global
     return GetModForm(0xd68)
 endFunction
 
-Form function GetNpcListSpellTomeForm() global
-    return GetModForm(0x819)
-endFunction
-
-Form function GetNpcSearchSpellTomeForm() global
-    return GetModForm(0x818)
-endFunction
-
-Form function GetNpcViewSpellsTomeForm() global
-    return GetModForm(0x81a)
-endFunction
-
 Form function GetNpcSpellTomeForm() global
     return GetModForm(0x81d)
 endFunction

@@ -27,3 +27,8 @@ function ViewNpcSpells() global
     Actor npc = AddSpellMenu_Forms.GetModQuestScript().CurrentTargetActor
     AddSpellMenu_Menu_SpellViewer.Show()
 endFunction
+
+function RemoveNpcSpells() global
+    Actor npc = AddSpellMenu_Forms.GetModQuestScript().CurrentTargetActor
+    AddSpellMenu_Menu_SpellRemover.Show()
+endFunction

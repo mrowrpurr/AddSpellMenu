@@ -7,12 +7,15 @@ event OnEffectStart(Actor target, Actor caster)
     int viewIndex = 0
     int searchIndex = 1
     int listIndex = 2
-    int cancelIndex = 3
+    int removeIndex = 3
+    int cancelIndex = 4
     if selection == viewIndex
         AddSpellMenu_Npcs.ViewNpcSpells()
     elseIf selection == searchIndex
         AddSpellMenu_SearchAndList.SearchModsAndSpells()
     elseIf selection == listIndex
         AddSpellMenu_SearchAndList.ListMods()
+    elseIf selection == removeIndex
+        AddSpellMenu_Npcs.RemoveNpcSpells()
     endIf
 endEvent

@@ -5,6 +5,9 @@ This does not have a Player Script Quest Alias (Quest v2 was added and has a Pla
 ; The actor to give spells to, e.g. the player or a targetted NPC
 Actor property CurrentTargetActor auto
 
+; The currently open UIMagicMenu - currently only used for removing spells
+uimagicmenu property CurrentMagicMenu auto
+
 ; Properties for mod versioning
 int property CurrentModVersion auto
 int property PreviousModVersion auto
