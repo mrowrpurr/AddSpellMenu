@@ -1,20 +1,31 @@
-scriptName AddSpellMenu_SearchAndList hidden
+scriptName AddSpellMenu_UI hidden
 {Primary functions for triggering the mod list / spell search UI menus}
 
+; Show the main [AddSpellMenu]
 function ShowAddSpellMenu() global
-    int selection = AddSpellMenu_Forms.GetMessage().Show()
-    int searchIndex = 0
-    int listIndex = 1
-    int removeIndex = 2
-    int cancelIndex = 3
-    if selection == searchIndex
-        AddSpellMenu_SearchAndList.SearchModsAndSpells()
-    elseif selection == listIndex
-        AddSpellMenu_SearchAndList.ListMods()
-    elseif selection == removeIndex
-        AddSpellMenu_Menu_SpellRemover.Show()
+    Actor actorRef = Game.GetCurrentCrosshairRef() as Actor
+    if actorRef
+        ; Test by going into Skyrim and Load Game then COC and then try this (forks should be gone)
+        ReferenceAlias messageAlias1 = AddSpellMenu_Forms.GetModQuestScriptv3().GetAliasByName("MessageBoxText1") as ReferenceAlias
+        messageAlias1.GetReference().GetBaseObject().SetName(actorRef.GetBaseObject().GetName())
+        AddSpellMenu_Messages.ShowWhenNpcInCrosshairs()
+    else
+        AddSpellMenu_Messages.ShowWhenNoNpcInCrosshairs()
     endIf
 endFunction
+
+; int selection = AddSpellMenu_Forms.GetMessage().Show()
+; int searchIndex = 0
+; int listIndex = 1
+; int removeIndex = 2
+; int cancelIndex = 3
+; if selection == searchIndex
+;     AddSpellMenu_UI.SearchModsAndSpells()
+; elseif selection == listIndex
+;     AddSpellMenu_UI.ListMods()
+; elseif selection == removeIndex
+;     AddSpellMenu_Menu_SpellRemover.Show()
+; endIf
 
 function ShowNpcAddSpellMenu() global
     int selection = AddSpellMenu_Forms.GetNpcMessage().Show()
@@ -23,7 +34,7 @@ function ShowNpcAddSpellMenu() global
     int removeIndex = 2
     int cancelIndex = 3
     if selection == addIndex
-        AddSpellMenu_SearchAndList.ShowAddSpellMenu()
+        AddSpellMenu_UI.ShowAddSpellMenu()
     elseIf selection == viewIndex
         AddSpellMenu_Menu_SpellViewer.Show()
     elseIf selection == removeIndex

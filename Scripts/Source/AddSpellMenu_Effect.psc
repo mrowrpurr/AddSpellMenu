@@ -3,5 +3,5 @@ scriptName AddSpellMenu_Effect extends ActiveMagicEffect
 
 event OnEffectStart(Actor target, Actor caster)
     AddSpellMenu_Forms.GetModQuestScript().CurrentTargetActor = caster
-    AddSpellMenu_SearchAndList.ShowAddSpellMenu()
+    AddSpellMenu_UI.ShowAddSpellMenu()
 endEvent

@@ -4,5 +4,5 @@ scriptName AddSpellMenu_Activator extends ObjectReference
 event OnEquipped(Actor player)
     AddSpellMenu_Forms.GetModQuestScript().CurrentTargetActor = player
     AddSpellMenu_Menu_Controls.CloseAllOpenMenus()
-    AddSpellMenu_SearchAndList.ShowAddSpellMenu()
+    AddSpellMenu_UI.ShowAddSpellMenu()
 endEvent
