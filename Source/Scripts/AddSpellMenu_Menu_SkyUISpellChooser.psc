@@ -19,7 +19,7 @@ function OnSpellChooserAddRemoveSpell(string eventName, string strArg, float num
 endFunction
 
 function AddAsKnownSpellToSpellChooserUI(Spell theSpell) global
-    Actor tempNpc = AddSpellMenu_Npcs.GetTempContainerNpc(resetSpells = true, givePlayersName = true)
+    Actor tempNpc = AddSpellMenu_Npcs.GetTempContainerNpc(resetSpells = true, giveTargetActorName = true)
     tempNpc.AddSpell(theSpell)
     UI.InvokeForm("CustomMenu", "_root.Menu_mc.MagicMenu_SetSecondaryActor", tempNpc)
 endFunction

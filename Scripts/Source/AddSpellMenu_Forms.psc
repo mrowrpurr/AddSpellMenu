@@ -46,7 +46,11 @@ Form function GetNpcListSpellTomeForm() global
 endFunction
 
 Form function GetNpcSearchSpellTomeForm() global
-    return GetModForm(0x536f)
+    return GetModForm(0x818)
+endFunction
+
+Form function GetNpcViewSpellsTomeForm() global
+    return GetModForm(0x81a)
 endFunction
 
 AddSpellMenu_QuestScript function GetModQuestScript() global
@@ -54,7 +58,7 @@ AddSpellMenu_QuestScript function GetModQuestScript() global
 endFunction
 
 Quest function GetModQuestScriptv2() global
-    return GetModForm(0x319) as Quest
+    return GetModForm(0x815) as Quest
 endFunction
 
 Spell function GetListSpell() global

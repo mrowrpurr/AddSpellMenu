@@ -8,12 +8,12 @@ Actor function GetTraderContainerNpc(bool resetSpells = true) global
     return traderActor
 endFunction
 
-Actor function GetTempContainerNpc(bool resetSpells = true, bool givePlayersName = true) global
+Actor function GetTempContainerNpc(bool resetSpells = true, bool giveTargetActorName = true) global
     Actor tempActor = AddSpellMenu_Forms.GetNPCTempInstance()
     if resetSpells
         ResetSpells(tempActor)
     endIf
-    tempActor.GetBaseObject().SetName(Game.GetPlayer().GetBaseObject().GetName())
+    tempActor.GetBaseObject().SetName(AddSpellMenu_Forms.GetModQuestScript().CurrentTargetActor.GetBaseObject().GetName())
     return tempActor
 endFunction
 
@@ -23,3 +23,7 @@ function ResetSpells(Actor npc) global
     endWhile
 endFunction
 
+function ViewNpcSpells() global
+    Actor npc = AddSpellMenu_Forms.GetModQuestScript().CurrentTargetActor
+    AddSpellMenu_Menu_SpellViewer.Show()
+endFunction

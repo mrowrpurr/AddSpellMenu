@@ -12,7 +12,6 @@ function SearchModsAndSpells(string searchQuery = "") global
     if searchQuery == ""
         searchQuery = AddSpellMenu_Menu_SearchBox.Show()
     endIf
-    searchQuery = AddSpellMenu_Menu_SearchBox.Show()
     if searchQuery != ""
         string selection = AddSpellMenu_Menu_ModChooser.Show(searchQuery)
         if selection == "Search all spells"

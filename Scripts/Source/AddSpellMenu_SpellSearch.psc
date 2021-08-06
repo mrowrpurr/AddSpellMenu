@@ -12,7 +12,7 @@ bool function SearchAllSpellsAndPopulateContainerWithMatches(string searchQuery,
     endIf
 
     Spell[] allSpells = PO3_SKSEFunctions.GetAllSpells(abIsPlayable = onlyShowSpellsWithSpellTomes)
-    Actor player = Game.GetPlayer()
+    Actor npc = AddSpellMenu_Forms.GetModQuestScript().CurrentTargetActor
 
     bool anyMatchingSpells = false
     int index = 0
@@ -20,7 +20,7 @@ bool function SearchAllSpellsAndPopulateContainerWithMatches(string searchQuery,
         Spell theSpell = allSpells[index]
         if StringUtil.Find(theSpell.GetName(), searchQuery) > -1
             anyMatchingSpells = true
-            if ! player.HasSpell(theSpell)
+            if ! npc.HasSpell(theSpell)
                 spellsContainer.AddSpell(theSpell)
             endIf
         endIf
@@ -36,12 +36,12 @@ endFunction
 ; Check the container to see whether there were any spells which the player did not already have.
 bool function GetAllModSpellsAndPopulateContainerWithMatches(string modFile, Actor spellsContainer, bool onlyShowSpellsWithSpellTomes = true) global
     Spell[] allSpells = PO3_SKSEFunctions.GetAllSpellsInMod(modFile, abIsPlayable = onlyShowSpellsWithSpellTomes)
-    Actor player = Game.GetPlayer()
+    Actor npc = AddSpellMenu_Forms.GetModQuestScript().CurrentTargetActor
 
     int index = 0
     while index < allSpells.Length
         Spell theSpell = allSpells[index]
-        if ! player.HasSpell(theSpell)
+        if ! npc.HasSpell(theSpell)
             spellsContainer.AddSpell(theSpell)
         endIf
         index += 1
