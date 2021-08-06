@@ -6,8 +6,8 @@
     Output="Scripts" 
     Optimize="false" 
     Release="false" 
-    Zip="true"
-    Package="true"
+    Zip="false"
+    Package="false"
     Final="false">
     <Variables>
         <!-- Set the name of your mod: -->
@@ -48,9 +48,9 @@
             <Match In="Scripts">*.pex</Match>
             <Match In="Scripts\Source">*.psc</Match>
         </Package>
-        <Package Name="@ModName - Textures" RootDir=".">
+        <!-- <Package Name="@ModName - Textures" RootDir=".">
             <Include>*.dds</Include>
-        </Package>
+        </Package> -->
     </Packages>
     <!-- The following section is for .zip archive. You can enable it by setting Zip="true" in the PapyrusProject -->
     <ZipFiles Output="Build">

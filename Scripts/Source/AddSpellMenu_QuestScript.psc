@@ -37,9 +37,7 @@ function AddItemsToPack()
     packContainer.AddItem(AddSpellMenu_Forms.GetSearchSpellTomeForm())
     packContainer.AddItem(AddSpellMenu_Forms.GetListActivatorForm())
     packContainer.AddItem(AddSpellMenu_Forms.GetSearchActivatorForm())
-    packContainer.AddItem(AddSpellMenu_Forms.GetNpcListSpellTomeForm())
-    packContainer.AddItem(AddSpellMenu_Forms.GetNpcSearchSpellTomeForm())
-    packContainer.AddItem(AddSpellMenu_Forms.GetNpcViewSpellsTomeForm())
+    packContainer.AddItem(AddSpellMenu_Forms.GetNpcSpellTomeForm())
 endFunction
 
 event OnSpellChooserAddRemoveSpell(string eventName, string strArg, float numArg, Form sender)
