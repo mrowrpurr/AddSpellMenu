@@ -5,9 +5,6 @@ This does not have a Player Script Quest Alias (Quest v2 was added and has a Pla
 ; The actor to give spells to, e.g. the player or a targetted NPC
 Actor property CurrentTargetActor auto
 
-; The currently open UIMagicMenu - currently only used for removing spells
-uimagicmenu property CurrentMagicMenu auto
-
 ; Properties for mod versioning
 int property CurrentModVersion auto
 int property PreviousModVersion auto
@@ -43,6 +40,15 @@ endFunction
 
 event OnSpellChooserAddRemoveSpell(string eventName, string strArg, float numArg, Form sender)
     AddSpellMenu_Menu_SkyUISpellChooser.OnSpellChooserAddRemoveSpell(eventName, strArg, numArg, sender)
+endEvent
+
+event OnSpellRemoverAddRemoveSpell(string eventName, string strArg, float numArg, Form sender)
+    AddSpellMenu_Menu_SkyUISpellRemover.OnSpellRemoverAddRemoveSpell(eventName, strArg, numArg, sender)
+endEvent
+
+event UnregisterUIMagicMenuEvents(string eventName, string strArg, float numArg, Form sender)
+    UnregisterForModEvent("UIMagicMenu_AddRemoveSpell")
+    UnregisterForModEvent("UIMagicMenu_CloseMenu")
 endEvent
 
 function BeginSearchingNotifications()

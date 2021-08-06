@@ -1,9 +1,11 @@
 scriptName AddSpellMenu_Menu_SkyUISpellChooser hidden
 
 function Show(Actor spellsContainer) global
-    AddSpellMenu_Forms.GetModQuestScript().RegisterForModEvent("UIMagicMenu_AddRemoveSpell", "OnSpellChooserAddRemoveSpell")
+    AddSpellMenu_QuestScript modQuest = AddSpellMenu_Forms.GetModQuestScript()
+    modQuest.RegisterForModEvent("UIMagicMenu_AddRemoveSpell", "OnSpellChooserAddRemoveSpell")
+    modQuest.RegisterForModEvent("UIMagicMenu_CloseMenu", "UnregisterUIMagicMenuEvents")
     uimagicmenu magicMenu = uiextensions.GetMenu("UIMagicMenu") as uimagicmenu
-    magicMenu.SetPropertyForm("receivingActor", AddSpellMenu_Forms.GetModQuestScript().CurrentTargetActor)
+    magicMenu.SetPropertyForm("receivingActor", modQuest.CurrentTargetActor)
     magicMenu.SetPropertyBool("Notifications", false)
     magicMenu.SetPropertyBool("Restricted", false)
     magicMenu.OpenMenu(spellsContainer)
