@@ -3,29 +3,18 @@ scriptName AddSpellMenu_UI hidden
 
 ; Show the main [AddSpellMenu]
 function ShowAddSpellMenu() global
-    Actor actorRef = Game.GetCurrentCrosshairRef() as Actor
-    if actorRef
+    Actor npc = Game.GetCurrentCrosshairRef() as Actor
+    if npc
         ; Test by going into Skyrim and Load Game then COC and then try this (forks should be gone)
-        ReferenceAlias messageAlias1 = AddSpellMenu_Forms.GetModQuestScriptv3().GetAliasByName("MessageBoxText1") as ReferenceAlias
-        messageAlias1.GetReference().GetBaseObject().SetName(actorRef.GetBaseObject().GetName())
-        AddSpellMenu_Messages.ShowWhenNpcInCrosshairs()
+        AddSpellMenu_Messages.ShowWhenNpcInCrosshairs(npc)
     else
-        AddSpellMenu_Messages.ShowWhenNoNpcInCrosshairs()
+        AddSpellMenu_Messages.ShowMainMenu()
     endIf
 endFunction
 
-; int selection = AddSpellMenu_Forms.GetMessage().Show()
-; int searchIndex = 0
-; int listIndex = 1
-; int removeIndex = 2
-; int cancelIndex = 3
-; if selection == searchIndex
-;     AddSpellMenu_UI.SearchModsAndSpells()
-; elseif selection == listIndex
-;     AddSpellMenu_UI.ListMods()
-; elseif selection == removeIndex
-;     AddSpellMenu_Menu_SpellRemover.Show()
-; endIf
+function ShowSpellRemover() global
+    AddSpellMenu_Menu_SpellRemover.Show()
+endFunction
 
 function ShowNpcAddSpellMenu() global
     int selection = AddSpellMenu_Forms.GetNpcMessage().Show()
