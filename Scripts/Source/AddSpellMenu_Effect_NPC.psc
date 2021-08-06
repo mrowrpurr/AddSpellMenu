@@ -4,9 +4,9 @@ Scriptname AddSpellMenu_Effect_NPC extends ActiveMagicEffect
 event OnEffectStart(Actor target, Actor caster)
     AddSpellMenu_Forms.GetModQuestScript().CurrentTargetActor = target
     int selection = AddSpellMenu_Forms.GetNpcMessage().Show()
-    int viewIndex = 0
-    int searchIndex = 1
-    int listIndex = 2
+    int searchIndex = 0
+    int listIndex = 1
+    int viewIndex = 2
     int removeIndex = 3
     int cancelIndex = 4
     if selection == viewIndex
