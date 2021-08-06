@@ -18,9 +18,12 @@ endFunction
 function OnSpellRemoverAddRemoveSpell(string eventName, string strArg, float numArg, Form formArg) global
     Actor targetActor = AddSpellMenu_Forms.GetModQuestScript().CurrentTargetActor
     Spell theSpell = formArg as Spell
-
     if targetActor.HasSpell(theSpell)
         targetActor.RemoveSpell(theSpell)
+		UI.InvokeForm("CustomMenu", "_root.Menu_mc.MagicMenu_RemoveSpell", theSpell)
+        if targetActor.GetSpellCount() == 0
+            Input.TapKey(1) ; Simulate the Escape key
+        endIf
     endIf
 endFunction
 

@@ -4,7 +4,7 @@ scriptName AddSpellMenu_Activator_Pack extends ObjectReference
 AddSpellMenu_QuestScript property ModQuest auto ; DEPRECATED
 
 event OnEquipped(Actor player)
-    AddSpellMenu_Menu_Controls.CloseInventoryMenu()
+    AddSpellMenu_Menu_Controls.CloseAllOpenMenus()
     ObjectReference packContainer = AddSpellMenu_Forms.GetPackContainerInstance()
     if packContainer == None
         Debug.Notification("AddSpellMenu Pack container not found in the world")

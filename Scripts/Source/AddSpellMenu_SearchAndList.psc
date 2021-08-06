@@ -5,11 +5,29 @@ function ShowAddSpellMenu() global
     int selection = AddSpellMenu_Forms.GetMessage().Show()
     int searchIndex = 0
     int listIndex = 1
-    int cancelIndex = 2
+    int removeIndex = 2
+    int cancelIndex = 3
     if selection == searchIndex
         AddSpellMenu_SearchAndList.SearchModsAndSpells()
     elseif selection == listIndex
         AddSpellMenu_SearchAndList.ListMods()
+    elseif selection == removeIndex
+        AddSpellMenu_Menu_SpellRemover.Show()
+    endIf
+endFunction
+
+function ShowNpcAddSpellMenu() global
+    int selection = AddSpellMenu_Forms.GetNpcMessage().Show()
+    int addIndex = 0
+    int viewIndex = 1
+    int removeIndex = 2
+    int cancelIndex = 3
+    if selection == addIndex
+        AddSpellMenu_SearchAndList.ShowAddSpellMenu()
+    elseIf selection == viewIndex
+        AddSpellMenu_Menu_SpellViewer.Show()
+    elseIf selection == removeIndex
+        AddSpellMenu_Menu_SpellRemover.Show()
     endIf
 endFunction
 

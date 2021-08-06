@@ -1,7 +1,7 @@
 scriptName AddSpellMenu_Menu_Controls hidden
 {Controls for the inventory UI menu}
 
-function CloseInventoryMenu() global
+function CloseAllOpenMenus() global
     Game.DisablePlayerControls()
     Game.EnablePlayerControls()
 endFunction
