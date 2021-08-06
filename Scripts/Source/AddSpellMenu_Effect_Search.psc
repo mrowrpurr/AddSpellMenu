@@ -1,4 +1,5 @@
 scriptName AddSpellMenu_Effect_Search extends ActiveMagicEffect  
+{Represents the spell effect which activates searching for spells}
 
 AddSpellMenu_QuestScript property ModQuest auto
 

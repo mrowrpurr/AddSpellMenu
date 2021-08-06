@@ -38,6 +38,8 @@ string function ShowModList() global
         else
             return Game.GetLightModName(selectedIndex - numberOfMods)
         endIf
+    else
+        return ""
     endIf
 endFunction
 

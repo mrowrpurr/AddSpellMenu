@@ -1,8 +1,7 @@
 scriptName AddSpellMenu_PackInstanceScript extends ObjectReference  
 
-event OnItemRemoved(Form item, int count, ObjectReference itemRef, ObjectReference theContainer)
+event OnItemRemoved(Form item, int count, ObjectReference itemRef, ObjectReference player)
     if GetNumItems() == 0
-        Form packActivatorForm = Game.GetFormFromFile(0x639c, "AddSpellMenu.esp")
-        theContainer.RemoveItem(packActivatorForm)
+        player.RemoveItem(AddSpellMenu_Forms.GetPackActivatorForm())
     endIf
 endEvent
