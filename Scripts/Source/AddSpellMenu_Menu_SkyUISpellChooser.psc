@@ -5,6 +5,7 @@ function Show(Actor spellsContainer) global
     uimagicmenu magicMenu = uiextensions.GetMenu("UIMagicMenu") as uimagicmenu
     magicMenu.SetPropertyForm("receivingActor", AddSpellMenu_Forms.GetModQuestScript().CurrentTargetActor)
     magicMenu.SetPropertyBool("Notifications", false)
+    magicMenu.SetPropertyBool("Restricted", false)
     magicMenu.OpenMenu(spellsContainer)
 endFunction
 

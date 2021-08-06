@@ -32,13 +32,9 @@ bool function UpgradeToV2() global
     Actor player = Game.GetPlayer()
     if player.GetItemCount(AddSpellMenu_Forms.GetPackActivatorForm()) == 0
         ObjectReference packContainer = AddSpellMenu_Forms.GetPackContainerInstance()
-        packContainer.AddItem(AddSpellMenu_Forms.GetListActivatorForm())
-        packContainer.AddItem(AddSpellMenu_Forms.GetSearchActivatorForm())
-        if ! player.HasSpell(AddSpellMenu_Forms.GetListSpell()) && player.GetItemCount(AddSpellMenu_Forms.GetListSpellTomeForm()) == 0
-            packContainer.AddItem(AddSpellMenu_Forms.GetListSpellTomeForm())
-        endIf
-        if ! player.HasSpell(AddSpellMenu_Forms.GetSearchSpell()) && player.GetItemCount(AddSpellMenu_Forms.GetSearchSpellTomeForm()) == 0
-            packContainer.AddItem(AddSpellMenu_Forms.GetSearchSpellTomeForm())
+        packContainer.AddItem(AddSpellMenu_Forms.GetActivatorForm())
+        if ! player.HasSpell(AddSpellMenu_Forms.GetSpell()) && player.GetItemCount(AddSpellMenu_Forms.GetSpellTomeForm()) == 0
+            packContainer.AddItem(AddSpellMenu_Forms.GetSpellTomeForm())
         endIf
         player.AddItem(AddSpellMenu_Forms.GetPackActivatorForm())
     endIf

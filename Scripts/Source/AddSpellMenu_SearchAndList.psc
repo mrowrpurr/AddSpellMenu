@@ -1,6 +1,18 @@
 scriptName AddSpellMenu_SearchAndList hidden
 {Primary functions for triggering the mod list / spell search UI menus}
 
+function ShowAddSpellMenu() global
+    int selection = AddSpellMenu_Forms.GetMessage().Show()
+    int searchIndex = 0
+    int listIndex = 1
+    int cancelIndex = 2
+    if selection == searchIndex
+        AddSpellMenu_SearchAndList.SearchModsAndSpells()
+    elseif selection == listIndex
+        AddSpellMenu_SearchAndList.ListMods()
+    endIf
+endFunction
+
 function ListMods() global
     string selectedMod = AddSpellMenu_Menu_ModChooser.Show()
     if selectedMod != ""

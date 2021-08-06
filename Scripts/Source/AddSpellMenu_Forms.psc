@@ -9,12 +9,8 @@ Form function GetPackActivatorForm() global
     return GetModForm(0x808)
 endFunction
 
-Form function GetListActivatorForm() global
+Form function GetActivatorForm() global
     return GetModForm(0x806)
-endFunction
-
-Form function GetSearchActivatorForm() global
-    return GetModForm(0x807)
 endFunction
 
 ObjectReference function GetPackContainerInstance() global
@@ -33,12 +29,8 @@ GlobalVariable function GetSpellTomesRequiredGlobal() global
     return GetModForm(0x802) as GlobalVariable
 endFunction
 
-Form function GetListSpellTomeForm() global
+Form function GetSpellTomeForm() global
     return GetModForm(0xd69)
-endFunction
-
-Form function GetSearchSpellTomeForm() global
-    return GetModForm(0xd68)
 endFunction
 
 Form function GetNpcSpellTomeForm() global
@@ -53,14 +45,14 @@ Quest function GetModQuestScriptv2() global
     return GetModForm(0x815) as Quest
 endFunction
 
-Spell function GetListSpell() global
+Spell function GetSpell() global
     return GetModForm(0x801) as Spell
-endFunction
-
-Spell function GetSearchSpell() global
-    return GetModForm(0x800) as Spell
 endFunction
 
 Message function GetNpcMessage() global
     return GetModForm(0x81e) as Message
+endFunction
+
+Message function GetMessage() global
+    return GetModForm(0x811) as Message
 endFunction

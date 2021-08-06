@@ -36,10 +36,8 @@ endEvent
 
 function AddItemsToPack()
     ObjectReference packContainer = AddSpellMenu_Forms.GetPackContainerInstance()
-    packContainer.AddItem(AddSpellMenu_Forms.GetListSpellTomeForm())
-    packContainer.AddItem(AddSpellMenu_Forms.GetSearchSpellTomeForm())
-    packContainer.AddItem(AddSpellMenu_Forms.GetListActivatorForm())
-    packContainer.AddItem(AddSpellMenu_Forms.GetSearchActivatorForm())
+    packContainer.AddItem(AddSpellMenu_Forms.GetSpellTomeForm())
+    packContainer.AddItem(AddSpellMenu_Forms.GetActivatorForm())
     packContainer.AddItem(AddSpellMenu_Forms.GetNpcSpellTomeForm())
 endFunction
 
