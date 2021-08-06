@@ -2,6 +2,9 @@ scriptName AddSpellMenu_QuestScript extends Quest
 {Represents the main quest script which initializes the mod if it has not already been initialized.
 This does not have a Player Script Quest Alias (Quest v2 was added and has a Player Script)}
 
+; The actor to give spells to, e.g. the player or a targetted NPC
+Actor property CurrentTargetActor auto
+
 ; Properties for mod versioning
 int property CurrentModVersion auto
 int property PreviousModVersion auto
@@ -34,6 +37,8 @@ function AddItemsToPack()
     packContainer.AddItem(AddSpellMenu_Forms.GetSearchSpellTomeForm())
     packContainer.AddItem(AddSpellMenu_Forms.GetListActivatorForm())
     packContainer.AddItem(AddSpellMenu_Forms.GetSearchActivatorForm())
+    packContainer.AddItem(AddSpellMenu_Forms.GetNpcListSpellTomeForm())
+    packContainer.AddItem(AddSpellMenu_Forms.GetNpcSearchSpellTomeForm())
 endFunction
 
 event OnSpellChooserAddRemoveSpell(string eventName, string strArg, float numArg, Form sender)

@@ -14,7 +14,7 @@ endFunction
 ; Returns a reference to a Actor which is populated with all of the Spells returned as results.
 ; Note: spellRecipient is not yet used, it defaults to the Player and cannot be configured.
 Actor function ShowSearch(string spellSearchQuery = "", Actor spellRecipient = None) global
-    AddSpellMenu_SearchAndList.SearchModsAndSpells(AddSpellMenu_Forms.GetModQuestScript(), spellSearchQuery)
+    AddSpellMenu_SearchAndList.SearchModsAndSpells(spellSearchQuery)
     return AddSpellMenu_Forms.GetNPCSpellTraderInstance()
 endFunction
 
@@ -22,7 +22,7 @@ endFunction
 ; Returns a reference to a Actor which is populated with all of the Spells returned as results.
 ; Note: spellRecipient is not yet used, it defaults to the Player and cannot be configured.
 Actor function ShowModList(Actor spellRecipient = None) global
-    AddSpellMenu_SearchAndList.ListMods(AddSpellMenu_Forms.GetModQuestScript())
+    AddSpellMenu_SearchAndList.ListMods()
     return AddSpellMenu_Forms.GetNPCSpellTraderInstance()
 endFunction
 
@@ -34,7 +34,6 @@ Actor function SearchSpells(string spellSearchQuery, Actor spellRecipient = None
     Actor spellsContainer = AddSpellMenu_Npcs.GetTraderContainerNpc(resetSpells = true)
     AddSpellMenu_QuestScript modQuest = AddSpellMenu_Forms.GetModQuestScript()
     AddSpellMenu_SpellSearch.SearchAllSpellsAndPopulateContainerWithMatches( \
-        modQuest, \
         spellSearchQuery, \
         spellsContainer, \
         onlyShowSpellsWithSpellTomes = modQuest.OnlyShowSpellsWithSpellTomes)

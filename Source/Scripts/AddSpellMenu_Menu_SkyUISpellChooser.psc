@@ -1,20 +1,19 @@
 scriptName AddSpellMenu_Menu_SkyUISpellChooser hidden
 
-function Show(Actor spellsContainer, AddSpellMenu_QuestScript modQuest) global
-    modQuest.RegisterForModEvent("UIMagicMenu_AddRemoveSpell", "OnSpellChooserAddRemoveSpell")
-
+function Show(Actor spellsContainer) global
+    AddSpellMenu_Forms.GetModQuestScript().RegisterForModEvent("UIMagicMenu_AddRemoveSpell", "OnSpellChooserAddRemoveSpell")
     uimagicmenu magicMenu = uiextensions.GetMenu("UIMagicMenu") as uimagicmenu
-    magicMenu.SetPropertyForm("receivingActor", Game.GetPlayer())
+    magicMenu.SetPropertyForm("receivingActor", AddSpellMenu_Forms.GetModQuestScript().CurrentTargetActor)
     magicMenu.SetPropertyBool("Notifications", false)
     magicMenu.OpenMenu(spellsContainer)
 endFunction
 
 function OnSpellChooserAddRemoveSpell(string eventName, string strArg, float numArg, Form formArg) global
-    Actor player = Game.GetPlayer()
+    Actor targetActor = AddSpellMenu_Forms.GetModQuestScript().CurrentTargetActor
     Spell theSpell = formArg as Spell
 
-    if ! player.HasSpell(theSpell)
-        player.AddSpell(theSpell)
+    if ! targetActor.HasSpell(theSpell)
+        targetActor.AddSpell(theSpell)
         AddAsKnownSpellToSpellChooserUI(theSpell)
     endIf
 endFunction

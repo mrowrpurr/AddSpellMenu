@@ -1,11 +1,11 @@
 scriptName AddSpellMenu_Menu_ListSpellChooser hidden
 
-function Show(Actor spellsContainer, AddSpellMenu_QuestScript modQuest) global
-     while ShowSpellChooser(spellsContainer, modQuest) && spellsContainer.GetSpellCount() > 0
+function Show(Actor spellsContainer) global
+     while ShowSpellChooser(spellsContainer) && spellsContainer.GetSpellCount() > 0
      endWhile
 endFunction
 
-bool function ShowSpellChooser(Actor spellsContainer, AddSpellMenu_QuestScript modQuest) global
+bool function ShowSpellChooser(Actor spellsContainer) global
     uilistmenu listMenu = uiextensions.GetMenu("UIListMenu") as uilistmenu
      
      int numberOfSpells = spellsContainer.GetSpellCount()
@@ -22,7 +22,7 @@ bool function ShowSpellChooser(Actor spellsContainer, AddSpellMenu_QuestScript m
 
     if selectedIndex > -1
         Spell selectedSpell = spellsContainer.GetNthSpell(selectedIndex)
-        Game.GetPlayer().AddSpell(selectedSpell)
+        AddSpellMenu_Forms.GetModQuestScript().CurrentTargetActor.AddSpell(selectedSpell)
         spellsContainer.RemoveSpell(selectedSpell)
         return true
     else

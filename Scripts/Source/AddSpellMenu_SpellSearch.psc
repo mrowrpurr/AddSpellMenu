@@ -3,12 +3,12 @@ scriptName AddSpellMenu_SpellSearch hidden
 
 ; Returns whether *any* matching spells were found, regardless of whether the player has the spell or not.
 ; Check the container to see whether there were any spells which the player did not already have.
-bool function SearchAllSpellsAndPopulateContainerWithMatches(AddSpellMenu_QuestScript modQuest, string searchQuery, Actor spellsContainer, bool onlyShowSpellsWithSpellTomes = true) global
+bool function SearchAllSpellsAndPopulateContainerWithMatches(string searchQuery, Actor spellsContainer, bool onlyShowSpellsWithSpellTomes = true) global
     if onlyShowSpellsWithSpellTomes
         Debug.Notification("Searching spells for \"" + searchQuery + "\"...")
     else
         Debug.Notification("Searching all spells for \"" + searchQuery + "\"... This may take awhile...")
-        modQuest.BeginSearchingNotifications()
+        AddSpellMenu_Forms.GetModQuestScript().BeginSearchingNotifications()
     endIf
 
     Spell[] allSpells = PO3_SKSEFunctions.GetAllSpells(abIsPlayable = onlyShowSpellsWithSpellTomes)
@@ -27,7 +27,7 @@ bool function SearchAllSpellsAndPopulateContainerWithMatches(AddSpellMenu_QuestS
         index += 1
     endWhile
 
-    modQuest.EndSearchingNotifications()
+    AddSpellMenu_Forms.GetModQuestScript().EndSearchingNotifications()
 
     return anyMatchingSpells
 endFunction

@@ -3,7 +3,7 @@ scriptName AddSpellMenu_Versioning hidden
 The current/previous version numbers are stored on the Quest v2 Player Script Quest Alias.}
 
 int function GetCurrentVersion() global
-    return 2
+    return 3
 endFunction
 
 function FirstRun() global
@@ -15,15 +15,20 @@ endFunction
 function Upgrade() global
     AddSpellMenu_QuestScript modQuest = AddSpellMenu_Forms.GetModQuestScript() as AddSpellMenu_QuestScript
     modQuest.CurrentModVersion = GetCurrentVersion()
+    bool newPackAdded = false
 
     if modQuest.PreviousModVersion < 2
-        UpgradeToV2()
+        newPackAdded = UpgradeToV2()
+    endIf
+
+    if modQuest.PreviousModVersion < 3
+        UpgradeToV3()
     endIf
     
     modQuest.PreviousModVersion = GetCurrentVersion()
 endFunction
 
-function UpgradeToV2() global
+bool function UpgradeToV2() global
     Actor player = Game.GetPlayer()
     if player.GetItemCount(AddSpellMenu_Forms.GetPackActivatorForm()) == 0
         ObjectReference packContainer = AddSpellMenu_Forms.GetPackContainerInstance()
@@ -35,7 +40,26 @@ function UpgradeToV2() global
         if ! player.HasSpell(AddSpellMenu_Forms.GetSearchSpell()) && player.GetItemCount(AddSpellMenu_Forms.GetSearchSpellTomeForm()) == 0
             packContainer.AddItem(AddSpellMenu_Forms.GetSearchSpellTomeForm())
         endIf
-        Debug.Notification("[AddSpellMenu] Upgrading to v2 (Adding new pack)")
-        Game.GetPlayer().AddItem(AddSpellMenu_Forms.GetPackActivatorForm())
+        player.AddItem(AddSpellMenu_Forms.GetPackActivatorForm())
+    endIf
+endFunction
+
+function UpgradeToV3() global
+    Actor player = Game.GetPlayer()
+    if player.GetItemCount(AddSpellMenu_Forms.GetPackActivatorForm()) == 1
+        ObjectReference packContainer = AddSpellMenu_Forms.GetPackContainerInstance()
+        packContainer.AddItem(AddSpellMenu_Forms.GetNpcListSpellTomeForm())
+        packContainer.AddItem(AddSpellMenu_Forms.GetNpcSearchSpellTomeForm())
+        if AddSpellMenu_Forms.GetModQuestScript().PreviousModVersion == 2
+            Debug.Notification("[AddSpellMenu] Upgrading to v3 (NPC spell tomes added to pack)")
+        else
+            Debug.Notification("[AddSpellMenu] Upgrading to v3 (Added new pack)")
+        endIf
+    elseIf player.GetItemCount(AddSpellMenu_Forms.GetPackActivatorForm()) == 0
+        ObjectReference packContainer = AddSpellMenu_Forms.GetPackContainerInstance()
+        packContainer.AddItem(AddSpellMenu_Forms.GetNpcListSpellTomeForm())
+        packContainer.AddItem(AddSpellMenu_Forms.GetNpcSearchSpellTomeForm())
+        player.AddItem(AddSpellMenu_Forms.GetPackActivatorForm())
+        Debug.Notification("[AddSpellMenu] Upgrading to v3 (Added new pack)")
     endIf
 endFunction
