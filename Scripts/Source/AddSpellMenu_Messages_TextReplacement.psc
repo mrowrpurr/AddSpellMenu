@@ -9,3 +9,11 @@ function SetTextReplacement(int textIndex, string text) global
     ReferenceAlias theAlias = AddSpellMenu_Forms.GetModQuestScriptv3().GetAliasByName(questAliasName) as ReferenceAlias
     theAlias.GetReference().GetBaseObject().SetName(text)
 endFunction
+
+function ClearAll() global
+    int index = 1
+    while index < 11
+        SetTextReplacement(index, "")
+        index += 1
+    endWhile
+endFunction

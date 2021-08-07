@@ -73,19 +73,7 @@ Message function NpcMainMenuMessageWithoutViewAndRemove() global
     return GetModForm(0x810) as Message
 endFunction
 
-Message function OptionsMessage_WithSpellAndPower() global
-    return GetModForm(0x81d) as Message
-endFunction
-
-Message function OptionsMessage_WithSpell() global
-    return GetModForm(0x81e) as Message
-endFunction
-
-Message function OptionsMessage_WithPower() global
-    return GetModForm(0x82d) as Message
-endFunction
-
-Message function OptionsMessage_WithNeitherSpellNorPower() global
+Message function OptionsMessage() global
     return GetModForm(0x81b) as Message
 endFunction
 

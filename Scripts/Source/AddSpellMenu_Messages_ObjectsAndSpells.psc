@@ -5,6 +5,7 @@ function Show() global
     AddSpellMenu_Messages_TextReplacement.SetTextReplacement(2, SpellStatusText())
     AddSpellMenu_Messages_TextReplacement.SetTextReplacement(3, ActivatorStatusText())
     int result = AddSpellMenu_Forms.SpellPowerActivatorMessage().Show()
+    AddSpellMenu_Messages_TextReplacement.ClearAll()
     if result == 0
         OnTogglePower()
         Show()

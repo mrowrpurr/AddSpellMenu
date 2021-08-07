@@ -6,12 +6,12 @@ function Show() global
     if npc && npc != Game.GetPlayer()
         if AddSpellMenu_Npcs.AnyNpcsSaved()
             if AddSpellMenu_Npcs.IsSaved(npc)
-                Show_WithSaves_SavedNpcSelected()
+                Show_WithSaves_SavedNpcSelected(npc)
             else
-                Show_WithSaves_UnsavedNpcSelected()
+                Show_WithSaves_UnsavedNpcSelected(npc)
             endIf
         else
-            Show_NoSaves_NpcSelected()
+            Show_NoSaves_NpcSelected(npc)
         endIf
     else
         if AddSpellMenu_Npcs.AnyNpcsSaved()
@@ -40,8 +40,10 @@ function Show_WithSaves_NpcNotSelected() global
     endIf
 endFunction
 
-function Show_NoSaves_NpcSelected() global
+function Show_NoSaves_NpcSelected(Actor npc) global
+    AddSpellMenu_Messages_TextReplacement.SetTextReplacement(1, npc.GetBaseObject().GetName())
     int result = AddSpellMenu_Forms.ManageNPCsMessage_WithNPCSelected_WithNoSaves().Show()
+    AddSpellMenu_Messages_TextReplacement.ClearAll()
     if result == 0
         OnAddSelected()
     else
@@ -49,8 +51,10 @@ function Show_NoSaves_NpcSelected() global
     endIf
 endFunction
 
-function Show_WithSaves_UnsavedNpcSelected() global
+function Show_WithSaves_UnsavedNpcSelected(Actor npc) global
+    AddSpellMenu_Messages_TextReplacement.SetTextReplacement(1, npc.GetBaseObject().GetName())
     int result = AddSpellMenu_Forms.ManageNPCsMessage_WithNPCSelectedNotSaved_WithSavedNPCs().Show()
+    AddSpellMenu_Messages_TextReplacement.ClearAll()
     if result == 0
         OnChoose()
     elseif result == 1
@@ -64,8 +68,14 @@ function Show_WithSaves_UnsavedNpcSelected() global
     endIf
 endFunction
 
-function Show_WithSaves_SavedNpcSelected() global
+function Show_WithSaves_SavedNpcSelected(Actor npc) global
+    AddSpellMenu_Messages_TextReplacement.SetTextReplacement(1, npc.GetBaseObject().GetName())
+    string nickname = AddSpellMenu_Npcs.GetSavedNpcNickname(npc)
+    if nickname != npc.GetBaseObject().GetName()
+        AddSpellMenu_Messages_TextReplacement.SetTextReplacement(2, nickname)
+    endIf
     int result = AddSpellMenu_Forms.ManageNPCsMessage_WithNPCSelectedIsSaved_WithSavedNPCs().Show()
+    AddSpellMenu_Messages_TextReplacement.ClearAll()
     if result == 0
         OnChoose()
     elseif result == 1
