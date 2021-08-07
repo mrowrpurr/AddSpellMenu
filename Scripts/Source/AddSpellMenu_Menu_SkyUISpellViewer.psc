@@ -7,5 +7,6 @@ function Show() global
     uimagicmenu magicMenu = uiextensions.GetMenu("UIMagicMenu") as uimagicmenu
     magicMenu.SetPropertyForm("receivingActor", tempNpc)
     magicMenu.SetPropertyBool("Notifications", false)
+    magicMenu.SetPropertyBool("HandleAddRemoveEvents", false)
     magicMenu.OpenMenu(npc)
 endFunction

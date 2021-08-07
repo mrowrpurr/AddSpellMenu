@@ -1,13 +1,17 @@
 scriptName AddSpellMenu_Questv3Script extends Quest  
 
-; References to alias objects used for message box text replacement
-ObjectReference property _textAliasObject1  auto
-ObjectReference property _textAliasObject2  auto
-ObjectReference property _textAliasObject3  auto
-ObjectReference property _textAliasObject4  auto
-ObjectReference property _textAliasObject5  auto
-ObjectReference property _textAliasObject6  auto
-ObjectReference property _textAliasObject7  auto
-ObjectReference property _textAliasObject8  auto
-ObjectReference property _textAliasObject9  auto
-ObjectReference property _textAliasObject10 auto
+;For supporting 'Back' in menus
+string property PreviousMenuName auto
+
+; For tracking the NPC which is currently being managed via menus
+Actor property MenuSelectedNpc auto
+
+; Listen for SkyUI / UIMagicMenu to close and then go back to NPC or Player menu
+function ListenForUIMagicMenuEvents()
+    RegisterForModEvent("UIMagicMenu_CloseMenu", "OnMagicMenuClose")
+endFunction
+
+event OnMagicMenuClose(string eventName, string strArg, float floatArg, Form sender)
+    AddSpellMenu_UI.ShowNpcOrPlayerSpellMenu()
+    UnregisterForModEvent("UIMagicMenu_CloseMenu")
+endEvent

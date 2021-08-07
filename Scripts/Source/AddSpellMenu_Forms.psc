@@ -49,8 +49,8 @@ Quest function GetModQuestScriptv2() global
     return GetModForm(0x815) as Quest
 endFunction
 
-Quest function GetModQuestScriptv3() global
-    return GetModForm(0x807) as Quest
+AddSpellMenu_Questv3Script function GetModQuestScriptv3() global
+    return GetModForm(0x807) as AddSpellMenu_Questv3Script
 endFunction
 
 Spell function GetSpell() global

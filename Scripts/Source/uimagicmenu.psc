@@ -17,6 +17,7 @@ bool _restricted = true
 
 ; Added functionality for AddSpellMenu:
 bool _verbose = true
+bool _handleAddRemove = true
 
 Form _receiver = None
 
@@ -54,6 +55,8 @@ Function SetPropertyBool(string propertyName, bool value)
 		_restricted = value
     ElseIf propertyName == "Notifications"
         _verbose = value
+    ElseIf propertyName == "HandleAddRemoveEvents"
+        _handleAddRemove = value
 	Endif
 EndFunction
 
@@ -68,6 +71,9 @@ Function SetPropertyForm(string propertyName, Form value)
 EndFunction
 
 Event OnAddRemoveSpell(string eventName, string strArg, float numArg, Form formArg)
+	if ! _handleAddRemove
+		return
+	endIf
 	Spell akSpell = formArg as Spell
 	ActorBase akBase = _actor.GetActorBase()
 	If akSpell
