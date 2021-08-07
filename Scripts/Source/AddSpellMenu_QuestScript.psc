@@ -12,7 +12,7 @@ int property PreviousModVersion auto
 ; Properties for Actors and ObjectReferences (so Skyrim won't clean up these resources)
 Actor property _npc1 auto
 Actor property _npc2 auto
-ObjectReference property _object1 auto
+ObjectReference property _object1 auto ; TODO move to Quest v3
 
 bool CurrentlySearchingForSpells = false
 

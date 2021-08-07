@@ -29,6 +29,10 @@ GlobalVariable function GetSpellTomesRequiredGlobal() global
     return GetModForm(0x802) as GlobalVariable
 endFunction
 
+GlobalVariable function GetSpecialSpellsEnabledGlobal() global
+    return GetModForm(0x81c) as GlobalVariable
+endFunction
+
 Form function GetSpellTomeForm() global
     return GetModForm(0xd69)
 endFunction

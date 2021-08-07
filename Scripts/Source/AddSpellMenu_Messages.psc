@@ -15,7 +15,7 @@ function ShowMainMenu() global
     elseIf result == removeSpells
         AddSpellMenu_UI.ShowSpellRemover()
     elseIf result == options
-        ; TODO
+        ShowOptions()
     endIf
 endFunction
 
@@ -37,7 +37,7 @@ function ShowNpcMainMenu(Actor npc) global
     elseIf result == removeSpells
         AddSpellMenu_UI.ShowSpellRemover()
     elseIf result == options
-        ; TODO
+        ShowOptions()
     endIf
 endFunction
 
@@ -54,12 +54,36 @@ function ShowWhenNpcInCrosshairs(Actor npc) global
         AddSpellMenu_Forms.GetModQuestScript().CurrentTargetActor = npc
         ShowNpcMainMenu(npc)
     elseIf result == options
-        ; TODO
+        ShowOptions()
     endIf
 endFunction
 
 function ShowOptions() global
-    ; set message 1 and 2 to "OFF" and "ON" based on values found in new script: AddSpellMenu_Options
+    if AddSpellMenu_Options.IsSpellTomeRequired()
+        SetMessageBoxText1("ON")
+    else
+        SetMessageBoxText1("OFF")
+    endIf
+
+    if AddSpellMenu_Options.AreSpecialSpellsEnabled()
+        SetMessageBoxText2("ON")
+    else
+        SetMessageBoxText2("OFF")
+    endIf
+    
+    int result = (AddSpellMenu_Forms.GetModForm(0x81b) as Message).Show()
+    int toggleSpellTomeRequirement = 0
+    int toggleSpecialSpells = 1
+    int back = 2
+    if result == toggleSpellTomeRequirement
+        AddSpellMenu_Options.ToggleSpellTomeRequirement()
+        ShowOptions()
+    elseIf result == toggleSpecialSpells
+        AddSpellMenu_Options.ToggleSpecialSpells()
+        ShowOptions()
+    elseIf result == back
+        ; TODO
+    endIf
 endFunction
 
 ; TODO
@@ -79,11 +103,12 @@ function SetMessageBoxText(int textItemNumber, string text) global
     if textItemNumber < 1 || textItemNumber > 10
         Debug.Trace("Can only set message numbers 1 thru 10")
     else
-        SetQuestAliasName("MessageBoxText" + textItemNumber, text)
+        SetQuestAliasText("MessageBoxText" + textItemNumber, text)
     endIf
 endFunction
 
-function SetQuestAliasName(string questAliasName, string text) global
+function SetQuestAliasText(string questAliasName, string text) global
+    Debug.MessageBox("Getting alias: " + questAliasName)
     ReferenceAlias theAlias = AddSpellMenu_Forms.GetModQuestScriptv3().GetAliasByName(text) as ReferenceAlias
     theAlias.GetReference().GetBaseObject().SetName(text)
 endFunction

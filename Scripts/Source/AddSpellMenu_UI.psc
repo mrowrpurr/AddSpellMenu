@@ -74,3 +74,7 @@ function ShowSearchResults(string searchQuery) global
         Debug.MessageBox("No spells found matching \"" + searchQuery + "\"")
     endIf
 endFunction
+
+function ShowOptionsMenu() global
+    AddSpellMenu_Messages.ShowOptions()
+endFunction
