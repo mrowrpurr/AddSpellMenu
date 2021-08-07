@@ -52,11 +52,3 @@ endFunction
 Spell function GetSpell() global
     return GetModForm(0x801) as Spell
 endFunction
-
-Message function GetNpcMessage() global
-    return GetModForm(0x81e) as Message
-endFunction
-
-Message function GetMessage() global
-    return GetModForm(0x811) as Message
-endFunction
