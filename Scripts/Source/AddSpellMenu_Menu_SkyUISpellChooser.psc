@@ -8,6 +8,7 @@ function Show(Actor spellsContainer) global
     magicMenu.SetPropertyForm("receivingActor", modQuest.CurrentTargetActor)
     magicMenu.SetPropertyBool("Notifications", false)
     magicMenu.SetPropertyBool("Restricted", false)
+    magicMenu.SetPropertyBool("HandleAddRemoveEvents", true)
     magicMenu.OpenMenu(spellsContainer)
 endFunction
 

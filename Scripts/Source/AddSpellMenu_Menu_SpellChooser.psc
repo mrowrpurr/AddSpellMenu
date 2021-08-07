@@ -1,7 +1,7 @@
 scriptName AddSpellMenu_Menu_SpellChooser hidden
 
 function Show(Actor spellsContainer) global
-    if Game.GetModByName("SkyUI_SE.esp") != 255
+    if AddSpellMenu_SkyUI.IsSkyUIInstalled()
         AddSpellMenu_Forms.GetModQuestScriptv3().ListenForUIMagicMenuEvents()
         AddSpellMenu_Menu_SkyUISpellChooser.Show(spellsContainer)
     else

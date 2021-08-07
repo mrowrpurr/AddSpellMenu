@@ -24,7 +24,7 @@ function OnSpellRemoverAddRemoveSpell(string eventName, string strArg, float num
             Debug.MessageBox(targetActor.GetBaseObject().GetName() + " cannot unlearn starting spell " + theSpell.GetName())
         else
             UI.InvokeForm("CustomMenu", "_root.Menu_mc.MagicMenu_RemoveSpell", theSpell)
-            if targetActor.GetSpellCount() == 0
+            if (targetActor.GetSpellCount() == 0 && targetActor.GetActorBase().GetSpellCount() == 0) || (AddSpellMenu_Options.AreSpecialSpellsEnabled() && targetActor.GetRace().GetSpellCount() == 0 && targetActor.GetSpellCount() == 0 && targetActor.GetActorBase().GetSpellCount() == 0)
                 Input.TapKey(1) ; Simulate the Escape key
             endIf
         endIf
