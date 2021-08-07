@@ -35,6 +35,8 @@ function ListMods() global
             AddSpellMenu_Forms.GetModQuestScriptv3().ListenForUIMagicMenuEvents()
         endIf
         ShowSpellsInMod(selectedMod)
+    else
+        AddSpellMenu_UI.ShowNpcOrPlayerSpellMenu()
     endIf
 endFunction
 
@@ -49,6 +51,8 @@ function SearchModsAndSpells(string searchQuery = "") global
         elseif selection != ""
             ShowSpellsInMod(selection)
         endIf
+    else
+        AddSpellMenu_UI.ShowNpcOrPlayerSpellMenu()
     endIf
 endFunction
 

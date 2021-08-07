@@ -30,7 +30,14 @@ function ShowNpcMainMenu(Actor npc = None) global
     AddSpellMenu_Forms.GetModQuestScriptv3().PreviousMenuName = "ShowNpcMainMenu"
     SetMessageBoxText1(npc.GetBaseObject().GetName())
 
-    if npc.GetSpellCount() > 0 && (AddSpellMenu_SkyUI.IsSkyUIInstalled() || AddSpellMenu_Options.AreSpecialSpellsEnabled())
+    int npcSpellCount = npc.GetSpellCount()
+
+    if AddSpellMenu_Options.AreSpecialSpellsEnabled()
+        npcSpellCount += npc.GetActorBase().GetSpellCount()
+        npcSpellCount += npc.GetRace().GetSpellCount()
+    endIf
+
+    if npcSpellCount > 0
         ShowNpcMainMenu_WithViewAndRemove()
     else
         ShowNpcMainMenu_WithoutViewAndRemove()
@@ -43,7 +50,7 @@ function ShowNpcMainMenu_WithViewAndRemove() global
     int chooseMod = 1
     int viewSpells = 2
     int removeSpells = 3
-    int options = 3
+    int options = 4
     if result == search
         AddSpellMenu_UI.SearchModsAndSpells()
     elseIf result == chooseMod
