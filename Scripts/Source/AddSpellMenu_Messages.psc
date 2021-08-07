@@ -15,100 +15,25 @@ endFunction
 
 ; Search, List Mods, Remove Spells, Options
 function ShowMainMenu() global
-    AddSpellMenu_Forms.GetModQuestScriptv3().PreviousMenuName = "ShowMainMenu"
-    AddSpellMenu_Npcs.SetCurrentTarget(Game.GetPlayer())
-    int result = AddSpellMenu_Forms.MainMenuMessage().Show()
-    int search = 0
-    int chooseMod = 1
-    int removeSpells = 2
-    int manageNpcs = 3
-    int options = 4
-    if result == search
-        AddSpellMenu_UI.SearchModsAndSpells()
-    elseIf result == chooseMod
-        AddSpellMenu_UI.ListMods()
-    elseIf result == removeSpells
-        AddSpellMenu_UI.ShowSpellRemover()
-    elseIf result == manageNpcs
-        AddSpellMenu_Messages_ManageNPCs.Show()
-    elseIf result == options
-        ShowOptions()
-    endIf
+    Debug.MessageBox("DEPRECATED MainMenu")
 endFunction
 
 ; Search, List Mods, View Spells. Remove Spells, Options
 function ShowNpcMainMenu(Actor npc = None) global
-    if npc
-        AddSpellMenu_Forms.GetModQuestScriptv3().MenuSelectedNpc = npc
-    else
-        npc = AddSpellMenu_Forms.GetModQuestScriptv3().MenuSelectedNpc
-    endIf
-    AddSpellMenu_Forms.GetModQuestScriptv3().PreviousMenuName = "ShowNpcMainMenu"
-    SetMessageBoxText1(npc.GetBaseObject().GetName())
-
-    int npcSpellCount = npc.GetSpellCount()
-
-    if AddSpellMenu_Options.AreSpecialSpellsEnabled()
-        npcSpellCount += npc.GetActorBase().GetSpellCount()
-        npcSpellCount += npc.GetRace().GetSpellCount()
-    endIf
-
-    if npcSpellCount > 0
-        ShowNpcMainMenu_WithViewAndRemove()
-    else
-        ShowNpcMainMenu_WithoutViewAndRemove()
-    endIf
+    Debug.MessageBox("DEPRECATED NpcMainMenu")
 endFunction
 
 function ShowNpcMainMenu_WithViewAndRemove() global
-    int result = AddSpellMenu_Forms.NpcMainMenuMessage().Show()
-    int search = 0
-    int chooseMod = 1
-    int viewSpells = 2
-    int removeSpells = 3
-    int options = 4
-    if result == search
-        AddSpellMenu_UI.SearchModsAndSpells()
-    elseIf result == chooseMod
-        AddSpellMenu_UI.ListMods()
-    elseIf result == viewSpells
-        AddSpellMenu_UI.ShowSpellViewer()
-    elseIf result == removeSpells
-        AddSpellMenu_UI.ShowSpellRemover()
-    elseIf result == options
-        ShowOptions()
-    endIf
+    Debug.MessageBox("DEPRECATED Npc Main Menu with spells")
 endFunction
 
 function ShowNpcMainMenu_WithoutViewAndRemove(Actor npc = None) global
-    int result = AddSpellMenu_Forms.NpcMainMenuMessageWithoutViewAndRemove().Show()
-    int search = 0
-    int chooseMod = 1
-    int options = 2
-    if result == search
-        AddSpellMenu_UI.SearchModsAndSpells()
-    elseIf result == chooseMod
-        AddSpellMenu_UI.ListMods()
-    elseIf result == options
-        ShowOptions()
-    endIf
+    Debug.MessageBox("DEPRECATED Npc Main Menu withOUT spells")
 endFunction
 
 ; Myself, Selected NPC, Options
 function ShowWhenNpcInCrosshairs(Actor npc) global
-    SetMessageBoxText1(npc.GetBaseObject().GetName())
-    int result = AddSpellMenu_Forms.ChooseSelfOrNpcMessage().Show()
-    int myself = 0
-    int selectedNpc = 1
-    int options = 2
-    if result == myself
-        ShowMainMenu()
-    elseIf result == selectedNpc
-        AddSpellMenu_Npcs.SetCurrentTarget(npc)
-        ShowNpcMainMenu(npc)
-    elseIf result == options
-        ShowOptions()
-    endIf
+    Debug.MessageBox("We don't use this menu for myself/npc anymore")
 endFunction
 
 function ShowOptions() global
@@ -233,25 +158,7 @@ function ShowOptions_LearnNeitherSpellNorPower() global
 endFunction
 
 function ShowManageNpcs() global
-    ; TODO add this to a Navigation Script
-    AddSpellMenu_Forms.GetModQuestScriptv3().PreviousMenuName = "Manage NPCs"
 
-    Actor crosshairActor = Game.GetCurrentCrosshairRef() as Actor
-    bool anyNpcsSaved = AddSpellMenu_Npcs.AnyNpcsSaved()
-    if crosshairActor
-        SetMessageBoxText1(crosshairActor.GetBaseObject().GetName())
-        if anyNpcsSaved
-            ShowNPCsMessage_WithNPCSelected_WithSavedNPCs(crosshairActor)
-        else
-            ShowNPCsMessage_WithNPCSelected(crosshairActor)
-        endIf
-    else
-        if anyNpcsSaved
-            ShowNPCsMessage_WithSavedNPCs(crosshairActor)
-        else
-            ShowNPCsMessage_WithNoSelectedNPC_AndNoSavedNPCs(crosshairActor)
-        endIf
-    endIf
 endFunction
 
 function ShowNPCsMessage_WithNPCSelected_WithSavedNPCs(Actor npc) global

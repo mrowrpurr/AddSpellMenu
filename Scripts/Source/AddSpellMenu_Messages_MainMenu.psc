@@ -2,7 +2,11 @@ scriptName AddSpellMenu_Messages_MainMenu hidden
 
 function Show(Actor npc = None) global
     if npc
-        ShowNpcMainMenu(npc)
+        if AddSpellMenu_Npcs.HasAnySpells(npc)
+            ShowNpcMainMenu_HasSpells(npc)
+        else
+            ShowNpcMainMenu_NoSpells(npc)
+        endIf
     else
         ShowPlayerMainMenu()
     endIf
@@ -27,7 +31,31 @@ function ShowPlayerMainMenu() global
     endIf
 endFunction
 
-function ShowNpcMainMenu(Actor npc = None) global
+function ShowNpcMainMenu_NoSpells(Actor npc = None) global
+    if ! npc
+        npc = AddSpellMenu_Npcs.GetCurrentTarget()
+        if ! npc
+            ShowPlayerMainMenu()
+            return
+        endIf
+    endIf
+    AddSpellMenu_Messages_Navigation.Visit("NpcMainMenu")
+    AddSpellMenu_Npcs.SetCurrentTarget(npc)
+    int result = AddSpellMenu_Forms.NpcMainMenuMessage().Show()
+    if result == 0
+        OnSearch()
+    elseif result == 1
+        OnChooseMod()
+    elseif result == 2
+        OnManageNPCs()
+    elseif result == 3
+        OnOptions()
+    else
+        OnExit()
+    endIf
+endFunction
+
+function ShowNpcMainMenu_HasSpells(Actor npc = None) global
     if ! npc
         npc = AddSpellMenu_Npcs.GetCurrentTarget()
         if ! npc
@@ -64,21 +92,21 @@ function OnChooseMod() global
 endFunction
 
 function OnRemoveSpells() global
-
+    AddSpellMenu_UI.ShowSpellRemover()
 endFunction
 
 function OnViewSpells() global
-
+    AddSpellMenu_UI.ShowSpellViewer()
 endFunction
 
 function OnManageNPCs() global
-
+    AddSpellMenu_Messages_ManageNPCs.Show()
 endFunction
 
 function OnOptions() global
-
+    AddSpellMenu_Messages_Options.Show()
 endFunction
 
 function OnExit() global
-
+    ; Nada
 endFunction

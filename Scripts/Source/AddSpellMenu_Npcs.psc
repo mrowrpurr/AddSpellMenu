@@ -1,5 +1,15 @@
 scriptName AddSpellMenu_Npcs hidden
 
+; Uses the option for whether special spells are considered or not
+bool function HasAnySpells(Actor npc) global
+    int spellCount = npc.GetSpellCount()
+    spellCount += npc.GetActorBase().GetSpellCount()
+    if AddSpellMenu_Options.AreSpecialSpellsEnabled()
+        spellCount += npc.GetRace().GetSpellCount()
+    endIf
+    return spellCount > 0
+endFunction
+
 Actor function GetCurrentTarget() global
     return AddSpellMenu_Forms.GetModQuestScript().CurrentTargetActor
 endFunction

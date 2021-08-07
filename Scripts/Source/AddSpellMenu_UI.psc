@@ -10,11 +10,12 @@ endFunction
 
 ; Rename, named terribly. And use NAVIGATION instead?
 function ShowNpcOrPlayerSpellMenu() global
-    if AddSpellMenu_Npcs.GetCurrentTarget() == Game.GetPlayer()
-        AddSpellMenu_Messages.ShowMainMenu()
-    else
-        AddSpellMenu_Messages.ShowNpcMainMenu()
-    endIf
+    Debug.MessageBox("No longer supporting the Myself/NPC menu")
+    ; if AddSpellMenu_Npcs.GetCurrentTarget() == Game.GetPlayer()
+    ;     AddSpellMenu_Messages.ShowMainMenu()
+    ; else
+    ;     AddSpellMenu_Messages.ShowNpcMainMenu()
+    ; endIf
 endFunction
 
 function ShowSpellRemover() global
@@ -105,6 +106,8 @@ endFunction
 Actor function ChooseSavedActor() global
     uilistmenu listMenu = uiextensions.GetMenu("UIListMenu") as uilistmenu
 
+    listMenu.AddEntryItem("Player")
+
     Form[] actors = AddSpellMenu_Npcs.GetSavedNpcForms()
     string[] names = AddSpellMenu_Npcs.GetSavedNpcNames()
 
@@ -124,6 +127,10 @@ Actor function ChooseSavedActor() global
 
     int result = listMenu.GetResultInt()
     if result > -1
-        return actors[result] as Actor
+        if result == 0
+            return Game.GetPlayer()
+        else
+            return actors[result + 1] as Actor
+        endIf
     endIf
 endFunction
