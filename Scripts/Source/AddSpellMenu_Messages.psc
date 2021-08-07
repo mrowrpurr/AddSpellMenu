@@ -109,6 +109,6 @@ endFunction
 
 function SetQuestAliasText(string questAliasName, string text) global
     Debug.MessageBox("Getting alias: " + questAliasName)
-    ReferenceAlias theAlias = AddSpellMenu_Forms.GetModQuestScriptv3().GetAliasByName(text) as ReferenceAlias
+    ReferenceAlias theAlias = AddSpellMenu_Forms.GetModQuestScriptv3().GetAliasByName(questAliasName) as ReferenceAlias
     theAlias.GetReference().GetBaseObject().SetName(text)
 endFunction
