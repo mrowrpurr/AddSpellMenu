@@ -25,17 +25,11 @@ endProperty
 event OnInit()
     AddSpellMenu_Versioning.FirstRun()
     AddSpellMenu_Versioning.Upgrade()
-    if Game.GetPlayer().GetItemCount(AddSpellMenu_Forms.GetPackActivatorForm()) == 0
-        AddItemsToPack()
-        Game.GetPlayer().AddItem(AddSpellMenu_Forms.GetPackActivatorForm())
+    Actor player = Game.GetPlayer()
+    if player.GetItemCount(AddSpellMenu_Forms.GetActivatorForm()) == 0
+        player.AddItem(AddSpellMenu_Forms.GetActivatorForm())
     endIf
 endEvent
-
-function AddItemsToPack()
-    ObjectReference packContainer = AddSpellMenu_Forms.GetPackContainerInstance()
-    packContainer.AddItem(AddSpellMenu_Forms.GetSpellTomeForm())
-    packContainer.AddItem(AddSpellMenu_Forms.GetActivatorForm())
-endFunction
 
 event OnSpellChooserAddRemoveSpell(string eventName, string strArg, float numArg, Form sender)
     AddSpellMenu_Menu_SkyUISpellChooser.OnSpellChooserAddRemoveSpell(eventName, strArg, numArg, sender)

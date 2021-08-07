@@ -25,3 +25,11 @@ endFunction
 bool function AreSpecialSpellsEnabled() global
     return AddSpellMenu_Forms.GetSpecialSpellsEnabledGlobal().GetValueInt() == 1
 endFunction
+
+function TeachSpell() global
+    Game.GetPlayer().AddSpell(AddSpellMenu_Forms.GetSpell())
+endFunction
+
+function TeachPower() global
+    Game.GetPlayer().AddSpell(AddSpellMenu_Forms.GetPower())
+endFunction

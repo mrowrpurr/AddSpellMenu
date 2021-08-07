@@ -56,3 +56,39 @@ endFunction
 Spell function GetSpell() global
     return GetModForm(0x801) as Spell
 endFunction
+
+Spell function GetPower() global
+    return GetModForm(0x80e) as Spell
+endFunction
+
+Message function MainMenuMessage() global
+    return GetModForm(0x82b) as Message
+endFunction
+
+Message function NpcMainMenuMessage() global
+    return GetModForm(0x82c) as Message
+endFunction
+
+Message function NpcMainMenuMessageWithoutViewAndRemove() global
+    return GetModForm(0x810) as Message
+endFunction
+
+Message function ChooseSelfOrNpcMessage() global
+    return GetModForm(0x803) as Message
+endFunction
+
+Message function OptionsMessage_WithSpellAndPower() global
+    return GetModForm(0x81d) as Message
+endFunction
+
+Message function OptionsMessage_WithSpell() global
+    return GetModForm(0x81e) as Message
+endFunction
+
+Message function OptionsMessage_WithPower() global
+    return GetModForm(0x82d) as Message
+endFunction
+
+Message function OptionsMessage_WithNeitherSpellNorPower() global
+    return GetModForm(0x81b) as Message
+endFunction

@@ -3,7 +3,7 @@ scriptName AddSpellMenu_Messages
 ; Search, List Mods, Remove Spells, Options
 function ShowMainMenu() global
     AddSpellMenu_Forms.GetModQuestScript().CurrentTargetActor = Game.GetPlayer()
-    int result = (AddSpellMenu_Forms.GetModForm(0x82b) as Message).Show()
+    int result = AddSpellMenu_Forms.MainMenuMessage().Show()
     int search = 0
     int chooseMod = 1
     int removeSpells = 2
@@ -22,7 +22,7 @@ endFunction
 ; Search, List Mods, View Spells. Remove Spells, Options
 function ShowNpcMainMenu(Actor npc) global
     SetMessageBoxText1(npc.GetBaseObject().GetName())
-    int result = (AddSpellMenu_Forms.GetModForm(0x82c) as Message).Show()
+    int result = AddSpellMenu_Forms.NpcMainMenuMessage().Show()
     int search = 0
     int chooseMod = 1
     int viewSpells = 2
@@ -44,7 +44,7 @@ endFunction
 ; Myself, Selected NPC, Options
 function ShowWhenNpcInCrosshairs(Actor npc) global
     SetMessageBoxText1(npc.GetBaseObject().GetName())
-    int result = (AddSpellMenu_Forms.GetModForm(0x803) as Message).Show()
+    int result = AddSpellMenu_Forms.ChooseSelfOrNpcMessage().Show()
     int myself = 0
     int selectedNpc = 1
     int options = 2
@@ -70,21 +70,102 @@ function ShowOptions() global
     else
         SetMessageBoxText2("OFF")
     endIf
-    
-    int result = (AddSpellMenu_Forms.GetModForm(0x81b) as Message).Show()
-    int toggleSpellTomeRequirement = 0
-    int toggleSpecialSpells = 1
-    int back = 2
-    if result == toggleSpellTomeRequirement
-        AddSpellMenu_Options.ToggleSpellTomeRequirement()
-        ShowOptions()
-    elseIf result == toggleSpecialSpells
-        AddSpellMenu_Options.ToggleSpecialSpells()
-        ShowOptions()
-    elseIf result == back
-        ; TODO
+
+    Actor player = Game.GetPlayer()
+    if player.HasSpell(AddSpellMenu_Forms.GetSpell()) && player.HasSpell(AddSpellMenu_Forms.GetPower())
+        ShowOptions_LearnNeitherSpellNorPower()
+    elseIf player.HasSpell(AddSpellMenu_Forms.GetSpell())
+        ShowOptions_LearnPower()
+    elseIf player.HasSpell(AddSpellMenu_Forms.GetPower())
+        ShowOptions_LearnSpell()
+    else
+        ShowOptions_LearnSpellAndPower()
     endIf
 endFunction
+
+function ShowOptions_LearnSpellAndPower() global
+    int result = AddSpellMenu_Forms.OptionsMessage_WithSpellAndPower().Show()
+    int manageNpcs = 0
+    int toggleSpellTomeRequirement = 1
+    int toggleSpecialSpells = 2
+    int learnPower = 3
+    int learnSpell = 4
+
+    if result == manageNpcs
+        Debug.MessageBox("Managing NPCs not yet implemented")
+    elseIf result == toggleSpellTomeRequirement
+        AddSpellMenu_Options.ToggleSpellTomeRequirement()
+    elseIf result == toggleSpecialSpells
+        AddSpellMenu_Options.ToggleSpecialSpells()
+    elseIf result == learnPower
+        AddSpellMenu_Options.TeachPower()
+    elseIf result == learnSpell
+        AddSpellMenu_Options.TeachSpell()
+    endIf
+
+    ShowOptions()
+endFunction
+
+function ShowOptions_LearnSpell() global
+    int result = AddSpellMenu_Forms.OptionsMessage_WithSpell().Show()
+    int manageNpcs = 0
+    int toggleSpellTomeRequirement = 1
+    int toggleSpecialSpells = 2
+    int learnSpell = 3
+
+    if result == manageNpcs
+        Debug.MessageBox("Managing NPCs not yet implemented")
+    elseIf result == toggleSpellTomeRequirement
+        AddSpellMenu_Options.ToggleSpellTomeRequirement()
+    elseIf result == toggleSpecialSpells
+        AddSpellMenu_Options.ToggleSpecialSpells()
+    elseIf result == learnSpell
+        AddSpellMenu_Options.TeachSpell()
+    endIf
+
+    ShowOptions()
+endFunction
+
+function ShowOptions_LearnPower() global
+    int result = AddSpellMenu_Forms.OptionsMessage_WithPower().Show()
+    int manageNpcs = 0
+    int toggleSpellTomeRequirement = 1
+    int toggleSpecialSpells = 2
+    int learnPower = 3
+
+    if result == manageNpcs
+        Debug.MessageBox("Managing NPCs not yet implemented")
+    elseIf result == toggleSpellTomeRequirement
+        AddSpellMenu_Options.ToggleSpellTomeRequirement()
+    elseIf result == toggleSpecialSpells
+        AddSpellMenu_Options.ToggleSpecialSpells()
+    elseIf result == learnPower
+        AddSpellMenu_Options.TeachPower()
+    endIf
+
+    ShowOptions()
+endFunction
+
+function ShowOptions_LearnNeitherSpellNorPower() global
+    int result = AddSpellMenu_Forms.OptionsMessage_WithNeitherSpellNorPower().Show()
+    int manageNpcs = 0
+    int toggleSpellTomeRequirement = 1
+    int toggleSpecialSpells = 2
+
+    if result == manageNpcs
+        Debug.MessageBox("Managing NPCs not yet implemented")
+    elseIf result == toggleSpellTomeRequirement
+        AddSpellMenu_Options.ToggleSpellTomeRequirement()
+    elseIf result == toggleSpecialSpells
+        AddSpellMenu_Options.ToggleSpecialSpells()
+    endIf
+
+    ShowOptions()
+endFunction
+
+
+
+
 
 ; TODO
 ; function ShowWhenNpcInCrosshairsAndOthersAvailable() global
@@ -108,7 +189,6 @@ function SetMessageBoxText(int textItemNumber, string text) global
 endFunction
 
 function SetQuestAliasText(string questAliasName, string text) global
-    Debug.MessageBox("Getting alias: " + questAliasName)
     ReferenceAlias theAlias = AddSpellMenu_Forms.GetModQuestScriptv3().GetAliasByName(questAliasName) as ReferenceAlias
     theAlias.GetReference().GetBaseObject().SetName(text)
 endFunction
