@@ -13,7 +13,7 @@ function ShowAddSpellMenu() global
 endFunction
 
 function ShowNpcOrPlayerSpellMenu() global
-    if AddSpellMenu_Forms.GetModQuestScript().CurrentTargetActor == Game.GetPlayer()
+    if AddSpellMenu_Npcs.GetCurrentTarget() == Game.GetPlayer()
         AddSpellMenu_Messages.ShowMainMenu()
     else
         AddSpellMenu_Messages.ShowNpcMainMenu()
@@ -96,4 +96,37 @@ endFunction
 
 function ShowOptionsMenu() global
     AddSpellMenu_Messages.ShowOptions()
+endFunction
+
+string function GetTextEntryResultForNpcName(Actor npc) global
+    uitextentrymenu textInput = uiextensions.GetMenu("UITextEntryMenu") as uitextentrymenu
+    textInput.SetPropertyString("text", npc.GetBaseObject().GetName())
+    textInput.OpenMenu()
+    return textInput.GetResultString()
+endFunction
+
+Actor function ChooseSavedActor() global
+    uilistmenu listMenu = uiextensions.GetMenu("UIListMenu") as uilistmenu
+
+    Form[] actors = AddSpellMenu_Npcs.GetSavedNpcForms()
+    string[] names = AddSpellMenu_Npcs.GetSavedNpcNames()
+
+    int index = 0
+    while index < actors.Length
+        string nickname = names[index]
+        string realName = (actors[index] as Actor).GetBaseObject().GetName()
+        if nickname == realName
+            listMenu.AddEntryItem(nickname)
+        else
+            listMenu.AddEntryItem(nickname + " (" + realName + ")")
+        endIf
+        index += 1
+    endWhile
+
+    listMenu.OpenMenu()
+
+    int result = listMenu.GetResultInt()
+    if result > -1
+        return actors[result] as Actor
+    endIf
 endFunction

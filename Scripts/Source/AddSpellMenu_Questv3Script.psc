@@ -6,6 +6,10 @@ string property PreviousMenuName auto
 ; For tracking the NPC which is currently being managed via menus
 Actor property MenuSelectedNpc auto
 
+; For tracking saved NPCs
+Form[] property SavedNPCForms auto
+string[] property SavedNPCNames auto
+
 ; Listen for SkyUI / UIMagicMenu to close and then go back to NPC or Player menu
 function ListenForUIMagicMenuEvents()
     RegisterForModEvent("UIMagicMenu_CloseMenu", "OnMagicMenuClose")

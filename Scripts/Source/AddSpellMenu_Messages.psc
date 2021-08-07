@@ -1,9 +1,17 @@
 scriptName AddSpellMenu_Messages
 
+function GoBack() global
+    if AddSpellMenu_Forms.GetModQuestScriptv3().PreviousMenuName == "ShowMainMenu"
+        ShowMainMenu()
+    elseIf AddSpellMenu_Forms.GetModQuestScriptv3().PreviousMenuName == "ShowNpcMainMenu"
+        ShowNpcMainMenu()
+    endIf
+endFunction
+
 ; Search, List Mods, Remove Spells, Options
 function ShowMainMenu() global
     AddSpellMenu_Forms.GetModQuestScriptv3().PreviousMenuName = "ShowMainMenu"
-    AddSpellMenu_Forms.GetModQuestScript().CurrentTargetActor = Game.GetPlayer()
+    AddSpellMenu_Npcs.SetCurrentTarget(Game.GetPlayer())
     int result = AddSpellMenu_Forms.MainMenuMessage().Show()
     int search = 0
     int chooseMod = 1
@@ -16,7 +24,7 @@ function ShowMainMenu() global
     elseIf result == removeSpells
         AddSpellMenu_UI.ShowSpellRemover()
     elseIf result == options
-        ShowOptions()
+        ShowOptions() ; FIXME ?
     endIf
 endFunction
 
@@ -88,7 +96,7 @@ function ShowWhenNpcInCrosshairs(Actor npc) global
     if result == myself
         ShowMainMenu()
     elseIf result == selectedNpc
-        AddSpellMenu_Forms.GetModQuestScript().CurrentTargetActor = npc
+        AddSpellMenu_Npcs.SetCurrentTarget(npc)
         ShowNpcMainMenu(npc)
     elseIf result == options
         ShowOptions()
@@ -130,7 +138,7 @@ function ShowOptions_LearnSpellAndPower() global
     int back = 5
 
     if result == manageNpcs
-        Debug.MessageBox("Managing NPCs not yet implemented")
+        ManageNpcs()
     elseIf result == toggleSpellTomeRequirement
         AddSpellMenu_Options.ToggleSpellTomeRequirement()
     elseIf result == toggleSpecialSpells
@@ -156,7 +164,7 @@ function ShowOptions_LearnSpell() global
     int back = 4
 
     if result == manageNpcs
-        Debug.MessageBox("Managing NPCs not yet implemented")
+        ManageNpcs()
     elseIf result == toggleSpellTomeRequirement
         AddSpellMenu_Options.ToggleSpellTomeRequirement()
     elseIf result == toggleSpecialSpells
@@ -180,7 +188,7 @@ function ShowOptions_LearnPower() global
     int back = 4
 
     if result == manageNpcs
-        Debug.MessageBox("Managing NPCs not yet implemented")
+        ManageNpcs()
     elseIf result == toggleSpellTomeRequirement
         AddSpellMenu_Options.ToggleSpellTomeRequirement()
     elseIf result == toggleSpecialSpells
@@ -203,7 +211,7 @@ function ShowOptions_LearnNeitherSpellNorPower() global
     int back = 3
 
     if result == manageNpcs
-        Debug.MessageBox("Managing NPCs not yet implemented")
+        ManageNpcs()
     elseIf result == toggleSpellTomeRequirement
         AddSpellMenu_Options.ToggleSpellTomeRequirement()
     elseIf result == toggleSpecialSpells
@@ -216,12 +224,119 @@ function ShowOptions_LearnNeitherSpellNorPower() global
     ShowOptions()
 endFunction
 
-function GoBack() global
-    if AddSpellMenu_Forms.GetModQuestScriptv3().PreviousMenuName == "ShowMainMenu"
-        ShowMainMenu()
-    elseIf AddSpellMenu_Forms.GetModQuestScriptv3().PreviousMenuName == "ShowNpcMainMenu"
-        ShowNpcMainMenu()
+function ManageNpcs() global
+    ; TODO add this to a Navigation Script
+    AddSpellMenu_Forms.GetModQuestScriptv3().PreviousMenuName = "Manage NPCs"
+
+    Actor crosshairActor = Game.GetCurrentCrosshairRef() as Actor
+    bool anyNpcsSaved = AddSpellMenu_Npcs.AnyNpcsSaved()
+    if crosshairActor
+        SetMessageBoxText1(crosshairActor.GetBaseObject().GetName())
+        if anyNpcsSaved
+            ShowNPCsMessage_WithNPCSelected_WithSavedNPCs(crosshairActor)
+        else
+            ShowNPCsMessage_WithNPCSelected(crosshairActor)
+        endIf
+    else
+        if anyNpcsSaved
+            ShowNPCsMessage_WithSavedNPCs(crosshairActor)
+        else
+            ShowNPCsMessage_WithNoSelectedNPC_AndNoSavedNPCs(crosshairActor)
+        endIf
     endIf
+endFunction
+
+function ShowNPCsMessage_WithNPCSelected_WithSavedNPCs(Actor npc) global
+    bool npcIsSaved = AddSpellMenu_Npcs.IsSaved(npc)
+    int choose = 0
+    int remove = 1
+    int rename = 2
+    int addOrRemove = 3
+
+    int addSelected = 3 ; TODO Add should NOT show up if already added! only Remove
+    int removeSelected = 4 ; or this will be Back if the NPC is not saved
+
+    int result
+    Actor selectedActor
+
+    if npcIsSaved
+        string nickname = AddSpellMenu_Npcs.GetSavedNpcNickname(npc)
+        if nickname != npc.GetBaseObject().GetName()
+            SetMessageBoxText2("\nNickname: " + nickname)
+        endIf
+        result = AddSpellMenu_Forms.ManageNPCsMessage_WithNPCSelectedIsSaved_WithSavedNPCs().Show()
+    else
+        result = AddSpellMenu_Forms.ManageNPCsMessage_WithNPCSelectedNotSaved_WithSavedNPCs().Show()
+    endIf
+
+    if result == choose
+        selectedActor = AddSpellMenu_UI.ChooseSavedActor()
+        if selectedActor
+            AddSpellMenu_Npcs.SetCurrentTarget(selectedActor)
+            ShowNpcMainMenu(selectedActor)
+            return
+        endIf
+    elseIf result == remove
+
+    elseIf result == rename
+
+    elseIf result == addSelected
+        string chosenName = AddSpellMenu_UI.GetTextEntryResultForNpcName(npc)
+        if chosenName != ""
+            AddSpellMenu_Npcs.SaveNPC(npc, chosenName)
+        endIf
+        ManageNpcs()
+    elseIf result == removeSelected && npcIsSaved
+
+    else
+        ShowOptions()
+    endIf
+endFunction
+
+function ShowNPCsMessage_WithNPCSelected(Actor npc) global
+    int result = AddSpellMenu_Forms.ManageNPCsMessage_WithNPCSelected().Show()
+    int addSelected = 0
+    int back = 1
+
+    if result == addSelected
+        string chosenName = AddSpellMenu_UI.GetTextEntryResultForNpcName(npc)
+        if chosenName != ""
+            AddSpellMenu_Npcs.SaveNPC(npc, chosenName)
+        endIf
+        ManageNpcs()
+    elseIf result == back
+        ShowOptions()
+    endIf
+endFunction
+
+function ShowNPCsMessage_WithSavedNPCs(Actor npc) global
+    int choose = 0
+    int remove = 1
+    int rename = 2
+
+    int result = AddSpellMenu_Forms.ManageNPCsMessage_WithSavedNPCs().Show()
+
+    if result == choose
+        ACtor selectedActor = AddSpellMenu_UI.ChooseSavedActor()
+        if selectedActor
+            AddSpellMenu_Npcs.SetCurrentTarget(selectedActor)
+            ShowNpcMainMenu(selectedActor)
+            return
+        endIf
+    elseIf result == remove
+
+    elseIf result == rename
+
+    else
+        ShowOptions()
+    endIf
+endFunction
+
+function ShowNPCsMessage_WithNoSelectedNPC_AndNoSavedNPCs(Actor npc) global
+    Debug.MessageBox("Nothing")
+    AddSpellMenu_Forms.ManageNPCsMessage_WithNoSelectedNPC_AndNoSavedNPCs().Show()
+    Debug.MessageBox("Going back to options...")
+    ShowOptions()
 endFunction
 
 ; TODO
