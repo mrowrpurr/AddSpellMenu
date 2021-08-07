@@ -1,0 +1,1 @@
+scriptName AddSpellMenu_Messages_ManageNPCs
