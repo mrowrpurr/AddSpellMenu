@@ -1,7 +1,8 @@
 scriptName AddSpellMenu_Questv3Script extends Quest  
 
 ;For supporting 'Back' in menus
-string property PreviousMenuName auto
+string property PreviousMenuName auto ; TODO REMOVE ME
+string[] property MenuHistory auto
 
 ; For tracking the NPC which is currently being managed via menus
 Actor property MenuSelectedNpc auto
@@ -16,6 +17,6 @@ function ListenForUIMagicMenuEvents()
 endFunction
 
 event OnMagicMenuClose(string eventName, string strArg, float floatArg, Form sender)
-    AddSpellMenu_UI.ShowNpcOrPlayerSpellMenu()
+    AddSpellMenu_Messages_Navigation.GoBack()
     UnregisterForModEvent("UIMagicMenu_CloseMenu")
 endEvent

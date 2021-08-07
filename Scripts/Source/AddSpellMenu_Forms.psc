@@ -61,6 +61,23 @@ Spell function GetPower() global
     return GetModForm(0x80e) as Spell
 endFunction
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;;;;;;;;;;;;;;;; Possibly deprecated below
+
 Message function MainMenuMessage() global
     return GetModForm(0x82b) as Message
 endFunction

@@ -1,1 +1,5 @@
-scriptName AddSpellMenu_Messages_ObjectsAndSpells
+scriptName AddSpellMenu_Messages_ObjectsAndSpells hidden
+
+function Show() global
+
+endFunction

@@ -1,5 +1,10 @@
 scriptName AddSpellMenu_Messages
 
+; TODO DEPRECATE ME ;
+;;;;;;;;;;;;;;;;;;;;;
+
+
+
 function GoBack() global
     if AddSpellMenu_Forms.GetModQuestScriptv3().PreviousMenuName == "ShowMainMenu"
         ShowMainMenu()
@@ -16,15 +21,18 @@ function ShowMainMenu() global
     int search = 0
     int chooseMod = 1
     int removeSpells = 2
-    int options = 3
+    int manageNpcs = 3
+    int options = 4
     if result == search
         AddSpellMenu_UI.SearchModsAndSpells()
     elseIf result == chooseMod
         AddSpellMenu_UI.ListMods()
     elseIf result == removeSpells
         AddSpellMenu_UI.ShowSpellRemover()
+    elseIf result == manageNpcs
+        AddSpellMenu_Messages_ManageNPCs.Show()
     elseIf result == options
-        ShowOptions() ; FIXME ?
+        ShowOptions()
     endIf
 endFunction
 
@@ -138,7 +146,7 @@ function ShowOptions_LearnSpellAndPower() global
     int back = 5
 
     if result == manageNpcs
-        ManageNpcs()
+        ShowManageNpcs()
     elseIf result == toggleSpellTomeRequirement
         AddSpellMenu_Options.ToggleSpellTomeRequirement()
     elseIf result == toggleSpecialSpells
@@ -164,7 +172,7 @@ function ShowOptions_LearnSpell() global
     int back = 4
 
     if result == manageNpcs
-        ManageNpcs()
+        ShowManageNpcs()
     elseIf result == toggleSpellTomeRequirement
         AddSpellMenu_Options.ToggleSpellTomeRequirement()
     elseIf result == toggleSpecialSpells
@@ -188,7 +196,7 @@ function ShowOptions_LearnPower() global
     int back = 4
 
     if result == manageNpcs
-        ManageNpcs()
+        ShowManageNpcs()
     elseIf result == toggleSpellTomeRequirement
         AddSpellMenu_Options.ToggleSpellTomeRequirement()
     elseIf result == toggleSpecialSpells
@@ -211,7 +219,7 @@ function ShowOptions_LearnNeitherSpellNorPower() global
     int back = 3
 
     if result == manageNpcs
-        ManageNpcs()
+        ShowManageNpcs()
     elseIf result == toggleSpellTomeRequirement
         AddSpellMenu_Options.ToggleSpellTomeRequirement()
     elseIf result == toggleSpecialSpells
@@ -224,7 +232,7 @@ function ShowOptions_LearnNeitherSpellNorPower() global
     ShowOptions()
 endFunction
 
-function ManageNpcs() global
+function ShowManageNpcs() global
     ; TODO add this to a Navigation Script
     AddSpellMenu_Forms.GetModQuestScriptv3().PreviousMenuName = "Manage NPCs"
 
@@ -285,7 +293,7 @@ function ShowNPCsMessage_WithNPCSelected_WithSavedNPCs(Actor npc) global
         if chosenName != ""
             AddSpellMenu_Npcs.SaveNPC(npc, chosenName)
         endIf
-        ManageNpcs()
+        ShowManageNpcs()
     elseIf result == removeSelected && npcIsSaved
 
     else
@@ -303,7 +311,7 @@ function ShowNPCsMessage_WithNPCSelected(Actor npc) global
         if chosenName != ""
             AddSpellMenu_Npcs.SaveNPC(npc, chosenName)
         endIf
-        ManageNpcs()
+        ShowManageNpcs()
     elseIf result == back
         ShowOptions()
     endIf

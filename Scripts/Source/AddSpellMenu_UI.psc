@@ -3,15 +3,12 @@ scriptName AddSpellMenu_UI hidden
 
 ; Show the main [AddSpellMenu] (different depending on if NPC in crosshairs or not, etc)
 function ShowAddSpellMenu() global
-    Actor npc = Game.GetCurrentCrosshairRef() as Actor
-    if npc
-        ; Test by going into Skyrim and Load Game then COC and then try this (forks should be gone)
-        AddSpellMenu_Messages.ShowWhenNpcInCrosshairs(npc)
-    else
-        AddSpellMenu_Messages.ShowMainMenu()
-    endIf
+    AddSpellMenu_Messages_MainMenu.Show(Game.GetCurrentCrosshairRef() as Actor)
 endFunction
 
+;;;; TODO split into multiple UI scripts for organization
+
+; Rename, named terribly. And use NAVIGATION instead?
 function ShowNpcOrPlayerSpellMenu() global
     if AddSpellMenu_Npcs.GetCurrentTarget() == Game.GetPlayer()
         AddSpellMenu_Messages.ShowMainMenu()
@@ -36,7 +33,7 @@ function ListMods() global
         endIf
         ShowSpellsInMod(selectedMod)
     else
-        AddSpellMenu_UI.ShowNpcOrPlayerSpellMenu()
+        AddSpellMenu_Messages_Navigation.GoBack()
     endIf
 endFunction
 
@@ -52,7 +49,7 @@ function SearchModsAndSpells(string searchQuery = "") global
             ShowSpellsInMod(selection)
         endIf
     else
-        AddSpellMenu_UI.ShowNpcOrPlayerSpellMenu()
+        AddSpellMenu_Messages_Navigation.GoBack()
     endIf
 endFunction
 
@@ -68,10 +65,10 @@ function ShowSpellsInMod(string modName) global
         AddSpellMenu_Menu_SpellChooser.Show(spellsContainer)
     elseif anyMatchingSpells
         Debug.MessageBox("No spells found in: " + modName + "\nwhich the player does not already have")
-        AddSpellMenu_UI.ShowNpcOrPlayerSpellMenu()
+        AddSpellMenu_Messages_Navigation.GoBack()
     else
         Debug.MessageBox("No spells found in: " + modName)
-        AddSpellMenu_UI.ShowNpcOrPlayerSpellMenu()
+        AddSpellMenu_Messages_Navigation.GoBack()
     endIf
 endFunction
 
@@ -87,10 +84,10 @@ function ShowSearchResults(string searchQuery) global
         AddSpellMenu_Menu_SpellChooser.Show(spellsContainer)
     elseif anyMatchingSpells
         Debug.MessageBox("No spells found matching \"" + searchQuery + "\"\nwhich the player does not already have")
-        AddSpellMenu_UI.ShowNpcOrPlayerSpellMenu()
+        AddSpellMenu_Messages_Navigation.GoBack()
     else
         Debug.MessageBox("No spells found matching \"" + searchQuery + "\"")
-        AddSpellMenu_UI.ShowNpcOrPlayerSpellMenu()
+        AddSpellMenu_Messages_Navigation.GoBack()
     endIf
 endFunction
 

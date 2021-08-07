@@ -6,6 +6,6 @@ function Show(Actor spellsContainer) global
         AddSpellMenu_Menu_SkyUISpellChooser.Show(spellsContainer)
     else
         AddSpellMenu_Menu_ListSpellChooser.Show(spellsContainer)
-        AddSpellMenu_UI.ShowNpcOrPlayerSpellMenu()
+        AddSpellMenu_Messages_Navigation.GoBack()
     endIf
 endFunction
