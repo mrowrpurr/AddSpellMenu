@@ -5,7 +5,7 @@ function NavigateTo(string menuName) global
     if menuName == "PlayerMainMenu"
         AddSpellMenu_Messages_MainMenu.ShowPlayerMainMenu()
     elseif menuName == "NpcMainMenu"
-        AddSpellMenu_Messages_MainMenu.ShowNpcMainMenu()
+        AddSpellMenu_Messages_MainMenu.Show(AddSpellMenu_Npcs.GetCurrentTarget())
     else
         Debug.MessageBox("[AddSpellMenu Navigation] Unknown menu: " + menuName)
     endIf
@@ -23,12 +23,24 @@ function Visit(string menuName) global
     SetHistory(history)
 endFunction
 
-function GoBack() global
+function GoBack(int numberOfPages = 1) global
     string[] history = GetHistory()
     if history
-        string lastPage = history[history.Length - 1]
-        SetHistory(Utility.ResizeStringArray(history, history.Length - 1))
+        if numberOfPages > history.Length
+            Debug.Notification("Cannot go back " + numberOfPages + " pages, history does not go back that far")
+        endIf
+        string lastPage = history[history.Length - numberOfPages]
+        SetHistory(Utility.ResizeStringArray(history, history.Length - numberOfPages))
         NavigateTo(lastPage)
+    endIf
+endFunction
+
+function GoBackOrMainMenu(int numberOfPages = 1) global
+    string[] history = GetHistory()
+    if ! history || history.Length < numberOfPages
+        AddSpellMenu_Messages_MainMenu.Show()
+    else
+        GoBack(numberOfPages)
     endIf
 endFunction
 

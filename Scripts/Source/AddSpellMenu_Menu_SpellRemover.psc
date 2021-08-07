@@ -10,17 +10,17 @@ function Show() global
                 AddSpellMenu_Menu_SkyUISpellRemover.Show()
             else
                 AddSpellMenu_Menu_ListSpellRemover.Show()
-                AddSpellMenu_Messages_Navigation.GoBack()
+                AddSpellMenu_Messages_Navigation.GoBackOrMainMenu()
             endIf
         elseif ! AddSpellMenu_SkyUI.IsSkyUIInstalled() && npc.GetActorBase().GetSpellCount() > 0
             AddSpellMenu_Menu_ListSpellRemover.Show()
-            AddSpellMenu_Messages_Navigation.GoBack()
+            AddSpellMenu_Messages_Navigation.GoBackOrMainMenu()
         elseif AddSpellMenu_Options.AreSpecialSpellsEnabled() && npc.GetRace().GetSpellCount() > 0
             AddSpellMenu_Menu_ListSpellRemover.Show()
-            AddSpellMenu_Messages_Navigation.GoBack()
+            AddSpellMenu_Messages_Navigation.GoBackOrMainMenu()
         else
             Debug.MessageBox(npc.GetBaseObject().GetName() + " has no spells")
-            AddSpellMenu_Messages_Navigation.GoBack()
+            AddSpellMenu_Messages_Navigation.GoBackOrMainMenu()
         endIf
     endIf
 endFunction

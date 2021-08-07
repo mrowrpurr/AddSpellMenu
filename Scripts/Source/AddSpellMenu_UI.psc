@@ -66,10 +66,10 @@ function ShowSpellsInMod(string modName) global
         AddSpellMenu_Menu_SpellChooser.Show(spellsContainer)
     elseif anyMatchingSpells
         Debug.MessageBox("No spells found in: " + modName + "\nwhich the player does not already have")
-        AddSpellMenu_Messages_Navigation.GoBack()
+        AddSpellMenu_Messages_Navigation.GoBackOrMainMenu()
     else
         Debug.MessageBox("No spells found in: " + modName)
-        AddSpellMenu_Messages_Navigation.GoBack()
+        AddSpellMenu_Messages_Navigation.GoBackOrMainMenu()
     endIf
 endFunction
 
@@ -85,15 +85,11 @@ function ShowSearchResults(string searchQuery) global
         AddSpellMenu_Menu_SpellChooser.Show(spellsContainer)
     elseif anyMatchingSpells
         Debug.MessageBox("No spells found matching \"" + searchQuery + "\"\nwhich the player does not already have")
-        AddSpellMenu_Messages_Navigation.GoBack()
+        AddSpellMenu_Messages_Navigation.GoBackOrMainMenu()
     else
         Debug.MessageBox("No spells found matching \"" + searchQuery + "\"")
-        AddSpellMenu_Messages_Navigation.GoBack()
+        AddSpellMenu_Messages_Navigation.GoBackOrMainMenu()
     endIf
-endFunction
-
-function ShowOptionsMenu() global
-    AddSpellMenu_Messages.ShowOptions()
 endFunction
 
 string function GetTextEntryResultForNpcName(Actor npc) global
@@ -103,10 +99,12 @@ string function GetTextEntryResultForNpcName(Actor npc) global
     return textInput.GetResultString()
 endFunction
 
-Actor function ChooseSavedActor() global
+Actor function ChooseSavedActor(bool includePlayer = false) global
     uilistmenu listMenu = uiextensions.GetMenu("UIListMenu") as uilistmenu
 
-    listMenu.AddEntryItem("Player")
+    if includePlayer
+        listMenu.AddEntryItem("Player")
+    endIf
 
     Form[] actors = AddSpellMenu_Npcs.GetSavedNpcForms()
     string[] names = AddSpellMenu_Npcs.GetSavedNpcNames()
@@ -127,10 +125,14 @@ Actor function ChooseSavedActor() global
 
     int result = listMenu.GetResultInt()
     if result > -1
-        if result == 0
-            return Game.GetPlayer()
+        if includePlayer
+            if result == 0
+                return Game.GetPlayer()
+            else
+                return actors[result + 1] as Actor
+            endIf
         else
-            return actors[result + 1] as Actor
+            return actors[result] as Actor
         endIf
     endIf
 endFunction

@@ -61,23 +61,6 @@ Spell function GetPower() global
     return GetModForm(0x80e) as Spell
 endFunction
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-;;;;;;;;;;;;;;;; Possibly deprecated below
-
 Message function MainMenuMessage() global
     return GetModForm(0x82b) as Message
 endFunction
@@ -88,10 +71,6 @@ endFunction
 
 Message function NpcMainMenuMessageWithoutViewAndRemove() global
     return GetModForm(0x810) as Message
-endFunction
-
-Message function ChooseSelfOrNpcMessage() global
-    return GetModForm(0x803) as Message
 endFunction
 
 Message function OptionsMessage_WithSpellAndPower() global
@@ -118,14 +97,18 @@ Message function ManageNPCsMessage_WithNPCSelectedIsSaved_WithSavedNPCs() global
     return GetModForm(0x82e) as Message
 endFunction
 
-Message function ManageNPCsMessage_WithNPCSelected() global
+Message function ManageNPCsMessage_WithNPCSelected_WithNoSaves() global
     return GetModForm(0x831) as Message
 endFunction
 
-Message function ManageNPCsMessage_WithSavedNPCs() global
+Message function ManageNPCsMessage_WithNoNpcSelected_WithSavedNPCs() global
     return GetModForm(0x82f) as Message
 endFunction
 
 Message function ManageNPCsMessage_WithNoSelectedNPC_AndNoSavedNPCs() global
     return GetModForm(0x830) as Message
+endFunction
+
+Message function SpellPowerActivatorMessage() global
+    return GetModForm(0x800) as Message
 endFunction

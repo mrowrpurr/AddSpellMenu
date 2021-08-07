@@ -17,6 +17,6 @@ function ListenForUIMagicMenuEvents()
 endFunction
 
 event OnMagicMenuClose(string eventName, string strArg, float floatArg, Form sender)
-    AddSpellMenu_Messages_Navigation.GoBack()
+    AddSpellMenu_Messages_Navigation.GoBackOrMainMenu()
     UnregisterForModEvent("UIMagicMenu_CloseMenu")
 endEvent
