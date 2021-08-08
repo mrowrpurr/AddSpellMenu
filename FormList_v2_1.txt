@@ -1,0 +1,22 @@
+01000802	AddSpellMenu_RequiresSpellTome
+01000803	AddSpellMenu_SearchEffect
+01000805	AddSpellMenu_ListEffect
+0100080f	AddSpellMenu_ToggleOnlySpellTomesEffect
+01000800	AddSpellMenu_SearchSpell
+01000801	AddSpellMenu_ListSpell
+0100080e	AddSpellMenu_ToggleOnlySpellTomesSpell
+01000d68	AddSpellMenu_SearchTome
+01000d69	AddSpellMenu_ListTome
+01000810	AddSpellMenu_ToggleTomeRequirementTome
+01000804	AddSpellMenu_Pack_Container
+01000806	AddSpellMenu_SpellListActivator
+01000807	AddSpellMenu_SpellSearchActivator
+01000808	AddSpellMenu_PackActivator
+01000809	AddSpellMenu_NPC_TradeSpells
+0100080a	AddSpellMenu_NPC_TempContainer
+000bbcb2	WEMerchantChests
+0100080d	
+0100080c	
+0100080b	
+01000d6a	AddSpellMenu_Quest
+01000811	AddSpellMenu_Questv2
