@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin version="0.7.4">
+  <TES4 flags="0x00000200" id="00000000" day="0" month="0" lastUserID="0" currentUserID="0" version="44" unknown="0x0000">
+    <HEDR>
+      <struct version="1.70000005" numRecords="35" nextObjectID="00003319" />
+    </HEDR>
+    <CNAM>DEFAULT</CNAM>
+    <MAST>Skyrim.esm</MAST>
+    <DATA>0</DATA>
+    <INTV>1</INTV>
+  </TES4>
+  <GRUP label="GLOB" groupType="0" day="7" month="43" lastUserID="0" currentUserID="0" unknown="0x00000000">
+    <GLOB flags="0x00000000" id="01000802" day="0" month="0" lastUserID="0" currentUserID="0" version="44" unknown="0x0000">
+      <EDID>AddSpellMenu_RequiresSpellTome</EDID>
+      <FNAM>115</FNAM>
+      <FLTV>1</FLTV>
+    </GLOB>
+  </GRUP>
+  <GRUP label="MGEF" groupType="0" day="7" month="43" lastUserID="0" currentUserID="0" unknown="0x00000000">
+    <MGEF flags="0x00000000" id="01000803" day="0" month="0" lastUserID="0" currentUserID="0" version="44" unknown="0x0000">
+      <EDID>AddSpellMenu_SearchEffect</EDID>
+      <VMAD version="5" format="2">
+        <script name="AddSpellMenu_Effect_Search" status="0">
+          <property name="ModQuest" type="1" status="1">
+            <object formID="01000d6a" alias="65535" unused="0x0000" />
+          </property>
+        </script>
+      </VMAD>
+      <FULL>Search for spells from game or any mod</FULL>
+      <DATA>
+        <struct flags="0x00000000" baseCost="0" relatedID="00000000" skill="-1" resistanceAV="4294967295" unknown1="0x00000000" lightID="00000000" taperWeight="0" hitShader="00000000" enchantShader="00000000" skillLevel="0" area="0" castingTime="0" taperCurve="0" taperDuration="0" secondAVWeight="0" effectType="0" primaryAV="24" projectileID="00000000" explosionID="00000000" castType="1" deliveryType="0" secondAV="-1" castingArtID="00000000" hitEffectArtID="00000000" impactDataID="00000000" skillUsageMult="0" dualCastID="00000000" dualCastScale="1" enchantArtID="00000000" nullData1="0x00000000" nullData2="0x00000000" equipAbility="00000000" imageSpaceModID="00000000" perkID="00000000" soundVolume="1" scriptAIDataScore="0" scriptAIDataDelayTime="0" />
+      </DATA>
+      <SNDD />
+      <DNAM></DNAM>
+    </MGEF>
+    <MGEF flags="0x00000000" id="01000805" day="0" month="0" lastUserID="0" currentUserID="0" version="44" unknown="0x0000">
+      <EDID>AddSpellMenu_ListEffect</EDID>
+      <VMAD version="5" format="2">
+        <script name="AddSpellMenu_Effect_List" status="0">
+          <property name="ModQuest" type="1" status="1">
+            <object formID="01000d6a" alias="65535" unused="0x0000" />
+          </property>
+        </script>
+      </VMAD>
+      <FULL>View spells from game or any mod</FULL>
+      <DATA>
+        <struct flags="0x00000000" baseCost="0" relatedID="00000000" skill="-1" resistanceAV="4294967295" unknown1="0x00000000" lightID="00000000" taperWeight="0" hitShader="00000000" enchantShader="00000000" skillLevel="0" area="0" castingTime="0" taperCurve="0" taperDuration="0" secondAVWeight="0" effectType="0" primaryAV="24" projectileID="00000000" explosionID="00000000" castType="1" deliveryType="0" secondAV="-1" castingArtID="00000000" hitEffectArtID="00000000" impactDataID="00000000" skillUsageMult="0" dualCastID="00000000" dualCastScale="1" enchantArtID="00000000" nullData1="0x00000000" nullData2="0x00000000" equipAbility="00000000" imageSpaceModID="00000000" perkID="00000000" soundVolume="1" scriptAIDataScore="0" scriptAIDataDelayTime="0" />
+      </DATA>
+      <SNDD />
+      <DNAM></DNAM>
+    </MGEF>
+    <MGEF flags="0x00000000" id="0100080f" day="0" month="0" lastUserID="0" currentUserID="0" version="44" unknown="0x0000">
+      <EDID>AddSpellMenu_ToggleOnlySpellTomesEffect</EDID>
+      <VMAD version="5" format="2">
+        <script name="AddSpellMenu_Effect_ToggleSpellTomes" status="0">
+          <property name="AddSpellMenu_RequiresSpellTome" type="1" status="1">
+            <object formID="01000802" alias="65535" unused="0x0000" />
+          </property>
+        </script>
+      </VMAD>
+      <FULL>Toggle Only Spell Tomes</FULL>
+      <DATA>
+        <struct flags="0x00000000" baseCost="0" relatedID="00000000" skill="18" resistanceAV="4294967295" unknown1="0x00000000" lightID="00000000" taperWeight="0" hitShader="00000000" enchantShader="00000000" skillLevel="0" area="0" castingTime="0" taperCurve="0" taperDuration="0" secondAVWeight="0" effectType="0" primaryAV="24" projectileID="00000000" explosionID="00000000" castType="1" deliveryType="0" secondAV="-1" castingArtID="00000000" hitEffectArtID="00000000" impactDataID="00000000" skillUsageMult="0" dualCastID="00000000" dualCastScale="1" enchantArtID="00000000" nullData1="0x00000000" nullData2="0x00000000" equipAbility="00000000" imageSpaceModID="00000000" perkID="00000000" soundVolume="1" scriptAIDataScore="0" scriptAIDataDelayTime="0" />
+      </DATA>
+      <SNDD />
+      <DNAM></DNAM>
+    </MGEF>
+  </GRUP>
+  <GRUP label="SPEL" groupType="0" day="7" month="43" lastUserID="0" currentUserID="0" unknown="0x00000000">
+    <SPEL flags="0x00000000" id="01000800" day="0" month="0" lastUserID="0" currentUserID="0" version="44" unknown="0x0000">
+      <EDID>AddSpellMenu_SearchSpell</EDID>
+      <OBND>
+        <struct min="0,0,0" max="0,0,0" />
+      </OBND>
+      <FULL>[AddSpellMenu - Search]</FULL>
+      <ETYP>00025bee</ETYP>
+      <DESC>Search for spells in the game and all mods.</DESC>
+      <SPIT>
+        <struct spellCost="0" flags="0x00000001" type="3" chargeTime="0" castType="1" delivery="0" castDuration="0" range="0" perk="00000000" />
+      </SPIT>
+      <EFID>01000803</EFID>
+      <EFIT>
+        <struct magnitude="0" areaOfEffect="0" duration="0" />
+      </EFIT>
+    </SPEL>
+    <SPEL flags="0x00000000" id="01000801" day="0" month="0" lastUserID="0" currentUserID="0" version="44" unknown="0x0000">
+      <EDID>AddSpellMenu_ListSpell</EDID>
+      <OBND>
+        <struct min="0,0,0" max="0,0,0" />
+      </OBND>
+      <FULL>[AddSpellMenu]</FULL>
+      <ETYP>00025bee</ETYP>
+      <DESC>Shows list of installed mods. Select one to view its spells.</DESC>
+      <SPIT>
+        <struct spellCost="0" flags="0x00000001" type="3" chargeTime="0" castType="1" delivery="0" castDuration="0" range="0" perk="00000000" />
+      </SPIT>
+      <EFID>01000805</EFID>
+      <EFIT>
+        <struct magnitude="0" areaOfEffect="0" duration="0" />
+      </EFIT>
+    </SPEL>
+    <SPEL flags="0x00000000" id="0100080e" day="0" month="0" lastUserID="0" currentUserID="0" version="44" unknown="0x0000">
+      <EDID>AddSpellMenu_ToggleOnlySpellTomesSpell</EDID>
+      <OBND>
+        <struct min="0,0,0" max="0,0,0" />
+      </OBND>
+      <FULL>[AddSpellMenu - Toggle Spell Tome Requirement]</FULL>
+      <ETYP>00025bee</ETYP>
+      <DESC></DESC>
+      <SPIT>
+        <struct spellCost="0" flags="0x00000000" type="3" chargeTime="0" castType="1" delivery="0" castDuration="0" range="0" perk="00000000" />
+      </SPIT>
+      <EFID>0100080f</EFID>
+      <EFIT>
+        <struct magnitude="0" areaOfEffect="0" duration="0" />
+      </EFIT>
+    </SPEL>
+  </GRUP>
+  <GRUP label="BOOK" groupType="0" day="7" month="43" lastUserID="0" currentUserID="0" unknown="0x00000000">
+    <BOOK flags="0x00000000" id="01000d68" day="0" month="0" lastUserID="0" currentUserID="0" version="44" unknown="0x0000">
+      <EDID>AddSpellMenu_SearchTome</EDID>
+      <OBND>
+        <struct min="0,0,0" max="0,0,0" />
+      </OBND>
+      <FULL>Spell Tome: [AddSpellMenu - Search]</FULL>
+      <MODL>Clutter\Books\SpellTomeDestructionLowPoly.nif</MODL>
+      <MODT count="2">
+        <unknown3></unknown3>
+        <unknown5></unknown5>
+        <unknown4 />
+      </MODT>
+      <DESC>&lt;font face'$HandwrittenFont'&gt;&lt;font size='40'&gt;&lt;p align='center'&gt;
+[AddSpellMenu - Search]</DESC>
+      <DATA>
+        <struct flags="0x04" type="0" padding="0x00|0x00" teaches="0x01000800" value="0" weight="1" />
+      </DATA>
+      <INAM>0002fbb5</INAM>
+      <CNAM></CNAM>
+    </BOOK>
+    <BOOK flags="0x00000000" id="01000d69" day="0" month="0" lastUserID="0" currentUserID="0" version="44" unknown="0x0000">
+      <EDID>AddSpellMenu_ListTome</EDID>
+      <OBND>
+        <struct min="0,0,0" max="0,0,0" />
+      </OBND>
+      <FULL>Spell Tome: [AddSpellMenu]</FULL>
+      <MODL>Clutter\Books\SpellTomeDestructionLowPoly.nif</MODL>
+      <MODT count="2">
+        <unknown3></unknown3>
+        <unknown5></unknown5>
+        <unknown4 />
+      </MODT>
+      <DESC>&lt;font face'$HandwrittenFont'&gt;&lt;font size='40'&gt;&lt;p align='center'&gt;
+[AddSpellMenu]</DESC>
+      <DATA>
+        <struct flags="0x04" type="0" padding="0x00|0x00" teaches="0x01000801" value="0" weight="1" />
+      </DATA>
+      <INAM>0002fbb5</INAM>
+      <CNAM></CNAM>
+    </BOOK>
+    <BOOK flags="0x00000000" id="01000810" day="0" month="0" lastUserID="0" currentUserID="0" version="44" unknown="0x0000">
+      <EDID>AddSpellMenu_ToggleTomeRequirementTome</EDID>
+      <OBND>
+        <struct min="0,0,0" max="0,0,0" />
+      </OBND>
+      <FULL>Spell Tome: [AddSpellMenu - Toggle Spell Tome Requirement]</FULL>
+      <MODL>Clutter\Books\SpellTomeDestructionLowPoly.nif</MODL>
+      <MODT count="2">
+        <unknown3></unknown3>
+        <unknown5></unknown5>
+        <unknown4 />
+      </MODT>
+      <DESC>&lt;font face'$HandwrittenFont'&gt;&lt;font size='40'&gt;&lt;p align='center'&gt;
+[AddSpellMenu - Toggle Spell Tome Requirement]</DESC>
+      <DATA>
+        <struct flags="0x04" type="0" padding="0x00|0x00" teaches="0x0100080e" value="0" weight="1" />
+      </DATA>
+      <INAM>0002fbb5</INAM>
+      <CNAM></CNAM>
+    </BOOK>
+  </GRUP>
+  <GRUP label="CONT" groupType="0" day="7" month="43" lastUserID="0" currentUserID="0" unknown="0x00000000">
+    <CONT flags="0x08000000" id="01000804" day="0" month="0" lastUserID="0" currentUserID="0" version="44" unknown="0x0000">
+      <EDID>AddSpellMenu_Pack_Container</EDID>
+      <OBND>
+        <struct min="-27,-27,0" max="27,27,80" />
+      </OBND>
+      <FULL>[AddSpellMenu Pack]</FULL>
+      <MODL>Clutter\Barrel01.NIF</MODL>
+      <MODT count="2">
+        <unknown3></unknown3>
+        <unknown5></unknown5>
+        <unknown4 />
+      </MODT>
+      <DATA>
+        <struct flags="0x02" weight="0" />
+      </DATA>
+      <SNAM>0003c86d</SNAM>
+      <QNAM>0003c870</QNAM>
+    </CONT>
+  </GRUP>
+  <GRUP label="MISC" groupType="0" day="7" month="43" lastUserID="0" currentUserID="0" unknown="0x00000000">
+    <MISC flags="0x00000000" id="01000806" day="0" month="0" lastUserID="0" currentUserID="0" version="44" unknown="0x0000">
+      <EDID>AddSpellMenu_SpellListActivator</EDID>
+      <VMAD version="5" format="2">
+        <script name="AddSpellMenu_Activator_List" status="0">
+          <property name="ModQuest" type="1" status="1">
+            <object formID="01000d6a" alias="65535" unused="0x0000" />
+          </property>
+        </script>
+      </VMAD>
+      <OBND>
+        <struct min="-24,-24,-18" max="24,24,18" />
+      </OBND>
+      <FULL>[AddSpellMenu]</FULL>
+      <MODL>Dungeons\Dwemer\Animated\Observatory\Armillary\FocusingCrystal01.nif</MODL>
+      <MODT count="2">
+        <unknown3></unknown3>
+        <unknown5></unknown5>
+        <unknown4 />
+      </MODT>
+      <DATA>
+        <struct value="10" weight="1" />
+      </DATA>
+    </MISC>
+    <MISC flags="0x00000000" id="01000807" day="0" month="0" lastUserID="0" currentUserID="0" version="44" unknown="0x0000">
+      <EDID>AddSpellMenu_SpellSearchActivator</EDID>
+      <VMAD version="5" format="2">
+        <script name="AddSpellMenu_Activator_Search" status="0">
+          <property name="ModQuest" type="1" status="1">
+            <object formID="01000d6a" alias="65535" unused="0x0000" />
+          </property>
+        </script>
+      </VMAD>
+      <OBND>
+        <struct min="-24,-24,-18" max="24,24,18" />
+      </OBND>
+      <FULL>[AddSpellMenu Search]</FULL>
+      <MODL>Dungeons\Dwemer\Animated\Observatory\Armillary\FocusingCrystal01.nif</MODL>
+      <MODT count="2">
+        <unknown3></unknown3>
+        <unknown5></unknown5>
+        <unknown4 />
+      </MODT>
+      <DATA>
+        <struct value="10" weight="1" />
+      </DATA>
+    </MISC>
+    <MISC flags="0x00000000" id="01000808" day="0" month="0" lastUserID="0" currentUserID="0" version="44" unknown="0x0000">
+      <EDID>AddSpellMenu_PackActivator</EDID>
+      <VMAD version="5" format="2">
+        <script name="AddSpellMenu_Activator_Pack" status="0">
+          <property name="ModQuest" type="1" status="1">
+            <object formID="01000d6a" alias="65535" unused="0x0000" />
+          </property>
+        </script>
+      </VMAD>
+      <OBND>
+        <struct min="0,0,0" max="0,0,0" />
+      </OBND>
+      <FULL>[AddSpellMenu Pack]</FULL>
+      <MODL>Clutter\Containers\MiscPouch.nif</MODL>
+      <MODT count="2">
+        <unknown3></unknown3>
+        <unknown5></unknown5>
+        <unknown4 />
+      </MODT>
+      <DATA>
+        <struct value="0" weight="0" />
+      </DATA>
+    </MISC>
+  </GRUP>
+  <GRUP label="NPC_" groupType="0" day="7" month="43" lastUserID="0" currentUserID="0" unknown="0x00000000">
+    <NPC_ flags="0x00040000" id="01000809" day="0" month="0" lastUserID="0" currentUserID="0" version="44" unknown="0x0000">
+      <EDID>AddSpellMenu_NPC_TradeSpells</EDID>
+      <OBND>
+        <struct min="-22,-14,0" max="22,14,128" />
+      </OBND>
+      <ACBS>
+        <struct flags="0x00000001" magickaOffset="0" staminaOffset="0" level="1" calcMinLevel="0" calcMaxLevel="0" speedMultiplier="100" dispositionBase="35" templateDataFlags="0" healthOffset="0" bleedoutOverride="0" />
+      </ACBS>
+      <RNAM>00013742</RNAM>
+      <AIDT>
+        <struct aggression="0" confidence="2" energy="50" morality="3" mood="0" assistance="0" flags="0" unknown="0x00" warn="0" warnAttack="0" attack="0" />
+      </AIDT>
+      <CNAM>00017008</CNAM>
+      <FULL>Spells</FULL>
+      <SHRT>Spells</SHRT>
+      <DATA />
+      <DNAM>
+        <struct baseSkill="5|5|5|5|5|5|5|5|5|5|5|5|5|5|5|5|5|5" modSkill="0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0" calculatedHealth="0" calculatedMagicka="0" calculatedStamina="0" unknown0="0xffff" farAwayModelDistance="0" gearedUpWeapons="1" unknown1="0x00|0x00|0x00" />
+      </DNAM>
+      <HCLF>000a0434</HCLF>
+      <NAM5>255</NAM5>
+      <NAM6>1</NAM6>
+      <NAM7>50</NAM7>
+      <NAM8>1</NAM8>
+      <DOFT>000fba59</DOFT>
+      <QNAM>0.368627459,0.443137288,0.454901993</QNAM>
+    </NPC_>
+    <NPC_ flags="0x00040000" id="0100080a" day="0" month="0" lastUserID="0" currentUserID="0" version="44" unknown="0x0000">
+      <EDID>AddSpellMenu_NPC_TempContainer</EDID>
+      <OBND>
+        <struct min="-22,-14,0" max="22,14,128" />
+      </OBND>
+      <ACBS>
+        <struct flags="0x00000001" magickaOffset="0" staminaOffset="0" level="1" calcMinLevel="0" calcMaxLevel="0" speedMultiplier="100" dispositionBase="35" templateDataFlags="0" healthOffset="0" bleedoutOverride="0" />
+      </ACBS>
+      <RNAM>00013742</RNAM>
+      <AIDT>
+        <struct aggression="0" confidence="2" energy="50" morality="3" mood="0" assistance="0" flags="0" unknown="0x00" warn="0" warnAttack="0" attack="0" />
+      </AIDT>
+      <CNAM>00017008</CNAM>
+      <DATA />
+      <DNAM>
+        <struct baseSkill="5|5|5|5|5|5|5|5|5|5|5|5|5|5|5|5|5|5" modSkill="0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0" calculatedHealth="0" calculatedMagicka="0" calculatedStamina="0" unknown0="0xffff" farAwayModelDistance="0" gearedUpWeapons="1" unknown1="0x00|0x00|0x00" />
+      </DNAM>
+      <HCLF>000a0434</HCLF>
+      <NAM5>255</NAM5>
+      <NAM6>1</NAM6>
+      <NAM7>50</NAM7>
+      <NAM8>1</NAM8>
+      <DOFT>000fba59</DOFT>
+      <QNAM>0.368627459,0.443137288,0.454901993</QNAM>
+    </NPC_>
+  </GRUP>
+  <GRUP label="CELL" groupType="0" day="7" month="43" lastUserID="0" currentUserID="0" unknown="0x00000000">
+    <GRUP label="0x00000002" groupType="2" day="7" month="43" lastUserID="0" currentUserID="0" unknown="0x00000000">
+      <GRUP label="0x00000000" groupType="3" day="7" month="43" lastUserID="0" currentUserID="0" unknown="0x00000000">
+        <CELL flags="0x00040000" id="000bbcb2" day="0" month="0" lastUserID="0" currentUserID="0" version="44" unknown="0x0003">
+          <EDID>WEMerchantChests</EDID>
+          <FULL>Warehouse Bookshelves</FULL>
+          <DATA>0100</DATA>
+          <XCLL>
+            <struct ambient="32,38,33,0" directional="0,0,0,0" fogNearColor="23,33,22,0" fogNear="0" fogFar="4500" rotationXY="0" rotationZ="0" directionalFade="1" fogClipDistance="0" fogPow="0.600000024" ambientPositiveX="44,36,24,0" ambientNegativeX="35,36,21,0" ambientPositiveY="40,37,23,0" ambientNegativeY="40,34,23,0" ambientPositiveZ="19,17,10,0" ambientNegativeZ="60,54,35,0" specularColor="23,33,22,0" fresnelPower="1" fogFarColor="23,33,22,0" fogMax="1" lightFadeDistanceStart="0" lightFadeDistanceEnd="0" inheritFlags="0x000001ff" />
+          </XCLL>
+          <LTMP>000300e2</LTMP>
+          <XCLW>0</XCLW>
+          <XCIM>00000167</XCIM>
+        </CELL>
+        <GRUP label="0x000bbcb2" groupType="6" day="7" month="43" lastUserID="0" currentUserID="0" unknown="0x00000000">
+          <GRUP label="0x000bbcb2" groupType="8" day="7" month="43" lastUserID="0" currentUserID="0" unknown="0x00000000">
+            <REFR flags="0x00000400" id="0100080d" day="0" month="0" lastUserID="0" currentUserID="0" version="44" unknown="0x0000">
+              <VMAD version="5" format="2">
+                <script name="AddSpellMenu_PackInstanceScript" status="0" />
+              </VMAD>
+              <NAME>01000804</NAME>
+              <DATA>
+                <struct position="1737.0675,1816.69995,13291.6631" rotation="0,0,0" />
+              </DATA>
+            </REFR>
+            <ACHR flags="0x00000400" id="0100080c" day="0" month="0" lastUserID="0" currentUserID="0" version="44" unknown="0x0000">
+              <NAME>01000809</NAME>
+              <DATA>
+                <struct position="1675.71582,1825.02148,13290.7793" rotation="0,0,0" />
+              </DATA>
+            </ACHR>
+            <ACHR flags="0x00000400" id="0100080b" day="0" month="0" lastUserID="0" currentUserID="0" version="44" unknown="0x0000">
+              <NAME>0100080a</NAME>
+              <DATA>
+                <struct position="1616.30115,1806.21643,13290.6162" rotation="0,0,0" />
+              </DATA>
+            </ACHR>
+          </GRUP>
+        </GRUP>
+      </GRUP>
+    </GRUP>
+  </GRUP>
+  <GRUP label="QUST" groupType="0" day="7" month="43" lastUserID="0" currentUserID="0" unknown="0x00000000">
+    <QUST flags="0x00000000" id="01000d6a" day="0" month="0" lastUserID="0" currentUserID="0" version="44" unknown="0x0000">
+      <EDID>AddSpellMenu_Quest</EDID>
+      <VMAD version="5" format="2">
+        <script name="AddSpellMenu_QuestScript" status="0">
+          <property name="_npc2" type="1" status="1">
+            <object formID="0100080c" alias="65535" unused="0x0000" />
+          </property>
+          <property name="_object1" type="1" status="1">
+            <object formID="0100080d" alias="65535" unused="0x0000" />
+          </property>
+          <property name="_npc1" type="1" status="1">
+            <object formID="0100080b" alias="65535" unused="0x0000" />
+          </property>
+          <property name="AddSpellMenu_RequiresSpellTome" type="1" status="1">
+            <object formID="01000802" alias="65535" unused="0x0000" />
+          </property>
+        </script>
+      </VMAD>
+      <DNAM>
+        <struct flags="0x0111" priority="0" unknown0="0xff" unknown1="0x00000000" type="0" />
+      </DNAM>
+      <NEXT />
+      <ANAM>1</ANAM>
+    </QUST>
+    <QUST flags="0x00000000" id="01000811" day="0" month="0" lastUserID="0" currentUserID="0" version="44" unknown="0x0000">
+      <EDID>AddSpellMenu_Questv2</EDID>
+      <VMAD version="5" format="2">
+        <fragments unknown="0x02" filename="">
+          <alias unknown="0x00000000" object="0x01000811" version="5" objectFormat="2">
+            <script name="AddSpellMenu_PlayerScript" status="0" />
+          </alias>
+        </fragments>
+      </VMAD>
+      <DNAM>
+        <struct flags="0x0111" priority="0" unknown0="0xff" unknown1="0x00000000" type="0" />
+      </DNAM>
+      <NEXT />
+      <ANAM>1</ANAM>
+      <ALST>0</ALST>
+      <ALID>PlayerRef</ALID>
+      <FNAM>0</FNAM>
+      <ALFR>00000014</ALFR>
+      <VTCK>00000000</VTCK>
+      <ALED />
+    </QUST>
+  </GRUP>
+</plugin>
