@@ -98,7 +98,7 @@ string function GetTextEntryResultForNpcName(Actor npc) global
         string nickname = AddSpellMenu_Npcs.GetSavedNpcNickname(npc)
         textInput.SetPropertyString("text", nickname)
     else
-        textInput.SetPropertyString("text", npc.GetBaseObject().GetName())
+        textInput.SetPropertyString("text", AddSpellMenu_Npcs.GetNpcName(npc))
     endIf
     textInput.OpenMenu()
     return textInput.GetResultString()
@@ -117,7 +117,7 @@ Actor function ChooseSavedActor(bool includePlayer = false) global
     int index = 0
     while index < actors.Length
         string nickname = names[index]
-        string realName = (actors[index] as Actor).GetBaseObject().GetName()
+        string realName = AddSpellMenu_Npcs.GetNpcName(actors[index] as Actor)
         if nickname == realName
             listMenu.AddEntryItem(nickname)
         else

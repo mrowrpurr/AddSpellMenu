@@ -18,6 +18,20 @@ function SetCurrentTarget(Actor target) global
     AddSpellMenu_Forms.GetModQuestScript().CurrentTargetActor = target
 endFunction
 
+string function GetNpcName(Actor npc) global
+    string name = npc.GetName()
+    if name == ""
+        name = npc.GetDisplayName()
+        if name == ""
+            name == npc.GetBaseObject().GetName()
+            if name == ""
+                name = npc.GetActorBase().GetName()
+            endIf
+        endIf
+    endIf
+    return name
+endFunction
+
 bool function AnyNpcsSaved() global
     return AddSpellMenu_Forms.GetModQuestScriptv3().SavedNPCForms.Length > 0
 endFunction
@@ -80,7 +94,7 @@ bool function RemoveSavedNPC(Actor npc) global
     endWhile
 
     if npcIndex == -1
-        Debug.Notification("[AddSpellMenu] Saved NPC not found: " + npc.GetBaseObject().GetName())
+        Debug.Notification("[AddSpellMenu] Saved NPC not found: " + AddSpellMenu_Npcs.GetNpcName(npc))
         return false
     endIf
 
@@ -123,7 +137,7 @@ function RenameSavedNPC(Actor npc, string newName) global
     endWhile
 
     if npcIndex == -1
-        Debug.Notification("[AddSpellMenu] Saved NPC not found: " + npc.GetBaseObject().GetName())
+        Debug.Notification("[AddSpellMenu] Saved NPC not found: " + AddSpellMenu_Npcs.GetNpcName(npc))
         return
     endIf
 

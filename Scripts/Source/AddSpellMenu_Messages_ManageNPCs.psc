@@ -40,7 +40,7 @@ function Show_WithSaves_NpcNotSelected() global
 endFunction
 
 function Show_NoSaves_NpcSelected(Actor npc) global
-    AddSpellMenu_Messages_TextReplacement.SetTextReplacement(1, npc.GetBaseObject().GetName())
+    AddSpellMenu_Messages_TextReplacement.SetTextReplacement(1, AddSpellMenu_Npcs.GetNpcName(npc))
     int result = AddSpellMenu_Forms.ManageNPCsMessage_WithNPCSelected_WithNoSaves().Show()
     AddSpellMenu_Messages_TextReplacement.ClearAll()
     if result == 0
@@ -51,7 +51,7 @@ function Show_NoSaves_NpcSelected(Actor npc) global
 endFunction
 
 function Show_WithSaves_UnsavedNpcSelected(Actor npc) global
-    AddSpellMenu_Messages_TextReplacement.SetTextReplacement(1, npc.GetBaseObject().GetName())
+    AddSpellMenu_Messages_TextReplacement.SetTextReplacement(1, AddSpellMenu_Npcs.GetNpcName(npc))
     int result = AddSpellMenu_Forms.ManageNPCsMessage_WithNPCSelectedNotSaved_WithSavedNPCs().Show()
     AddSpellMenu_Messages_TextReplacement.ClearAll()
     if result == 0
@@ -68,9 +68,9 @@ function Show_WithSaves_UnsavedNpcSelected(Actor npc) global
 endFunction
 
 function Show_WithSaves_SavedNpcSelected(Actor npc) global
-    AddSpellMenu_Messages_TextReplacement.SetTextReplacement(1, npc.GetBaseObject().GetName())
+    AddSpellMenu_Messages_TextReplacement.SetTextReplacement(1, AddSpellMenu_Npcs.GetNpcName(npc))
     string nickname = AddSpellMenu_Npcs.GetSavedNpcNickname(npc)
-    if nickname != npc.GetBaseObject().GetName()
+    if nickname != AddSpellMenu_Npcs.GetNpcName(npc)
         AddSpellMenu_Messages_TextReplacement.SetTextReplacement(2, "\nSaved as: " + nickname)
     endIf
     int result = AddSpellMenu_Forms.ManageNPCsMessage_WithNPCSelectedIsSaved_WithSavedNPCs().Show()

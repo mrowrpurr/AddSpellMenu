@@ -18,7 +18,7 @@ function Show() global
             AddSpellMenu_Menu_ListSpellRemover.Show()
             AddSpellMenu_Messages_Navigation.GoBackOrMainMenu()
         else
-            Debug.MessageBox(npc.GetBaseObject().GetName() + " has no spells")
+            Debug.MessageBox(AddSpellMenu_Npcs.GetNpcName(npc) + " has no spells")
             AddSpellMenu_Messages_Navigation.GoBackOrMainMenu()
         endIf
     endIf

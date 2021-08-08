@@ -18,7 +18,7 @@ bool function ShowSpellRemover(Actor npc) global
     endIf
 
     if numberOfNpcSpells == 0 && numberOfRacialSpells == 0 && numberOfBaseActorSpells == 0
-        Debug.MessageBox(npc.GetBaseObject().GetName() + " has no spells")
+        Debug.MessageBox(AddSpellMenu_Npcs.GetNpcName(npc) + " has no spells")
         return false
     endIf
 
@@ -70,11 +70,11 @@ bool function ShowSpellRemover(Actor npc) global
         bool removedOk = npc.RemoveSpell(selectedSpell)
 
         if isBaseActorSpell
-            Debug.Notification(npc.GetBaseObject().GetName() + " cannot unlearn starting spell " + selectedSpell.GetName())
+            Debug.Notification(AddSpellMenu_Npcs.GetNpcName(npc) + " cannot unlearn starting spell " + selectedSpell.GetName())
         elseIf isRacialSpell
-            Debug.Notification(npc.GetBaseObject().GetName() + " cannot unlearn racial spell " + selectedSpell.GetName())
+            Debug.Notification(AddSpellMenu_Npcs.GetNpcName(npc) + " cannot unlearn racial spell " + selectedSpell.GetName())
         elseif ! removedOk || npc.HasSpell(selectedSpell)
-            Debug.Notification(npc.GetBaseObject().GetName() + " cannot unlearn spell " + selectedSpell.GetName())
+            Debug.Notification(AddSpellMenu_Npcs.GetNpcName(npc) + " cannot unlearn spell " + selectedSpell.GetName())
         endIf
 
         return true

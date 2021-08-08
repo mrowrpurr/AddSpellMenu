@@ -14,7 +14,7 @@ function Show() global
     endIf
 
     if numberOfNpcSpells == 0 && numberOfRacialSpells == 0 && numberOfBaseActorSpells == 0
-        Debug.MessageBox(npc.GetBaseObject().GetName() + " has no spells")
+        Debug.MessageBox(AddSpellMenu_Npcs.GetNpcName(npc) + " has no spells")
         return
     endIf
 

@@ -48,10 +48,10 @@ function ShowNpcMainMenu_NoSpells(Actor npc = None) global
     endIf
     AddSpellMenu_Messages_Navigation.Visit("NpcMainMenu")
     AddSpellMenu_Npcs.SetCurrentTarget(npc)
-    AddSpellMenu_Messages_TextReplacement.SetTextReplacement(1, npc.GetBaseObject().GetName())
+    AddSpellMenu_Messages_TextReplacement.SetTextReplacement(1, AddSpellMenu_Npcs.GetNpcName(npc))
     if AddSpellMenu_Npcs.IsSaved(npc)
         string nickname = AddSpellMenu_Npcs.GetSavedNpcNickname(npc)
-        if nickname != npc.GetBaseObject().GetName()
+        if nickname != AddSpellMenu_Npcs.GetNpcName(npc)
             AddSpellMenu_Messages_TextReplacement.SetTextReplacement(2, "\nSaved as: " + nickname)
         endIf
     endIf
@@ -80,10 +80,10 @@ function ShowNpcMainMenu_HasSpells(Actor npc = None) global
     endIf
     AddSpellMenu_Messages_Navigation.Visit("NpcMainMenu")
     AddSpellMenu_Npcs.SetCurrentTarget(npc)
-    AddSpellMenu_Messages_TextReplacement.SetTextReplacement(1, npc.GetBaseObject().GetName())
+    AddSpellMenu_Messages_TextReplacement.SetTextReplacement(1, AddSpellMenu_Npcs.GetNpcName(npc))
     if AddSpellMenu_Npcs.IsSaved(npc)
         string nickname = AddSpellMenu_Npcs.GetSavedNpcNickname(npc)
-        if nickname != npc.GetBaseObject().GetName()
+        if nickname != AddSpellMenu_Npcs.GetNpcName(npc)
             AddSpellMenu_Messages_TextReplacement.SetTextReplacement(2, "\nSaved as: " + nickname)
         endIf
     endIf
