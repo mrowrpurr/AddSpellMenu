@@ -12,7 +12,7 @@ function Show() global
         AddSpellMenu_Options.ToggleSpecialSpells()
         Show()
     else
-        AddSpellMenu_Messages_Navigation.GoBack()
+        AddSpellMenu_Messages_Navigation.GoBackOrMainMenu()
     endIf
 endFunction
 

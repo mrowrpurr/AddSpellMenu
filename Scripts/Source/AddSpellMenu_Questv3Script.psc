@@ -12,11 +12,11 @@ Form[] property SavedNPCForms auto
 string[] property SavedNPCNames auto
 
 ; Listen for SkyUI / UIMagicMenu to close and then go back to NPC or Player menu
-function ListenForUIMagicMenuEvents()
-    RegisterForModEvent("UIMagicMenu_CloseMenu", "OnMagicMenuClose")
-endFunction
+; function ListenForUIMagicMenuEvents()
+;     RegisterForModEvent("UIMagicMenu_CloseMenu", "OnMagicMenuClose")
+; endFunction
 
-event OnMagicMenuClose(string eventName, string strArg, float floatArg, Form sender)
-    AddSpellMenu_Messages_Navigation.GoBackOrMainMenu()
-    UnregisterForModEvent("UIMagicMenu_CloseMenu")
-endEvent
+; event OnMagicMenuClose(string eventName, string strArg, float floatArg, Form sender)
+;     AddSpellMenu_Messages_Navigation.GoBackOrMainMenu()
+;     UnregisterForModEvent("UIMagicMenu_CloseMenu")
+; endEvent

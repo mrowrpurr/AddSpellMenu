@@ -66,6 +66,70 @@ bool function SaveNPC(Actor npc, string name) global
     return true
 endFunction
 
+bool function RemoveSavedNPC(Actor npc) global
+    Form[] forms = GetSavedNpcForms()
+    string[] names = GetSavedNpcNames()
+
+    int npcIndex = -1
+    int index = 0
+    while index < forms.Length && npcIndex == -1
+        if forms[index] == npc
+            npcIndex = index
+        endIf
+        index += 1
+    endWhile
+
+    if npcIndex == -1
+        Debug.Notification("[AddSpellMenu] Saved NPC not found: " + npc.GetBaseObject().GetName())
+        return false
+    endIf
+
+    if forms.Length == 1
+        SetSavedNpcForms(None)
+        SetSavedNpcNames(None)
+        return true
+    endIf
+
+    Form[] newFormArray = Utility.CreateFormArray(forms.Length - 1)
+    string[] newNameArray = Utility.CreateStringArray(forms.Length - 1)
+
+    int newArraysIndex = 0
+    index = 0
+    while index < forms.Length
+        if forms[index] == npc
+            ; skip, this is the NPC we're removing
+        else
+            newFormArray[newArraysIndex] = forms[index]
+            newNameArray[newArraysIndex] = names[index]
+            newArraysIndex += 1
+        endIf
+        index += 1
+    endWhile
+
+    return true
+endFunction
+
+function RenameSavedNPC(Actor npc, string newName) global
+    Form[] forms = GetSavedNpcForms()
+    string[] names = GetSavedNpcNames()
+
+    int npcIndex = -1
+    int index = 0
+    while index < forms.Length && npcIndex == -1
+        if forms[index] == npc
+            npcIndex = index
+        endIf
+        index += 1
+    endWhile
+
+    if npcIndex == -1
+        Debug.Notification("[AddSpellMenu] Saved NPC not found: " + npc.GetBaseObject().GetName())
+        return
+    endIf
+
+    names[npcIndex] = newName
+endFunction
+
 Form[] function GetSavedNpcForms() global
     return AddSpellMenu_Forms.GetModQuestScriptv3().SavedNPCForms
 endFunction

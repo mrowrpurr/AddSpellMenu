@@ -3,7 +3,7 @@ scriptName AddSpellMenu_Messages_Navigation hidden
 function NavigateTo(string menuName) global
     Debug.Notification("[AddSpellMenu] Navigate to " + menuName)
     if menuName == "PlayerMainMenu"
-        AddSpellMenu_Messages_MainMenu.ShowPlayerMainMenu()
+        AddSpellMenu_Messages_MainMenu.Show(AddSpellMenu_Npcs.GetCurrentTarget())
     elseif menuName == "NpcMainMenu"
         AddSpellMenu_Messages_MainMenu.Show(AddSpellMenu_Npcs.GetCurrentTarget())
     else

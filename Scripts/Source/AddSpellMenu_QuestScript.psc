@@ -42,6 +42,7 @@ endEvent
 event UnregisterUIMagicMenuEvents(string eventName, string strArg, float numArg, Form sender)
     UnregisterForModEvent("UIMagicMenu_AddRemoveSpell")
     UnregisterForModEvent("UIMagicMenu_CloseMenu")
+    AddSpellMenu_Messages_Navigation.GoBackOrMainMenu()
 endEvent
 
 function BeginSearchingNotifications()

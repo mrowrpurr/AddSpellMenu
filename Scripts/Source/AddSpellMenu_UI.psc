@@ -2,8 +2,11 @@ scriptName AddSpellMenu_UI hidden
 {Primary functions for triggering the mod list / spell search UI menus}
 
 ; Show the main [AddSpellMenu] (different depending on if NPC in crosshairs or not, etc)
-function ShowAddSpellMenu() global
-    AddSpellMenu_Messages_MainMenu.Show(Game.GetCurrentCrosshairRef() as Actor)
+function ShowAddSpellMenu(Actor npc = None) global
+    if ! npc
+        npc = Game.GetCurrentCrosshairRef() as Actor
+    endIf
+    AddSpellMenu_Messages_MainMenu.Show(npc)
 endFunction
 
 ;;;; TODO split into multiple UI scripts for organization
@@ -29,12 +32,9 @@ endFunction
 function ListMods() global
     string selectedMod = AddSpellMenu_Menu_ModChooser.Show()
     if selectedMod != ""
-        if AddSpellMenu_SkyUI.IsSkyUIInstalled()
-            AddSpellMenu_Forms.GetModQuestScriptv3().ListenForUIMagicMenuEvents()
-        endIf
         ShowSpellsInMod(selectedMod)
     else
-        AddSpellMenu_Messages_Navigation.GoBack()
+        AddSpellMenu_Messages_Navigation.GoBackOrMainMenu()
     endIf
 endFunction
 
@@ -50,7 +50,7 @@ function SearchModsAndSpells(string searchQuery = "") global
             ShowSpellsInMod(selection)
         endIf
     else
-        AddSpellMenu_Messages_Navigation.GoBack()
+        AddSpellMenu_Messages_Navigation.GoBackOrMainMenu()
     endIf
 endFunction
 
@@ -94,7 +94,12 @@ endFunction
 
 string function GetTextEntryResultForNpcName(Actor npc) global
     uitextentrymenu textInput = uiextensions.GetMenu("UITextEntryMenu") as uitextentrymenu
-    textInput.SetPropertyString("text", npc.GetBaseObject().GetName())
+    if AddSpellMenu_Npcs.IsSaved(npc)
+        string nickname = AddSpellMenu_Npcs.GetSavedNpcNickname(npc)
+        textInput.SetPropertyString("text", nickname)
+    else
+        textInput.SetPropertyString("text", npc.GetBaseObject().GetName())
+    endIf
     textInput.OpenMenu()
     return textInput.GetResultString()
 endFunction
@@ -124,12 +129,13 @@ Actor function ChooseSavedActor(bool includePlayer = false) global
     listMenu.OpenMenu()
 
     int result = listMenu.GetResultInt()
+
     if result > -1
         if includePlayer
             if result == 0
                 return Game.GetPlayer()
             else
-                return actors[result + 1] as Actor
+                return actors[result - 1] as Actor
             endIf
         else
             return actors[result] as Actor

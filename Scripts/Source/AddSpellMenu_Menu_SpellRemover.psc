@@ -6,7 +6,6 @@ function Show() global
     if npc
         if npc.GetSpellCount() > 0
             if AddSpellMenu_SkyUI.IsSkyUIInstalled() && ! AddSpellMenu_Options.AreSpecialSpellsEnabled()
-                AddSpellMenu_Forms.GetModQuestScriptv3().ListenForUIMagicMenuEvents()
                 AddSpellMenu_Menu_SkyUISpellRemover.Show()
             else
                 AddSpellMenu_Menu_ListSpellRemover.Show()

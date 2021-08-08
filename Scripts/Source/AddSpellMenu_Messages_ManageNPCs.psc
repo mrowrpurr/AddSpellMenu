@@ -1,7 +1,6 @@
 scriptName AddSpellMenu_Messages_ManageNPCs hidden
 
 function Show() global
-    AddSpellMenu_Messages_Navigation.Visit("ManageNPCs")
     Actor npc = AddSpellMenu_Npcs.GetCurrentTarget()
     if npc && npc != Game.GetPlayer()
         if AddSpellMenu_Npcs.AnyNpcsSaved()
@@ -24,7 +23,7 @@ endFunction
 
 function Show_NoSaves_NpcNotSelected() global
     AddSpellMenu_Forms.ManageNPCsMessage_WithNoSelectedNPC_AndNoSavedNPCs().Show()
-    AddSpellMenu_Messages_Navigation.GoBack(2)
+    AddSpellMenu_Messages_Navigation.GoBackOrMainMenu()
 endFunction
 
 function Show_WithSaves_NpcNotSelected() global
@@ -36,7 +35,7 @@ function Show_WithSaves_NpcNotSelected() global
     elseIf result == 3
         OnRename()
     else
-        AddSpellMenu_Messages_Navigation.GoBack()
+        AddSpellMenu_Messages_Navigation.GoBackOrMainMenu()
     endIf
 endFunction
 
@@ -45,9 +44,9 @@ function Show_NoSaves_NpcSelected(Actor npc) global
     int result = AddSpellMenu_Forms.ManageNPCsMessage_WithNPCSelected_WithNoSaves().Show()
     AddSpellMenu_Messages_TextReplacement.ClearAll()
     if result == 0
-        OnAddSelected()
+        OnAddSelected(npc)
     else
-        AddSpellMenu_Messages_Navigation.GoBack()
+        AddSpellMenu_Messages_Navigation.GoBackOrMainMenu()
     endIf
 endFunction
 
@@ -62,9 +61,9 @@ function Show_WithSaves_UnsavedNpcSelected(Actor npc) global
     elseif result == 2
         OnRename()
     elseif result == 3
-        OnAddSelected()
+        OnAddSelected(npc)
     else
-        AddSpellMenu_Messages_Navigation.GoBack()
+        AddSpellMenu_Messages_Navigation.GoBackOrMainMenu()
     endIf
 endFunction
 
@@ -72,7 +71,7 @@ function Show_WithSaves_SavedNpcSelected(Actor npc) global
     AddSpellMenu_Messages_TextReplacement.SetTextReplacement(1, npc.GetBaseObject().GetName())
     string nickname = AddSpellMenu_Npcs.GetSavedNpcNickname(npc)
     if nickname != npc.GetBaseObject().GetName()
-        AddSpellMenu_Messages_TextReplacement.SetTextReplacement(2, nickname)
+        AddSpellMenu_Messages_TextReplacement.SetTextReplacement(2, "\nSaved as: " + nickname)
     endIf
     int result = AddSpellMenu_Forms.ManageNPCsMessage_WithNPCSelectedIsSaved_WithSavedNPCs().Show()
     AddSpellMenu_Messages_TextReplacement.ClearAll()
@@ -83,33 +82,44 @@ function Show_WithSaves_SavedNpcSelected(Actor npc) global
     elseif result == 2
         OnRename()
     elseif result == 3
-        OnRemoveSelected()
+        OnRemoveSelected(npc)
     else
-        AddSpellMenu_Messages_Navigation.GoBack()
+        AddSpellMenu_Messages_Navigation.GoBackOrMainMenu()
     endIf
 endFunction
 
 function OnChoose() global
-    Debug.MessageBox("CHOOSE")
-    AddSpellMenu_Messages_Navigation.GoBack()
+    Actor npc = AddSpellMenu_UI.ChooseSavedActor(includePlayer = true)
+    AddSpellMenu_Npcs.SetCurrentTarget(npc)
+    AddSpellMenu_Messages_Navigation.GoBackOrMainMenu()
 endFunction
 
 function OnRemove() global
-    Debug.MessageBox("REMOVE")
-    AddSpellMenu_Messages_Navigation.GoBack()
+    Actor npc = AddSpellMenu_UI.ChooseSavedActor(includePlayer = false)
+    if npc
+        AddSpellMenu_Npcs.RemoveSavedNPC(npc)
+    endIf
+    Show()
 endFunction
 
 function OnRename() global
-    Debug.MessageBox("RENAME")
-    AddSpellMenu_Messages_Navigation.GoBack()
+    Actor npc = AddSpellMenu_UI.ChooseSavedActor(includePlayer = false)
+    if npc
+        string newName = AddSpellMenu_UI.GetTextEntryResultForNpcName(npc)
+        if newName != ""
+            AddSpellMenu_Npcs.RenameSavedNPC(npc, newName)
+        endIf
+    endIf
+    Show()
 endFunction
 
-function OnAddSelected() global
-    Debug.MessageBox("ADD SELECTED")
-    AddSpellMenu_Messages_Navigation.GoBack()
+function OnAddSelected(Actor npc) global
+    string nickname = AddSpellMenu_UI.GetTextEntryResultForNpcName(npc)
+    AddSpellMenu_Npcs.SaveNPC(npc, nickname)
+    Show()
 endFunction
 
-function OnRemoveSelected() global
-    Debug.MessageBox("REMOVE SELECTED")
-    AddSpellMenu_Messages_Navigation.GoBack()
+function OnRemoveSelected(Actor npc) global
+    AddSpellMenu_Npcs.RemoveSavedNPC(npc)
+    Show()
 endFunction

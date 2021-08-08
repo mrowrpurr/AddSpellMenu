@@ -3,6 +3,8 @@ scriptName AddSpellMenu_Messages_MainMenu hidden
 function Show(Actor npc = None) global
     if ! npc
         npc = AddSpellMenu_Npcs.GetCurrentTarget()
+    else
+        AddSpellMenu_Npcs.SetCurrentTarget(npc)
     endIf
     if npc && npc != Game.GetPlayer()
         if AddSpellMenu_Npcs.HasAnySpells(npc)
@@ -46,7 +48,15 @@ function ShowNpcMainMenu_NoSpells(Actor npc = None) global
     endIf
     AddSpellMenu_Messages_Navigation.Visit("NpcMainMenu")
     AddSpellMenu_Npcs.SetCurrentTarget(npc)
-    int result = AddSpellMenu_Forms.NpcMainMenuMessage().Show()
+    AddSpellMenu_Messages_TextReplacement.SetTextReplacement(1, npc.GetBaseObject().GetName())
+    if AddSpellMenu_Npcs.IsSaved(npc)
+        string nickname = AddSpellMenu_Npcs.GetSavedNpcNickname(npc)
+        if nickname != npc.GetBaseObject().GetName()
+            AddSpellMenu_Messages_TextReplacement.SetTextReplacement(2, "\nSaved as: " + nickname)
+        endIf
+    endIf
+    int result = AddSpellMenu_Forms.NpcMainMenuMessageWithoutViewAndRemove().Show()
+    AddSpellMenu_Messages_TextReplacement.ClearAll()
     if result == 0
         OnSearch()
     elseif result == 1
@@ -54,8 +64,6 @@ function ShowNpcMainMenu_NoSpells(Actor npc = None) global
     elseif result == 2
         OnManageNPCs()
     elseif result == 3
-        OnPowerSpellActivator()
-    elseif result == 4
         OnOptions()
     else
         OnExit()
@@ -72,7 +80,15 @@ function ShowNpcMainMenu_HasSpells(Actor npc = None) global
     endIf
     AddSpellMenu_Messages_Navigation.Visit("NpcMainMenu")
     AddSpellMenu_Npcs.SetCurrentTarget(npc)
+    AddSpellMenu_Messages_TextReplacement.SetTextReplacement(1, npc.GetBaseObject().GetName())
+    if AddSpellMenu_Npcs.IsSaved(npc)
+        string nickname = AddSpellMenu_Npcs.GetSavedNpcNickname(npc)
+        if nickname != npc.GetBaseObject().GetName()
+            AddSpellMenu_Messages_TextReplacement.SetTextReplacement(2, "\nSaved as: " + nickname)
+        endIf
+    endIf
     int result = AddSpellMenu_Forms.NpcMainMenuMessage().Show()
+    AddSpellMenu_Messages_TextReplacement.ClearAll()
     if result == 0
         OnSearch()
     elseif result == 1
@@ -84,8 +100,6 @@ function ShowNpcMainMenu_HasSpells(Actor npc = None) global
     elseif result == 4
         OnManageNPCs()
     elseif result == 5
-        OnPowerSpellActivator()
-    elseif result == 6
         OnOptions()
     else
         OnExit()

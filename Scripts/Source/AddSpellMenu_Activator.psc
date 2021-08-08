@@ -4,5 +4,5 @@ scriptName AddSpellMenu_Activator extends ObjectReference
 event OnEquipped(Actor player)
     AddSpellMenu_Npcs.SetCurrentTarget(player)
     AddSpellMenu_Menu_Controls.CloseAllOpenMenus()
-    AddSpellMenu_UI.ShowAddSpellMenu()
+    AddSpellMenu_UI.ShowAddSpellMenu(player)
 endEvent

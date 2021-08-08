@@ -16,7 +16,7 @@ function Show() global
         OnToggleActivator()
         Show()
     else
-        AddSpellMenu_Messages_Navigation.GoBack()
+        AddSpellMenu_Messages_Navigation.GoBackOrMainMenu()
     endIf
 endFunction
 
