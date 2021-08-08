@@ -46,7 +46,7 @@ AddSpellMenu_QuestScript function GetModQuestScript() global
 endFunction
 
 Quest function GetModQuestScriptv2() global
-    return GetModForm(0x319) as Quest
+    return GetModForm(0x811) as Quest
 endFunction
 
 Spell function GetListSpell() global
