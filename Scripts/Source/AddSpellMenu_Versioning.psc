@@ -32,21 +32,28 @@ function UpgradeToV3() global
     Form spellActivatorObject = AddSpellMenu_Forms.GetActivatorForm()
     Form packActivatorForm = AddSpellMenu_Forms.GetPackActivatorForm()
 
+    ; Remove any old activators if they're around in the container or player inventory (and add a brand new one - we want new scripts attached to it)
+    if packContainer.GetItemCount(spellActivatorObject) > 0
+        packContainer.RemoveItem(spellActivatorObject)
+        packContainer.AddItem(spellActivatorObject)
+    endIf
+    if player.GetItemCount(spellActivatorObject) > 0
+        player.RemoveItem(spellActivatorObject, abSilent = true)
+        player.AddItem(spellActivatorObject, abSilent = true)
+    endIf
+
     ; If they don't know the main spell (and it's not already in the pack), add the spell tome
     if ! player.HasSpell(shoutSpell) && packContainer.GetItemCount(shoutSpellTome) == 0
         packContainer.AddItem(shoutSpellTome)
     endIf
 
-    ; If they don't have the spell activator object (and it's not already in the pack), add the object
-    if player.GetItemCount(spellActivatorObject) == 0 && packContainer.GetItemCount(spellActivatorObject) == 0
-        packContainer.AddItem(spellActivatorObject)
-    endIf
-
     ; The pack can't have the NPC tome because it's new, so add it to the pack
     packContainer.AddItem(npcSpellTome)
 
-    ; If they have a pack already, just tell them that the items were updated
+    ; If they have a pack already, just tell them that the items were updated (but remove and re-add the pack silently) - we want new scripts attached to it
     if player.GetItemCount(packActivatorForm) > 0
+        player.RemoveItem(packActivatorForm, abSilent = true)
+        player.AddItem(packActivatorForm, abSilent = true)
         Debug.Notification("[AddSpellMenu] Upgrade to v3 (Added new items to pack!)")
     ; Else if they no longer have a pack, tell them that we added it
     else
