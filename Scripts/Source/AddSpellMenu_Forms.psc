@@ -60,22 +60,3 @@ endFunction
 Spell function GetPower() global
     return GetModForm(0x80e) as Spell
 endFunction
-
-Message function MainMenuMessage() global
-    return GetModForm(0x82b) as Message
-endFunction
-
-; DEPRECATE ----------
-Message function NpcMainMenuMessage() global
-    Debug.MessageBox("NPC MAIN MENU MESAGE DEPRECATED")
-    return GetModForm(0x82c) as Message
-endFunction
-Message function NpcMainMenuMessageWithoutViewAndRemove() global
-    Debug.MessageBox("NPC MAIN MENU MESAGE DEPRECATED (no view and remove)")
-    return GetModForm(0x810) as Message
-endFunction
-; ^ DEPRECATE ----------------------------
-
-Message function OptionsMessage() global
-    return GetModForm(0x81b) as Message
-endFunction

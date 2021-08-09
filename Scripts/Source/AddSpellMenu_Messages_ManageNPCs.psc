@@ -35,11 +35,12 @@ function OnRemove() global
     Actor npc = AddSpellMenu_UI.ChooseSavedActor(includePlayer = false)
     if npc
         AddSpellMenu_Npcs.RemoveSavedNPC(npc)
+        Debug.MessageBox("Removed " + AddSpellMenu_Npcs.GetNpcName(npc))
     endIf
-    if AddSpellMenu_Npcs.GetSavedNpcForms().Length == 0
-        AddSpellMenu_Messages_MainMenu.Show()
-    else
+    if AddSpellMenu_Npcs.AnyNpcsSaved()
         Show()
+    else
+        AddSpellMenu_Messages_MainMenu.Show()
     endIf
 endFunction
 

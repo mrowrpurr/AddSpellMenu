@@ -3,7 +3,7 @@ scriptName AddSpellMenu_Messages_Options hidden
 function Show() global
     AddSpellMenu_Messages_TextReplacement.SetTextReplacement(1, SpellTomeRequirementStatusText())
     AddSpellMenu_Messages_TextReplacement.SetTextReplacement(2, ShowSpecialSpellsStatusText())
-    int result = AddSpellMenu_Forms.OptionsMessage().Show()
+    int result = AddSpellMenu_Messages.OptionsMessage().Show()
     AddSpellMenu_Messages_TextReplacement.ClearAll()
     if result == 0
         AddSpellMenu_Options.ToggleSpellTomeRequirement()

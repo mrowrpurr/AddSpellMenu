@@ -3,87 +3,25 @@ scriptName AddSpellMenu_Messages_MainMenu hidden
 function Show() global
     AddSpellMenu_Messages_Navigation.Visit("PlayerMainMenu")
     AddSpellMenu_Npcs.SetCurrentTarget(Game.GetPlayer())
-    int result = AddSpellMenu_Forms.MainMenuMessage().Show()
-    if result == 0
+    int result = AddSpellMenu_Messages.MainMenuMessage().Show()
+    int search = 0
+    int choose = 1
+    int remove = 2
+    int manageNpcs = 3
+    int options = 4
+    int exit = 5
+    if result == search
         OnSearch()
-    elseif result == 1
+    elseif result == choose
         OnChooseMod()
-    elseif result == 2
+    elseif result == remove
         OnRemoveSpells()
-    elseif result == 3
+    elseif result == manageNpcs
         OnManageNPCs()
-    elseif result == 5
+    elseif result == options
         OnOptions()
-    else
-        OnExit()
-    endIf
-endFunction
-
-function ShowNpcMainMenu_NoSpells(Actor npc = None) global
-    if ! npc
-        npc = AddSpellMenu_Npcs.GetCurrentTarget()
-        if ! npc
-            Show()
-            return
-        endIf
-    endIf
-    AddSpellMenu_Messages_Navigation.Visit("NpcMainMenu")
-    AddSpellMenu_Npcs.SetCurrentTarget(npc)
-    AddSpellMenu_Messages_TextReplacement.SetTextReplacement(1, AddSpellMenu_Npcs.GetNpcName(npc))
-    if AddSpellMenu_Npcs.IsSaved(npc)
-        string nickname = AddSpellMenu_Npcs.GetSavedNpcNickname(npc)
-        if nickname != AddSpellMenu_Npcs.GetNpcName(npc)
-            AddSpellMenu_Messages_TextReplacement.SetTextReplacement(2, "\nSaved as: " + nickname)
-        endIf
-    endIf
-    int result = AddSpellMenu_Forms.NpcMainMenuMessageWithoutViewAndRemove().Show()
-    AddSpellMenu_Messages_TextReplacement.ClearAll()
-    if result == 0
-        OnSearch()
-    elseif result == 1
-        OnChooseMod()
-    elseif result == 2
-        OnManageNPCs()
-    elseif result == 3
-        OnOptions()
-    else
-        OnExit()
-    endIf
-endFunction
-
-function ShowNpcMainMenu_HasSpells(Actor npc = None) global
-    if ! npc
-        npc = AddSpellMenu_Npcs.GetCurrentTarget()
-        if ! npc
-            Show()
-            return
-        endIf
-    endIf
-    AddSpellMenu_Messages_Navigation.Visit("NpcMainMenu")
-    AddSpellMenu_Npcs.SetCurrentTarget(npc)
-    AddSpellMenu_Messages_TextReplacement.SetTextReplacement(1, AddSpellMenu_Npcs.GetNpcName(npc))
-    if AddSpellMenu_Npcs.IsSaved(npc)
-        string nickname = AddSpellMenu_Npcs.GetSavedNpcNickname(npc)
-        if nickname != AddSpellMenu_Npcs.GetNpcName(npc)
-            AddSpellMenu_Messages_TextReplacement.SetTextReplacement(2, "\nSaved as: " + nickname)
-        endIf
-    endIf
-    int result = AddSpellMenu_Forms.NpcMainMenuMessage().Show()
-    AddSpellMenu_Messages_TextReplacement.ClearAll()
-    if result == 0
-        OnSearch()
-    elseif result == 1
-        OnChooseMod()
-    elseif result == 2
-        OnViewSpells()
-    elseif result == 3
-        OnRemoveSpells()
-    elseif result == 4
-        OnManageNPCs()
-    elseif result == 5
-        OnOptions()
-    else
-        OnExit()
+    elseif result == exit
+        ; Nada
     endIf
 endFunction
 
@@ -104,13 +42,14 @@ function OnViewSpells() global
 endFunction
 
 function OnManageNPCs() global
-    AddSpellMenu_Messages_ManageNPCs.Show()
+    if AddSpellMenu_Npcs.AnyNpcsSaved()
+        AddSpellMenu_Messages_ManageNPCs.Show()
+    else
+        Debug.MessageBox("Use the [AddSpellMenu - NPC] spell to save NPCs")
+        Show()
+    endIf
 endFunction
 
 function OnOptions() global
     AddSpellMenu_Messages_Options.Show()
-endFunction
-
-function OnExit() global
-    ; Nada
 endFunction

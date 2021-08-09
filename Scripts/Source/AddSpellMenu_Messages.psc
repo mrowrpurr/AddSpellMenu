@@ -1,5 +1,13 @@
-scriptName AddSpellMenu_Messages
+scriptName AddSpellMenu_Messages hidden
 {Provides references to all menu message boxes}
+
+Message function MainMenuMessage() global
+    return AddSpellMenu_Forms.GetModForm(0x82b) as Message
+endFunction
+
+Message function OptionsMessage() global
+    return AddSpellMenu_Forms.GetModForm(0x81b) as Message
+endFunction
 
 Message function NpcMenu_NotSaved_NoSpells() global
     return AddSpellMenu_Forms.GetModForm(0x811) as Message
