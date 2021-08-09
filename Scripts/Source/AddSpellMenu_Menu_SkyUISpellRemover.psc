@@ -26,7 +26,6 @@ function OnSpellRemoverAddRemoveSpell(string eventName, string strArg, float num
             UI.InvokeForm("CustomMenu", "_root.Menu_mc.MagicMenu_RemoveSpell", theSpell)
             if (targetActor.GetSpellCount() == 0 && targetActor.GetActorBase().GetSpellCount() == 0) || (AddSpellMenu_Options.AreSpecialSpellsEnabled() && targetActor.GetRace().GetSpellCount() == 0 && targetActor.GetSpellCount() == 0 && targetActor.GetActorBase().GetSpellCount() == 0)
                 Input.TapKey(1) ; Simulate the Escape key
-                AddSpellMenu_Messages_Navigation.GoBackOrMainMenu()
             endIf
         endIf
     endIf

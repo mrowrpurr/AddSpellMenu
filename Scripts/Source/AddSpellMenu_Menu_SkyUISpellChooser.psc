@@ -19,6 +19,10 @@ function OnSpellChooserAddRemoveSpell(string eventName, string strArg, float num
     if ! targetActor.HasSpell(theSpell)
         targetActor.AddSpell(theSpell)
         AddAsKnownSpellToSpellChooserUI(theSpell)
+        Actor spellsContainer = AddSpellMenu_Npcs.GetTraderContainerNpc(resetSpells = false)
+        if spellsContainer.GetSpellCount() == 0
+            Input.TapKey(1) ; Simulate the Escape key
+        endIf
     endIf
 endFunction
 

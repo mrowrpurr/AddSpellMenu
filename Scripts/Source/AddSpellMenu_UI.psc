@@ -5,6 +5,10 @@ scriptName AddSpellMenu_UI hidden
 function ShowAddSpellMenu(Actor npc = None) global
     if ! npc
         npc = Game.GetCurrentCrosshairRef() as Actor
+        if npc && npc != Game.GetPlayer()
+            AddSpellMenu_Messages_NpcMenu.Show(npc)
+            return
+        endIf
     endIf
     AddSpellMenu_Messages_MainMenu.Show()
 endFunction

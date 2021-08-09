@@ -32,6 +32,16 @@ string function GetNpcName(Actor npc) global
     return name
 endFunction
 
+string function GetNpcNameWithNickname(Actor npc) global
+    string nickname = GetSavedNpcNickname(npc)
+    string actorName = GetNpcName(npc)
+    if nickname && nickname != actorName
+        return nickname + " (" + actorName + ")"
+    else
+        return actorName
+    endIf
+endFunction
+
 bool function AnyNpcsSaved() global
     return AddSpellMenu_Forms.GetModQuestScriptv3().SavedNPCForms.Length > 0
 endFunction

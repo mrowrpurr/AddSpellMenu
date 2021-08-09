@@ -1,9 +1,14 @@
 scriptName AddSpellMenu_Messages_NpcMenu
 
 function Show(Actor npc) global
+    Actor player = Game.GetPlayer()
+    if npc == player
+        AddSpellMenu_UI.ShowAddSpellMenu(player) ; Go to player menu instead
+        return
+    endIf
     AddSpellMenu_Messages_Navigation.Visit("NpcMenu")
     AddSpellMenu_npcs.SetCurrentTarget(npc)
-    AddSpellMenu_Messages_TextReplacement.SetTextReplacement(1, AddSpellMenu_Npcs.GetNpcName(npc))
+    AddSpellMenu_Messages_TextReplacement.SetTextReplacement(1, AddSpellMenu_Npcs.GetNpcNameWithNickname(npc))
     if AddSpellMenu_Npcs.IsSaved(npc)
         if AddSpellMenu_Npcs.HasAnySpells(npc)
             NpcMenu_Saved_WithSpells(npc)
@@ -117,8 +122,4 @@ function OnSaveNpc(Actor npc) global
     AddSpellMenu_Npcs.SaveNPC(npc)
     Debug.MessageBox("Saved NPC " + AddSpellMenu_Npcs.GetNpcName(npc))
     Show(npc)
-endFunction
-
-function OnExit() global
-    ; Nada
 endFunction
