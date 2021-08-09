@@ -2,12 +2,19 @@ scriptName AddSpellMenu_Messages_Navigation hidden
 
 function NavigateTo(string menuName) global
     if menuName == "PlayerMainMenu"
-        AddSpellMenu_Messages_MainMenu.Show(AddSpellMenu_Npcs.GetCurrentTarget())
+        AddSpellMenu_Messages_MainMenu.Show()
     elseif menuName == "NpcMainMenu"
-        AddSpellMenu_Messages_MainMenu.Show(AddSpellMenu_Npcs.GetCurrentTarget())
+        Debug.MessageBox("Npc Main Menu Deprecated")
+        AddSpellMenu_Messages_MainMenu.Show()
+    elseif menuName == "NpcMenu"
+        AddSpellMenu_Messages_NpcMenu.Show(AddSpellMenu_Npcs.GetCurrentTarget())
     else
         Debug.Trace("[AddSpellMenu Navigation] Unknown menu: " + menuName)
     endIf
+endFunction
+
+function Clear() global
+    SetHistory(None)
 endFunction
 
 function Visit(string menuName) global

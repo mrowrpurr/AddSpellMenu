@@ -26,9 +26,11 @@ event OnInit()
     AddSpellMenu_Versioning.FirstRun()
     AddSpellMenu_Versioning.Upgrade()
     Actor player = Game.GetPlayer()
-    if player.GetItemCount(AddSpellMenu_Forms.GetActivatorForm()) == 0
-        player.AddItem(AddSpellMenu_Forms.GetActivatorForm())
-    endIf
+    ObjectReference packContainer = AddSpellMenu_Forms.GetPackContainerInstance()
+    packContainer.AddItem(AddSpellMenu_Forms.GetActivatorForm())
+    packContainer.AddItem(AddSpellMenu_Forms.GetShoutSpellTomeForm())
+    packContainer.AddItem(AddSpellMenu_Forms.GetNpcSpellTomeForm())
+    player.AddItem(AddSpellMenu_Forms.GetPackActivatorForm())
 endEvent
 
 event OnSpellChooserAddRemoveSpell(string eventName, string strArg, float numArg, Form sender)

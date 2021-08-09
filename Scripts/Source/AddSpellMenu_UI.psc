@@ -6,7 +6,7 @@ function ShowAddSpellMenu(Actor npc = None) global
     if ! npc
         npc = Game.GetCurrentCrosshairRef() as Actor
     endIf
-    AddSpellMenu_Messages_MainMenu.Show(npc)
+    AddSpellMenu_Messages_MainMenu.Show()
 endFunction
 
 ;;;; TODO split into multiple UI scripts for organization

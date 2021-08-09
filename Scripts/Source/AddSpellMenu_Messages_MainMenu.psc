@@ -1,23 +1,6 @@
 scriptName AddSpellMenu_Messages_MainMenu hidden
 
-function Show(Actor npc = None) global
-    if ! npc
-        npc = AddSpellMenu_Npcs.GetCurrentTarget()
-    else
-        AddSpellMenu_Npcs.SetCurrentTarget(npc)
-    endIf
-    if npc && npc != Game.GetPlayer()
-        if AddSpellMenu_Npcs.HasAnySpells(npc)
-            ShowNpcMainMenu_HasSpells(npc)
-        else
-            ShowNpcMainMenu_NoSpells(npc)
-        endIf
-    else
-        ShowPlayerMainMenu()
-    endIf
-endFunction
-
-function ShowPlayerMainMenu() global
+function Show() global
     AddSpellMenu_Messages_Navigation.Visit("PlayerMainMenu")
     AddSpellMenu_Npcs.SetCurrentTarget(Game.GetPlayer())
     int result = AddSpellMenu_Forms.MainMenuMessage().Show()
@@ -42,7 +25,7 @@ function ShowNpcMainMenu_NoSpells(Actor npc = None) global
     if ! npc
         npc = AddSpellMenu_Npcs.GetCurrentTarget()
         if ! npc
-            ShowPlayerMainMenu()
+            Show()
             return
         endIf
     endIf
@@ -74,7 +57,7 @@ function ShowNpcMainMenu_HasSpells(Actor npc = None) global
     if ! npc
         npc = AddSpellMenu_Npcs.GetCurrentTarget()
         if ! npc
-            ShowPlayerMainMenu()
+            Show()
             return
         endIf
     endIf

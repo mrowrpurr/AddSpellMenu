@@ -60,9 +60,13 @@ bool function IsSaved(Actor npc) global
     return false
 endFunction
 
-bool function SaveNPC(Actor npc, string name) global
+bool function SaveNPC(Actor npc, string name = "") global
     Form[] forms = GetSavedNpcForms()
     string[] names = GetSavedNpcNames()
+
+    if name == ""
+        name = AddSpellMenu_Npcs.GetNpcName(npc)
+    endIf
 
     if forms.Length == 128
         Debug.MessageBox("You cannot save more than 128 NPCs")

@@ -33,8 +33,8 @@ bool function UpgradeToV2() global
     if player.GetItemCount(AddSpellMenu_Forms.GetPackActivatorForm()) == 0
         ObjectReference packContainer = AddSpellMenu_Forms.GetPackContainerInstance()
         packContainer.AddItem(AddSpellMenu_Forms.GetActivatorForm())
-        if ! player.HasSpell(AddSpellMenu_Forms.GetSpell()) && player.GetItemCount(AddSpellMenu_Forms.GetSpellTomeForm()) == 0
-            packContainer.AddItem(AddSpellMenu_Forms.GetSpellTomeForm())
+        if ! player.HasSpell(AddSpellMenu_Forms.GetSpell()) && player.GetItemCount(AddSpellMenu_Forms.GetShoutSpellTomeForm()) == 0
+            packContainer.AddItem(AddSpellMenu_Forms.GetShoutSpellTomeForm())
         endIf
         player.AddItem(AddSpellMenu_Forms.GetPackActivatorForm())
     endIf

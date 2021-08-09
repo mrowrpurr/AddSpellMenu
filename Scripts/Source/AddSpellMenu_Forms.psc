@@ -33,12 +33,12 @@ GlobalVariable function GetSpecialSpellsEnabledGlobal() global
     return GetModForm(0x81c) as GlobalVariable
 endFunction
 
-Form function GetSpellTomeForm() global
+Form function GetShoutSpellTomeForm() global
     return GetModForm(0xd69)
 endFunction
 
 Form function GetNpcSpellTomeForm() global
-    return GetModForm(0x81d)
+    return GetModForm(0x80f)
 endFunction
 
 AddSpellMenu_QuestScript function GetModQuestScript() global
@@ -65,13 +65,16 @@ Message function MainMenuMessage() global
     return GetModForm(0x82b) as Message
 endFunction
 
+; DEPRECATE ----------
 Message function NpcMainMenuMessage() global
+    Debug.MessageBox("NPC MAIN MENU MESAGE DEPRECATED")
     return GetModForm(0x82c) as Message
 endFunction
-
 Message function NpcMainMenuMessageWithoutViewAndRemove() global
+    Debug.MessageBox("NPC MAIN MENU MESAGE DEPRECATED (no view and remove)")
     return GetModForm(0x810) as Message
 endFunction
+; ^ DEPRECATE ----------------------------
 
 Message function OptionsMessage() global
     return GetModForm(0x81b) as Message
