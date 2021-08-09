@@ -12,8 +12,6 @@ function Show() global
         OnRemoveSpells()
     elseif result == 3
         OnManageNPCs()
-    elseif result == 4
-        OnPowerSpellActivator()
     elseif result == 5
         OnOptions()
     else
@@ -107,10 +105,6 @@ endFunction
 
 function OnManageNPCs() global
     AddSpellMenu_Messages_ManageNPCs.Show()
-endFunction
-
-function OnPowerSpellActivator() global
-    AddSpellMenu_Messages_ObjectsAndSpells.Show()
 endFunction
 
 function OnOptions() global

@@ -16,3 +16,7 @@ endFunction
 Message function NpcMenu_Saved_WithSpells() global
     return AddSpellMenu_Forms.GetModForm(0x82c) as Message
 endFunction
+
+Message function ManageNPCsMessage() global
+    return AddSpellMenu_Forms.GetModForm(0x82f) as Message
+endFunction

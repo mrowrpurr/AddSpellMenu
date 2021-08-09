@@ -79,27 +79,3 @@ endFunction
 Message function OptionsMessage() global
     return GetModForm(0x81b) as Message
 endFunction
-
-Message function ManageNPCsMessage_WithNPCSelectedNotSaved_WithSavedNPCs() global
-    return GetModForm(0x832) as Message
-endFunction
-
-Message function ManageNPCsMessage_WithNPCSelectedIsSaved_WithSavedNPCs() global
-    return GetModForm(0x82e) as Message
-endFunction
-
-Message function ManageNPCsMessage_WithNPCSelected_WithNoSaves() global
-    return GetModForm(0x831) as Message
-endFunction
-
-Message function ManageNPCsMessage_WithNoNpcSelected_WithSavedNPCs() global
-    return GetModForm(0x82f) as Message
-endFunction
-
-Message function ManageNPCsMessage_WithNoSelectedNPC_AndNoSavedNPCs() global
-    return GetModForm(0x830) as Message
-endFunction
-
-Message function SpellPowerActivatorMessage() global
-    return GetModForm(0x800) as Message
-endFunction

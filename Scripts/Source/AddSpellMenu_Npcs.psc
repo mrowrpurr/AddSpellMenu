@@ -124,6 +124,9 @@ bool function RemoveSavedNPC(Actor npc) global
         index += 1
     endWhile
 
+    SetSavedNpcForms(newFormArray)
+    SetSavedNpcNames(newNameArray)
+
     return true
 endFunction
 
